@@ -1,11 +1,11 @@
 ---
-title: "Terms & Conditions"
-date: 2019-10-17T11:22:16+06:00
-draft: true
-description : "this is a meta description"
+title: "CGU"
+date: 2021-06-18T11:22:16+06:00
+draft: false
+description : "Conditions Générales d'Utilisation"
 ---
 
-### Terms and Condition
+### Conditions Générales d'Utilisation
 
 Please read this terms and conditions stated below, which outline a lot of legal goodies, but the bottom line is it’s our aim to always take care of both of us, as a customer, or as a seller. We’ve included many of these terms to legally protect ourselves, but if you have an issue, always feel free to email us at contact@themefisher.com and we’ll do our best to resolve it in a fair and timely way .
 

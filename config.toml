@@ -1,7 +1,7 @@
 ######################## default configuration ####################
 baseURL = "https://demo.croutenard.com/hargo/examplesite/"
-languageCode = "en-us"
-title = "Croutenard | Hargo | Hugo Ecommerce Site"
+languageCode = "fr-FR"
+title = "Croutenard | Hugo Ecommerce Site"
 themesDir = "./themes/"
 theme = "hargo"
 summaryLength = "20"
@@ -34,19 +34,19 @@ disqusShortname = ""
 [menu]
 
   [[menu.main]]
-  name = "Products"
-  URL = "products/"
+  name = "Produits"
+  URL = "produits/"
   weight = 1
 
   [[menu.main]]
-  name = "Blog"
-  URL = "blog/"
+  name = "Le Billet d' Alphonse"
+  URL = "le-billet/"
   weight = 2
 
-  [[menu.main]]
-  name = "FAQ"
-  URL = "faq/"
-  weight = 3
+#  [[menu.main]]
+#  name = "FAQ"
+#  URL = "faq/"
+#  weight = 3
 
   [[menu.main]]
   name = "Contact"
@@ -55,13 +55,13 @@ disqusShortname = ""
 
   ############# footer menu #############
   [[menu.footer]]
-  name = "Products"
-  URL = "products/"
+  name = "Produits"
+  URL = "produits/"
   weight = 1
 
   [[menu.footer]]
-  name = "Blog"
-  URL = "blog/"
+  name = "Le Billet d' Alphonse"
+  URL = "le-billet/"
   weight = 2
 
   [[menu.footer]]
@@ -70,20 +70,31 @@ disqusShortname = ""
   weight = 3
 
   [[menu.footer]]
-  name = "Terms & Conditions"
-  URL = "terms-conditions/"
+  name = "CGV"
+  URL = "cgv/"
   weight = 4
+
+  [[menu.footer]]
+  name = "CGU"
+  URL = "cgu/"
+  weight = 5
+
+  [[menu.footer]]
+  name = "Mentions légales"
+  URL = "mentions-legales/"
+  weight = 6
+
 
   [[menu.footer]]
   name = "Contact"
   URL = "contact/"
-  weight = 5
+  weight = 7
 
 
 #################### default parameters ################################
 [params]
 logo = "images/logo.png"
-home = "Home"
+home = "Accueil"
 # Meta data
 description = "This is meta description"
 author = "Themefisher"
@@ -95,14 +106,15 @@ mapMarker = "images/marker.png"
 # Google Analitycs
 googleAnalitycsID = "" # Your ID
 # Contact Information
-mobile = "0124857985320"
-email = "demo@email.com"
-location = "Dhaka, Bangladedsh"
+# mobile = "0124857985320"
+email = "croutenardise@gmail.com"
+location = "Auvergne, France"
 # copyright
 copyright = "| Copyright &copy; 2019 [Gethugothemes](https://gethugothemes.com) All Rights Reserved |"
 # Snipcart Credentials
 snipcartApiKey = "M2E5YjA3NjMtYzRiYS00YzVjLWEyYWYtNDY5ZDI0OWZhYjg5"
-currencySymbol = "$"
+# currencySymbol = "$"
+currencySymbol = "€"
 
   # Preloader
   [params.preloader]

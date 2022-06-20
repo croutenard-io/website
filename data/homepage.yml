@@ -1,129 +1,141 @@
 ############################ banner ##########################
 banner:
   enable : true
-  title : "Urine d'Auvergnat démilitarisée, L'Eau de toilette féministe!"
-  content : "Avec cette unique frangance avergnate pur jus, éloignez définitivement les élus harceleurs sexuels de conseil général, conseil régional, et autres instances parasiaires! Balances ton porc est dépassé, sans panache, abandonnez les méthodes américaines lourdes, optez pour une méthode radicale bien Française, qui a fait ses preuves!"
+  title : "L’eau précieuse d’Alphonse & Justine"
+  content : "Alphonse & Justine est une fragrance unique de nos volcans d’Auvergne, un condensé de chic et d’opulence qui réunit les 3 grands esprits : de bocage, floral et boisé. Une sensualité assumée d’épices et d’hespéridées aux zestes d’agrumes, de miel et de fruits frais. Alphonse et Justine est une expérience unique pour le corps et l’esprit. "
   image : "images/banner.png"
   # button
   button:
     enable : true
-    label : "All Products"
-    link : "products/"
+    label : "Nos produits"
+    link : "produits/"
   # demo video
   video:
     enable : true
-    videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
+    videoURL : "https://www.youtube.com/watch?v=h6nb8jSgfF8"
 
 ########################## About ##############################
 about:
   enable : true
-  title : "About Our Product"
-  content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-          clita kasd gubergren,"
+  title : "À propos de nos produits"
+  content : "Croutenard est une entreprise artisanale implantée au coeur des volcans
+d’Auvergne. Nous sommes une entreprise solidaire, inclusive, féministe et
+de morale chrétienne.
+Nous avons à coeur de vous fournir un produit éthique et sain, 100 %
+naturel, prélevé le jour même de la commande et stocké dans des
+conditions sanitaires conformes aux normes en vigueur.
+Les multiples vertus de l’urine ne sont plus à démontrer (peau saine,
+système immunitaire, maladies cardio-vasculaires).
+Nous nous engageons, avec notre shipping partenaire, à vous livrer partout
+dans le monde en moins de 72h.
+5 % de notre chiffre d’affaire est reversé à de jeunes étudiants en difficulté.
+(En 2022, en France, un étudiant sur 3 ne mange pas à sa faim)
+5 % de notre chiffre d’affaire est également reversé au Combat Citoyen
+pour la Démocratisation de nos Institutions."
   image : "images/about.png"
 
 
 ###################### Call to action ########################
-cta:
-  enable : true
-  title : "Buy one Get One Free Taba Cream"
-  content : "Available for limited time only. Grab one while you still can!"
-  image : "images/cta.png"
-  overlayImage : "images/cta-overlay.png"
-  button:
-    label : "All Products"
-    link : "products/"
+# cta:
+#   enable : true
+#   title : "Buy one Get One Free Taba Cream"
+#   content : "Available for limited time only. Grab one while you still can!"
+#   image : "images/cta.png"
+#   overlayImage : "images/cta-overlay.png"
+#   button:
+#     label : "All Products"
+#     link : "produits/"
 
 ######################## raw material #######################
-material:
-  enable : true
-  title : "Ingredients Of Our Products"
-  subtitle : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dol."
-  materialItem:
-    # material item loop
-    - title : "Matcha Seeds"
-      image : "images/material/material-1.png"
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-
-    # material item loop
-    - title : "Aloe Vera"
-      image : "images/material/material-2.png"
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-
-    # material item loop
-    - title : "Turmeric"
-      image : "images/material/material-3.png"
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-
-    # material item loop
-    - title : "Tulshi leaf"
-      image : "images/material/material-4.png"
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+# material:
+#   enable : true
+#   title : "Ingredients Of Our Products"
+#   subtitle : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+#           dol."
+#   materialItem:
+#     # material item loop
+#     - title : "Matcha Seeds"
+#       image : "images/material/material-1.png"
+#       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+#
+#     # material item loop
+#     - title : "Aloe Vera"
+#       image : "images/material/material-2.png"
+#       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+#
+#     # material item loop
+#     - title : "Turmeric"
+#       image : "images/material/material-3.png"
+#       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+#
+#     # material item loop
+#     - title : "Tulshi leaf"
+#       image : "images/material/material-4.png"
+#       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
 
 ########################### Advantage #########################
 advantage:
   enable : true
-  title : "Advantages Of Using <br> Our Product"
-  subtitle : "Lorem ipsum dolor sit amet, da decal consetetur<br> sadipscing elitr, sed diam nonumya eirmod"
+  title : "Les vertus de l'urine"
+  subtitle : "Selon plusieurs études, nombreux sont les maux qui ne résisteraient
+pas à un traitement par l'urine."
   image : "images/advantage.png"
   advantageList:
     # advantage list loop
-    - listItem : "Extremely lightweight"
-    - listItem : "Excellent breathability"
-    - listItem : "Can increase Cell activation"
-    - listItem : "Glowing Skin In 7 Days"
-    - listItem : "Increasing Glow Of Face"
-    - listItem : "More Beautiful Face Skin"
+    - listItem : "Assainir une plaie et permettre sa cicatrisation"
+    - listItem : "Le secret d'une peau plus saine"
+    - listItem : "Fortifier et mieux comprendre son système immunitaire"
+    - listItem : "Réduire le risque de maladies cardio-vasculaires"
 
 
 ######################## Promo Video ##########################
-video:
-  enable : true
-  title : "How To Use This Product?"
-  content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et."
-  videoThumb : "images/video-thumb.jpg"
-  videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
+# video:
+#   enable : true
+#   title : "How To Use This Product?"
+#   content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+#           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et."
+#   videoThumb : "images/video-thumb.jpg"
+#   videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
 
 
 ######################## Products #############################
 products:
   enable : true
-  title : "Products List"
+  # title : "Products List"
+  title : "Catalogue produits"
   # product item comes from "content/products"
 
 
 ########################## Testimonial ########################
-testimonial:
-  enable : true
-  title : "What People Are Saying <br> About Our Product"
-  testimonialItem:
+# testimonial:
+#   enable : true
+#   title : "What People Are Saying <br> About Our Product"
+#   testimonialItem:
+#     # testimonial item loop
+#     - name : "Angelo Perara"
+#       image : "images/clients/client-1.jpg" # size 100px*100px
+#       designation : "CEO, Dialogue Broad Band"
+#       content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
+#       rating : "five" # rating star, one to five
+#
     # testimonial item loop
-    - name : "Angelo Perara"
-      image : "images/clients/client-1.jpg" # size 100px*100px
-      designation : "CEO, Dialogue Broad Band"
-      content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
-      rating : "five" # rating star, one to five
-
+#     - name : "Riya Ventila"
+#       image : "images/clients/client-2.jpg" # size 100px*100px
+#       designation : "CEO, Dialogue Broad Band"
+#       content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
+#       rating : "three" # rating star, one to five
+#
     # testimonial item loop
-    - name : "Riya Ventila"
-      image : "images/clients/client-2.jpg" # size 100px*100px
-      designation : "CEO, Dialogue Broad Band"
-      content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
-      rating : "three" # rating star, one to five
-
+#     - name : "john Doe"
+#       image : "images/clients/client-3.jpg" # size 100px*100px
+#       designation : "CEO, Dialogue Broad Band"
+#       content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
+#       rating : "five" # rating star, one to five
+#
     # testimonial item loop
-    - name : "john Doe"
-      image : "images/clients/client-3.jpg" # size 100px*100px
-      designation : "CEO, Dialogue Broad Band"
-      content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
-      rating : "five" # rating star, one to five
-
-    # testimonial item loop
-    - name : "Riya Ventila"
-      image : "images/clients/client-2.jpg" # size 100px*100px
-      designation : "CEO, Dialogue Broad Band"
-      content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
-      rating : "four" # rating star, one to five
+#     - name : "Riya Ventila"
+#       image : "images/clients/client-2.jpg" # size 100px*100px
+#       designation : "CEO, Dialogue Broad Band"
+#       content : "Lorem ipsum dolor sit amet, <br> consetetur sadipscing elitr, diam <br> nonumy eirmod tempor"
+#       rating : "four" # rating star, one to five
+#

@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  pokus_dev:
+    # we need extended, and nodejs for sass!
+    image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev
+    # container_name: pokus_dev
+    build:
+       context: .
+       dockerfile: Dockerfile
+       args:
+         - POKUS_USER_NAME=$POKUS_USER_NAME
+         - POKUS_USER_GRP_NAME=$POKUS_USER_GRP_NAME
+         - POKUS_USER_UID=$POKUS_USER_UID
+         - POKUS_USER_GID=$POKUS_USER_GID
+         - ALPINE_OCI_IMAGE_TAG=${ALPINE_OCI_IMAGE_TAG}
+         - GOLANG_VERSION=${GOLANG_VERSION}
+         - HUGO_VERSION=${HUGO_VERSION}
+         - GIT_COMMIT_ID=${GIT_COMMIT_ID}
+         - CICD_BUILD_ID=${CICD_BUILD_ID}
+         - CICD_BUILD_TIMESTAMP=${CICD_BUILD_TIMESTAMP}
+         - QUAY_OCI_IMAGE_TAG=${QUAY_OCI_IMAGE_TAG}
+    env_file:
+      - ./.env
+      # - ./.dev.env
+
+#   pokus_staging:
+#     # we need extended, and nodejs for sass!
+#     image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}
+#     # container_name: pokus_staging
+#     build:
+#        context: .
+#        dockerfile: prod.Dockerfile
+#        args:
+#          - ALPINE_OCI_IMAGE_TAG=${ALPINE_OCI_IMAGE_TAG}
+#          - GOLANG_VERSION=${GOLANG_VERSION}
+#          - HUGO_VERSION=${HUGO_VERSION}
+#          - GIT_COMMIT_ID=${GIT_COMMIT_ID}
+#          - CICD_BUILD_ID=${CICD_BUILD_ID}
+#          - CICD_BUILD_TIMESTAMP=${CICD_BUILD_TIMESTAMP}
+#          - QUAY_OCI_IMAGE_TAG=${QUAY_OCI_IMAGE_TAG}
+#     env_file:
+#       - ./.staging.env

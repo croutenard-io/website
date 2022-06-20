@@ -1,6 +1,29 @@
 * we'll use hugo theme https://github.com/themefisher/hargo-hugo
 
-* spining up the hugo project :
+* run locally :
+
+```bash
+
+export DESIRED_VERSION=0.0.0
+export DESIRED_VERSION=master
+
+cd ~/crouton.work
+git clone git@github.com:croutenard-io/website.git ~/crouton.work
+
+git checkout ${DESIRED_VERSION}
+
+
+export PATH=$PATH:/usr/local/go/bin && go version
+export HUGO_SERVER_IP=0.0.0.0
+export HUGO_PORT_NO=5654
+
+
+hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} -p ${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} -w
+
+```
+
+
+* spinning up the hugo project :
 
 ```bash
 export PATH=$PATH:/usr/local/go/bin && go version
