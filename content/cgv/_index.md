@@ -1,6 +1,7 @@
 ---
 title: "CGV"
 date: 2021-06-18T11:22:16+06:00
+publishDate: 2021-06-18T11:22:16+06:00
 draft: false
 description : "Conditions Générales de Vente"
 ---

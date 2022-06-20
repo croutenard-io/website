@@ -64,10 +64,10 @@ disqusShortname = ""
   URL = "le-billet/"
   weight = 2
 
-  [[menu.footer]]
-  name = "FAQ"
-  URL = "faq/"
-  weight = 3
+#   [[menu.footer]]
+#   name = "FAQ"
+#   URL = "faq/"
+#   weight = 3
 
   [[menu.footer]]
   name = "CGV"
