@@ -98,7 +98,8 @@ a:hover {
 }
 
 .bg-gradient {
-  background: $primary-gradient !important;
+  /*background: $primary-gradient !important;*/
+  background: $crouton-gradient !important;
 }
 
 .hover-shadow {
@@ -212,4 +213,23 @@ textarea.form-control {
       }
     }
   }
+}
+
+
+
+/**
+ *  Custom crouton
+ */
+
+
+.logo.crouton.navbar-brand {
+  height: 20%!important;
+  width: 20%!important;
+}
+
+
+.btn-primary {
+  background: linear-gradient(27deg,#59b51e 0%,#95d239 100%);
+  color: #fff;
+  border-color: #f8ab1a;
 }

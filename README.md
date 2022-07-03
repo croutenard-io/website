@@ -83,7 +83,7 @@ hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERV
 
 ```bash
 
-export DEPLOYMENT_DOMAIN=croutenard.surge.sh
+export DEPLOYMENT_DOMAIN=croutenard-io.surge.sh
 export DEPLOYMENT_BASE_URL=https://${DEPLOYMENT_DOMAIN}
 
 if [ -d ./docs ]; then

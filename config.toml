@@ -93,7 +93,13 @@ disqusShortname = ""
 
 #################### default parameters ################################
 [params]
-logo = "images/logo.png"
+# logo = "images/logo.png"
+# logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.svg"
+# logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.png"
+logo = "images/crouton/logo/CROUTENARD_RVB.png"
+# crouton_favicon = "images/crouton/favicon/CROUTENARD_SIMPLE_RVB.ico.svg"
+crouton_favicon = "images/crouton/favicon/CROUTENARD_SIMPLE_RVB.32x32.ico.png.png"
+
 home = "Accueil"
 # Meta data
 description = "This is meta description"
