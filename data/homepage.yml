@@ -14,7 +14,8 @@ banner:
   # demo video
   video:
     enable : true
-    videoURL : "https://www.youtube.com/watch?v=h6nb8jSgfF8"
+    videoURL : "https://www.youtube.com/embed/h6nb8jSgfF8"
+    # videoURL : "https://www.youtube.com/watch?v=h6nb8jSgfF8"
 
 ########################## About ##############################
 about:
