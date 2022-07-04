@@ -136,11 +136,11 @@ currencySymbol = "€"
 
   # Social Site
   [[params.social]]
-  icon = "ti-facebook"
+  icon = "ti-twitter-alt"
   link = "#"
 
   [[params.social]]
-  icon = "ti-twitter-alt"
+  icon = "ti-facebook"
   link = "#"
 
   [[params.social]]
@@ -152,7 +152,7 @@ currencySymbol = "€"
   link = "#"
 
   [[params.social]]
-  icon = "ti-pinterest"
+  icon = "fab fa-tiktok"
   link = "#"
 
   # Contact Form
