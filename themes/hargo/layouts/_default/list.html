@@ -6,7 +6,25 @@
   <div class="container">
     <div class="row">
       {{ $paginator := .Paginate .Data.Pages }}
-      {{ range $paginator.Pages }}
+      
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+      {{ range $paginator.Pages.ByWeight }}
+
       <div class="col-lg-8 mx-auto mb-5">
         <article class="card rounded-0 border-0">
           <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}" class="card-img-top rounded-top-0">

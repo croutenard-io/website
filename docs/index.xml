@@ -2,100 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Croutenard | Hugo Ecommerce Site</title>
-    <link>https://croutenard-io.surge.sh/</link>
+    <link>https://croutenardio.surge.sh/</link>
     <description>Recent content on Croutenard | Hugo Ecommerce Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-FR</language>
-    <lastBuildDate>Mon, 20 Jun 2022 18:29:00 +0000</lastBuildDate><atom:link href="https://croutenard-io.surge.sh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Jun 2022 18:29:00 +0000</lastBuildDate><atom:link href="https://croutenardio.surge.sh/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Les vertus de l&#39;urine</title>
-      <link>https://croutenard-io.surge.sh/le-billet/post-2/</link>
-      <pubDate>Mon, 20 Jun 2022 18:29:00 +0000</pubDate>
+      <title>Alphonse</title>
+      <link>https://croutenardio.surge.sh/produits/taba-cream/</link>
+      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
       
-      <guid>https://croutenard-io.surge.sh/le-billet/post-2/</guid>
-      <description>Selon plusieurs études, nombreux sont les maux qui ne résisteraient pas à un traitement par l&amp;rsquo;urine.
-Des traitements par l&amp;rsquo;urine &amp;ldquo;L&amp;rsquo;urine, c&amp;rsquo;était ma médecine.</description>
+      <guid>https://croutenardio.surge.sh/produits/taba-cream/</guid>
+      <description>Alphonse est un musc unique de nos volcans d’Auvergne.
+Un condensé de virilité animale, produisant des fragrances aux tonalités chaudes et odorantes.</description>
     </item>
     
     <item>
-      <title>Crême d&#39;excréments de babouin</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-cream.1/</link>
+      <title>Justine</title>
+      <link>https://croutenardio.surge.sh/produits/taba-cream.1/</link>
       <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
       
-      <guid>https://croutenard-io.surge.sh/produits/taba-cream.1/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Cream</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-cream/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-cream/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Facewash</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-facewash.1/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-facewash.1/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Facewash</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-facewash.2/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-facewash.2/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Facewash</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-facewash/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-facewash/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Shampoo</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-shampoo.1/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-shampoo.1/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Shampoo</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-shampoo.2/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-shampoo.2/</guid>
-      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
-    </item>
-    
-    <item>
-      <title>Taba Shampoo</title>
-      <link>https://croutenard-io.surge.sh/produits/taba-shampoo/</link>
-      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
-      
-      <guid>https://croutenard-io.surge.sh/produits/taba-shampoo/</guid>
+      <guid>https://croutenardio.surge.sh/produits/taba-cream.1/</guid>
       <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
     </item>
     
     <item>
       <title>Vidange, l’urine non genrée</title>
-      <link>https://croutenard-io.surge.sh/produits/vidange.2/</link>
+      <link>https://croutenardio.surge.sh/produits/vidange.2/</link>
       <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
       
-      <guid>https://croutenard-io.surge.sh/produits/vidange.2/</guid>
+      <guid>https://croutenardio.surge.sh/produits/vidange.2/</guid>
       <description>Vidange est un condensé non genré de l’eau précieuse d’Alphonse et Justine. Un élixir à la fois brut et raffiné aux senteurs de musc.</description>
+    </item>
+    
+    <item>
+      <title>T-Shirt</title>
+      <link>https://croutenardio.surge.sh/produits/taba-shampoo/</link>
+      <pubDate>Thu, 17 Oct 2019 11:22:16 +0600</pubDate>
+      
+      <guid>https://croutenardio.surge.sh/produits/taba-shampoo/</guid>
+      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+    </item>
+    
+    <item>
+      <title>Les vertus de l&#39;urine</title>
+      <link>https://croutenardio.surge.sh/le-billet/post-2/</link>
+      <pubDate>Mon, 20 Jun 2022 18:29:00 +0000</pubDate>
+      
+      <guid>https://croutenardio.surge.sh/le-billet/post-2/</guid>
+      <description>Selon plusieurs études, nombreux sont les maux qui ne résisteraient pas à un traitement par l&amp;rsquo;urine.
+Des traitements par l&amp;rsquo;urine &amp;ldquo;L&amp;rsquo;urine, c&amp;rsquo;était ma médecine.</description>
     </item>
     
   </channel>

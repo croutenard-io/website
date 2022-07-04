@@ -37,7 +37,8 @@
     "spawn:project:clean": "echo \"cleaning hugo project\" && ./.npm.scripts/clean-hugo.sh",
     "spawn:project:gen": "echo \"spawn up new hugo project from Hugo theme\" && ./.npm.scripts/spawn.sh",
     "clean:hugo": "echo \"cleaning hugo public/ Folder \" && gulp clean:hugo",
-    "parse-hugo-them-toml": "node .npm.scripts/toml-parser.js"
+    "parse-hugo-them-toml": "node .npm.scripts/toml-parser.js",
+    "pr" : "bash ./.npm.scripts/dev/inflate.sh"
   },
   "repository": {
     "type": "git",
