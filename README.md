@@ -1,6 +1,8 @@
-* we'll use hugo theme https://github.com/themefisher/hargo-hugo
+# Croutenard.com
 
-* run locally :
+* We used hugo theme https://github.com/themefisher/hargo-hugo
+
+## Run locally 
 
 ```bash
 
@@ -22,7 +24,7 @@ hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} -p ${HUGO_PORT_NO} --bind
 
 ```
 
-
+<!-- 
 * spinning up the hugo project :
 
 ```bash
@@ -77,34 +79,12 @@ hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERV
 ```
 
 
+-->
 
-
+## Deploy your PR to https://surge.sh 
 
 
 ```bash
-
-export DEPLOYMENT_DOMAIN=croutenard-io.surge.sh
-export DEPLOYMENT_BASE_URL=https://${DEPLOYMENT_DOMAIN}
-
-if [ -d ./docs ]; then
-  rm -fr ./docs
-fi;
-
-if [ -d ./public ]; then
-  rm -fr ./public
-fi;
-
-mkdir -p  ./docs
-mkdir -p  ./public
-
-surgeBuildNdeploy () {
-  export PATH=$PATH:/usr/local/go/bin
-  hugo -b ${DEPLOYMENT_BASE_URL}
-
-  cp -fr ./public/* ./docs/
-  surge ./public "${DEPLOYMENT_DOMAIN}"
-}
-
-surgeBuildNdeploy
-
+# npm i
+npm run pr
 ```
