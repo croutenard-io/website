@@ -3,7 +3,8 @@ title: "Les vertus de l'urine"
 date: 2022-06-20T18:29:00+00:00
 draft: false
 description : "découverte des vertus de l'urine. L'urine dans tous ses états!"
-image: "images/blog/post-2.jpg"
+# image: "images/blog/post-2.jpg"
+image: "images/crouton/delivery/4.png"
 author: "Alphonse Croutenard"
 ---
 
@@ -129,3 +130,4 @@ Nous rappelons que l’urine reste un produit à consommer avec modération.
 * https://www.femmeactuelle.fr/sante/sante-pratique/vertus-insoupconnees-de-lurine-21565
 * https://www.femmeactuelle.fr/sante/medecine-douce/urinotherapie-amaroli-vertus-sante-urine-34140
 * https://bien-etre.ooreka.fr/astuce/voir/566677/boire-son-urine
+* [https://monjardinmamaison.maison-travaux.fr/mon-jardin-ma-maison/conseils-jardinage/jardin-bio-et-ecologique/urine-engrais-efficace-jardin-potager-249249.html](https://monjardinmamaison.maison-travaux.fr/mon-jardin-ma-maison/conseils-jardinage/jardin-bio-et-ecologique/urine-engrais-efficace-jardin-potager-249249.html)

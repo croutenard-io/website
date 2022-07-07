@@ -1,7 +1,7 @@
 ######################## default configuration ####################
 baseURL = "https://demo.croutenard.com/hargo/examplesite/"
 languageCode = "fr-FR"
-title = "Croutenard | Hugo Ecommerce Site"
+title = "Croûtenard"
 themesDir = "./themes/"
 theme = "hargo"
 summaryLength = "20"
@@ -96,7 +96,8 @@ disqusShortname = ""
 # logo = "images/logo.png"
 # logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.svg"
 # logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.png"
-logo = "images/crouton/logo/CROUTENARD_RVB.png"
+# logo = "images/crouton/logo/CROUTENARD_RVB.png"
+logo = "images/crouton/logo/johanna2/CROUTENARD_RVB.svg"
 # crouton_favicon = "images/crouton/favicon/CROUTENARD_SIMPLE_RVB.ico.svg"
 crouton_favicon = "images/crouton/favicon/CROUTENARD_SIMPLE_RVB.32x32.ico.png.png"
 

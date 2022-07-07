@@ -20,10 +20,9 @@ banner:
 ########################## About ##############################
 about:
   enable : true
-  title : "À propos de nos produits"
-  content : "Les multiples vertus de l’urine ne sont plus à démontrer : peau saine,
-système immunitaire, maladies cardio-vasculaires, cicatrisation, engrais naturel...
-
+  # title : "À propos de nos produits"
+  title : "À propos"
+  content : "
 
 Croutenard est une entreprise artisanale implantée au coeur des volcans d’Auvergne.
 
@@ -34,7 +33,7 @@ Nos urines sont prélevées le jour même de la commande. Nous nous engageons, �
 Notre gamme de produits reflète les valeurs de notre entreprise: bienveillante, solidaire, inclusive et féministe.
 
 
-`5 %` de notre chiffre d’affaire est reversé à de jeunes étudiant.e.s en difficulté financière : en 2022, en France, un étudiant sur 3 ne mange pas à sa faim."
+`5 %` de notre chiffre d’affaire est reversé à de jeunes étudiant.e.s en difficulté financière (en 2022, en France, un étudiant sur 3 ne mange pas à sa faim)."
   # image : "images/about.png"
   image : "images/crouton/delivery/2.png"
   
@@ -82,9 +81,13 @@ Notre gamme de produits reflète les valeurs de notre entreprise: bienveillante,
 advantage:
   enable : true
   title : "Les vertus de l'urine"
-  subtitle : "Selon plusieurs études, nombreux sont les maux qui ne résisteraient
+  subtitle : "Les multiples vertus de l’urine ne sont plus à démontrer : peau saine,
+système immunitaire, maladies cardio-vasculaires, cicatrisation, engrais naturel...
+
+Selon plusieurs études, nombreux sont les maux qui ne résisteraient
 pas à un traitement par l'urine."
-  image : "images/crouton/delivery/4.png"
+  # image : "images/crouton/delivery/4.png"
+  image : "images/crouton/delivery/10.png"
   #image : "images/advantage.png"
   advantageList:
     # advantage list loop
@@ -92,6 +95,7 @@ pas à un traitement par l'urine."
     - listItem : "Le secret d'une peau plus saine"
     - listItem : "Fortifier et mieux comprendre son système immunitaire"
     - listItem : "Réduire le risque de maladies cardio-vasculaires"
+    - listItem : "Engrais naturel"
 
 
 ######################## Promo Video ##########################
@@ -111,7 +115,11 @@ pas à un traitement par l'urine."
 #   title : "Catalogue produits"
 #   # product item comes from "content/products"
 
-
+produits:
+  enable : true
+  # title : "Products List"
+  title : "Catalogue produits"
+  # product item comes from "content/produits"
 ########################## Testimonial ########################
 # testimonial:
 #   enable : true

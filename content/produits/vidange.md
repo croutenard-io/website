@@ -38,6 +38,12 @@ Vidange est un condensé non genré des eaux précieuses d’Alphonse et Justine
 Un élixir à la fois brut et raffiné aux volutes délicatement rustiques.
 
 
+Vidange exprime un parfum puissant de forêt aux baies sauvages, bois de cervidé et mousse verdoyante.
+
+
+
+<!-- 
+
 Vidange exprime un parfum puissant de forêt aux baies sauvages, bois de cervidé et mousse verdoyante, aux abords des torrents de montagne.
 
 Une senteur unique et surprenante, entre la louve et le renard.
@@ -45,3 +51,4 @@ Une senteur unique et surprenante, entre la louve et le renard.
 En outre, avec cette fragrance auvergnate pur jus, vous éloignerez définitivement les élus harceleurs et autres délinquants sexuels.
 
 En toutes circonstances, du conseil municipal, au conseil régional, comme dans toute autre instance parasitaire, gardez à distance les indésirables !
+-->

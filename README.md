@@ -16,7 +16,7 @@ git checkout ${DESIRED_VERSION}
 
 
 export PATH=$PATH:/usr/local/go/bin && go version
-export HUGO_SERVER_IP=0.0.0.0
+export HUGO_SERVER_IP=127.0.0.1
 export HUGO_PORT_NO=5654
 
 
