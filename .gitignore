@@ -1,5 +1,8 @@
 public
 docs
 node_modules
+public/
+docs/
+node_modules/
 .env
 *.log
