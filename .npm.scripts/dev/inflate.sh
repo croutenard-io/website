@@ -14,8 +14,8 @@ echo "# ------ ------ ------ ------ ------ ------ ------ #"
 echo "# ------ -  PATH=[${PATH}]"
 echo "# --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #"
 echo "# --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #"
-# export DEPLOYMENT_DOMAIN=croutenard-io.surge.sh
-export DEPLOYMENT_DOMAIN=croutenardio.surge.sh
+export DEPLOYMENT_DOMAIN=croutenard-io.surge.sh
+# export DEPLOYMENT_DOMAIN=croutenardio.surge.sh
 export DEPLOYMENT_BASE_URL=https://${DEPLOYMENT_DOMAIN}
 
 if [ -d ./docs ]; then

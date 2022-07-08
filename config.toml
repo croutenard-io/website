@@ -158,4 +158,5 @@ currencySymbol = "€"
 
   # Contact Form
   [params.contact]
-  formAction = "#" # contact form works with formspree.io
+  # see also https://formspree.io/formbutton/docs/#feedback-form
+  formAction = "https://formspree.io/f/xgedjzkv" # contact form works with formspree.io
