@@ -6,6 +6,8 @@
 <section class="section pt-0">
   <div class="container">
     <div class="row">
+      {{ if site.Data.contact.contact.office_display }}
+
       <div class="col-lg-4 col-sm-6">
         {{ with site.Data.contact.contact.office }}
         <h3 class="mb-4">{{ .title | markdownify }}</h3>
@@ -27,6 +29,7 @@
           </li>
         </ul>
       </div>
+      {{ end }}
       <div class="col-lg-3 offset-lg-1 col-sm-6">
         {{ with site.Data.contact.contact.opennigHour }}
         <h3 class="mb-4">{{ .title | markdownify }}</h3>
