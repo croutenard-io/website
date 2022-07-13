@@ -71,6 +71,26 @@
 {{ with site.Params.snipcartApiKey }}
 {{ "<!-- Snipcart -->" | safeHTML }}
 <div id="snipcart" data-api-key="{{ . }}" hidden></div>
+
+<!-- Below : 
+
+  https://docs.snipcart.com/v3/setup/localization#shipping-methods 
+  
+  that's to have  localized shipping methodss
+
+-->
+<script>
+  document.addEventListener('snipcart.ready', function() {
+      Snipcart.api.session.setLanguage('en', {
+          "shipping": {
+              "methods": {
+                  "localization-id": "Localized shipping method"
+              }
+          }
+      });
+  });
+</script>
+
 {{ end }}
 
 {{ "<!-- Google Maps API -->" | safeHTML }}

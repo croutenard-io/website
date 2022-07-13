@@ -16,6 +16,8 @@ shortDescription: "Urine non genré.e !"
 
 #product ID
 productID: "2"
+# Shipping Weight is in grams
+shippingWeight: "250"
 
 # type must be "products"
 type: "produits"

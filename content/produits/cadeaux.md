@@ -16,6 +16,8 @@ shortDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
 
 #product ID
 productID: "4"
+# Shipping Weight is in grams
+shippingWeight: "250"
 
 # type must be "products"
 type: "produits"

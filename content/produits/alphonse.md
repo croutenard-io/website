@@ -15,7 +15,9 @@ priceBefore: "49.90"
 shortDescription: "Pour les dandys !"
 
 #product ID
-productID: "3"
+productID: "2"
+# Shipping Weight is in grams
+shippingWeight: "250"
 
 # type must be "products"
 type: "produits"

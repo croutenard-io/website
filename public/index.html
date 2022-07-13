@@ -231,9 +231,16 @@ Selon plusieurs études, nombreux sont les maux qui ne résisteraient pas à un 
               
               <span class="lead text-primary">€44.90</span>
             </div>
-            <button class="snipcart-add-item btn btn-sm btn-outline-primary" data-item-id="3"
-              data-item-name="Alphonse"  data-item-image="https://croutenard-io.surge.sh/images/crouton/delivery/17.format.png"
-               data-item-price="44.90" data-item-url="https://croutenard-io.surge.sh/produits/alphonse/" data-item-description="Eau précieuse d&#39;Alphonse">
+            <button class="snipcart-add-item btn btn-sm btn-outline-primary"
+                    data-item-id="2"
+                    data-item-name="Alphonse" 
+                    
+                      data-item-image="https://croutenard-io.surge.sh/images/crouton/delivery/17.format.png"
+                    
+                    data-item-price="44.90"
+                    data-item-url="https://croutenard-io.surge.sh/produits/alphonse/"
+                    data-item-weight="250"
+                    data-item-description="Eau précieuse d&#39;Alphonse">
               Ajouter au panier
             </button>
           </div>
@@ -254,9 +261,16 @@ Selon plusieurs études, nombreux sont les maux qui ne résisteraient pas à un 
               
               <span class="lead text-primary">€49.90</span>
             </div>
-            <button class="snipcart-add-item btn btn-sm btn-outline-primary" data-item-id="1"
-              data-item-name="Justine"  data-item-image="https://croutenard-io.surge.sh/images/crouton/delivery/15.format.png"
-               data-item-price="49.90" data-item-url="https://croutenard-io.surge.sh/produits/justine/" data-item-description="Eau précieuse de Justine">
+            <button class="snipcart-add-item btn btn-sm btn-outline-primary"
+                    data-item-id="1"
+                    data-item-name="Justine" 
+                    
+                      data-item-image="https://croutenard-io.surge.sh/images/crouton/delivery/15.format.png"
+                    
+                    data-item-price="49.90"
+                    data-item-url="https://croutenard-io.surge.sh/produits/justine/"
+                    data-item-weight="250"
+                    data-item-description="Eau précieuse de Justine">
               Ajouter au panier
             </button>
           </div>
@@ -279,9 +293,16 @@ Selon plusieurs études, nombreux sont les maux qui ne résisteraient pas à un 
               
               <span class="lead text-primary">€34.90</span>
             </div>
-            <button class="snipcart-add-item btn btn-sm btn-outline-primary" data-item-id="2"
-              data-item-name="Vidange"  data-item-image="https://croutenard-io.surge.sh/images/crouton/delivery/16.format.png"
-               data-item-price="34.90" data-item-url="https://croutenard-io.surge.sh/produits/vidange/" data-item-description="Eau précieuse non genrée">
+            <button class="snipcart-add-item btn btn-sm btn-outline-primary"
+                    data-item-id="2"
+                    data-item-name="Vidange" 
+                    
+                      data-item-image="https://croutenard-io.surge.sh/images/crouton/delivery/16.format.png"
+                    
+                    data-item-price="34.90"
+                    data-item-url="https://croutenard-io.surge.sh/produits/vidange/"
+                    data-item-weight="250"
+                    data-item-description="Eau précieuse non genrée">
               Ajouter au panier
             </button>
           </div>
@@ -386,6 +407,20 @@ Selon plusieurs études, nombreux sont les maux qui ne résisteraient pas à un 
 
 <!-- Snipcart -->
 <div id="snipcart" data-api-key="YWEyNzdlMmYtMjZkNS00ZmU1LTg0ZmQtNzQ5YTA2YmY0ZDNiNjM3OTI4MDgyODI3NTA4NzUx" hidden></div>
+
+
+<script>
+  document.addEventListener('snipcart.ready', function() {
+      Snipcart.api.session.setLanguage('en', {
+          "shipping": {
+              "methods": {
+                  "localization-id": "Localized shipping method"
+              }
+          }
+      });
+  });
+</script>
+
 
 
 <!-- Google Maps API -->

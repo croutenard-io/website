@@ -1,21 +1,43 @@
 # High Level Architecture 
-
-
 <!-- Schematiscs go here -->
 
+# Goshippo Snipcart Adapter
 
-# Integration: the idea
+## The idea (specs)
 
+### High level Scenario 
+
+
+* Snipcart will first query adapter using a webhook, to get shipment rates (and add the shipment costs to the bill)
+* Adapter will, after payment is complete, trigger the `goshippo` shipment, and it should end by making a notification on a chatops like `discord` ("create shipment" endpoint)
+* anyway, the adapter will : 
+  * receive the snipcart webhook request to get shippo rates (and answer to the webhook) 
+  * query goshippo api to create the shipment (id say using a webhook...?)
+  * send the discord message via a hubot discord chatbot 
+  * all of actions must be persisted by the discord chatbot
+
+
+_Persistence of all workflow executions history_
+
+
+### Technical implementation
+
+<!-- Maybe `n8n` would be nice as a second design. multi-tenancy and `n8n` ? -->
+
+
+<!-- 
 https://formspree.io 's documentation proposes to use its webhooks by running an enpoint on https://runkit.io : 
 
 https://help.formspree.io/hc/en-us/articles/360015234873-Webhooks
+-->
 
+I can use Runkit this to integrate via webhooks Snipcart and Goshippo
 
-I can use this to integrate via webhooks Snipcart and Goshippo
+Indeed, [this snipcart docs page](https://docs.snipcart.com/v3/setup/shipping#webhooks) shows that the snipcart process can be integrated with Goshippo using a Snipcart webhook  : 
 
-https://docs.snipcart.com/v3/setup/shipping#webhooks shows that the snipcart process can be integrated with Goshippo using a webhooks : 
+### The snipcart webhook 
 
-* snipcart sends a webhooks HTTP POST rerquest, and expects a `2XX` HTTP response code as a success, containing a JSON payload ( `HTTP` Method `POST` `Content-Type application/json` ) :
+* snipcart sends a webhooks HTTP POST request, and expects a `2XX` HTTP response code as a success, containing a JSON payload ( `HTTP` Method `POST` `Content-Type application/json` ) :
 
 ```JSon
 {
@@ -100,9 +122,9 @@ https://docs.snipcart.com/v3/setup/shipping#webhooks shows that the snipcart pro
 ```
 
 
+### The Goshippo Endpoints 
 
-<!--
-I also still need hugo goshipo integration : 
-* 
+To query all goshippo api endpointds, i'll use the offical nodejs goshippo client https://github.com/goshippo/shippo-node-client
 
--->
+
+### The runkit implementation

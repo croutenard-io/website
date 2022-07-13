@@ -16,6 +16,8 @@ shortDescription: "Pour les ingénues !"
 
 #product ID
 productID: "1"
+# Shipping Weight is in grams
+shippingWeight: "250"
 
 # type must be "products"
 type: "produits"

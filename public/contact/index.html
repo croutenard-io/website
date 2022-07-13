@@ -223,6 +223,20 @@
 <div id="snipcart" data-api-key="YWEyNzdlMmYtMjZkNS00ZmU1LTg0ZmQtNzQ5YTA2YmY0ZDNiNjM3OTI4MDgyODI3NTA4NzUx" hidden></div>
 
 
+<script>
+  document.addEventListener('snipcart.ready', function() {
+      Snipcart.api.session.setLanguage('en', {
+          "shipping": {
+              "methods": {
+                  "localization-id": "Localized shipping method"
+              }
+          }
+      });
+  });
+</script>
+
+
+
 <!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
 <!-- JS Plugins -->
