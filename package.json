@@ -1,5 +1,5 @@
 {
-  "name": "@JeanBaptisteLasselle/whoami-web",
+  "name": "@crouton/snicart-goshippo-adapter",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -42,15 +42,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jean-Baptiste-Lasselle/whoami-web.git.git"
+    "url": "git+https://github.com/croutontechlead/snipcart-gohippo-adapter.git.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jean-Baptiste-Lasselle/whoami-web.git/issues"
+    "url": "https://github.com/croutontechlead/snipcart-gohippo-adapter.git/issues"
   },
-  "homepage": "https://github.com/Jean-Baptiste-Lasselle/whoami-web.git/#readme",
+  "homepage": "https://github.com/croutontechlead/snipcart-gohippo-adapter.git/#readme",
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",

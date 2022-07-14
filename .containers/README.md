@@ -22,7 +22,7 @@ export WHOAMI_WEB_DESIRED_VERSION="LIVE_RELOAD"
 export WHERE_I_AM=$(pwd)
 export WHERE_I_WORK=$(mktemp -d -t "POKUS_HUGO_XXXXXX")
 
-git clone git@github.com:Jean-Baptiste-Lasselle/whoami-web.git ${WHERE_I_WORK}
+git clone git@github.com:croutontechlead/snipcart-gohippo-adapter.git ${WHERE_I_WORK}
 
 cd ${WHERE_I_WORK}
 git checkout ${WHOAMI_WEB_DESIRED_VERSION}
@@ -66,7 +66,7 @@ export WHOAMI_WEB_DESIRED_VERSION="0.0.1"
 export WHERE_I_AM=$(pwd)
 export WHERE_I_WORK=$(mktemp -d -t "POKUS_HUGO_XXXXXX")
 
-git clone git@github.com:Jean-Baptiste-Lasselle/whoami-web.git ${WHERE_I_WORK}
+git clone git@github.com:croutontechlead/snipcart-gohippo-adapter.git ${WHERE_I_WORK}
 
 cd ${WHERE_I_WORK}
 git checkout ${WHOAMI_WEB_DESIRED_VERSION}

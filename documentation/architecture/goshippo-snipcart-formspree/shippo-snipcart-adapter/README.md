@@ -477,8 +477,8 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
     let pokusJSONResponse = {
         message: `Shipping /shipping/snipcart/webhook `,
         http_snipcart_body: req.body,
-        snipcart_event: `${pokusSnipcartEvent || 'whatever pokusSnipcartEvent '}`,
-        pokusSnipcartEventData: `${pokusSnipcartEventData || 'whatever pokusSnipcartEventData '}`
+        snipcart_event: `${snipcartEventName || 'whatever pokusSnipcartEvent '}`,
+        pokusSnipcartEventData: `${snipCartPayload || 'whatever pokusSnipcartEventData '}`
     }
     //res.json(pokusJSONResponse);
     res.json(pokusJSONResponse);
@@ -601,6 +601,14 @@ Annnddd, Finally, here is what i get on my website !!! :
 ![snipcart fetching runkit endpoint](./first-integration-result-via-runkit.1.PNG)
 
 <!-- /C/Users/Utilisateur/crouton/documentation/architecture/goshippo-snipcart-formspree\shippo-snipcart-adapter\first-integration-result-via-runkit.1.PNG -->
+
+And here below the endpoint displays you all order details when `order.completed` snipcart event occurs :
+
+
+![snipcart fetching runkit endpoint](./first-integration-result-via-runkit.5.order.completed.event.catched.PNG)
+
+
+
 
 ## References
 
