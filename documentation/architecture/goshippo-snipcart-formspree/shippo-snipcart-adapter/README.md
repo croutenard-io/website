@@ -33,7 +33,10 @@ https://help.formspree.io/hc/en-us/articles/360015234873-Webhooks
 
 I can use Runkit this to integrate via webhooks Snipcart and Goshippo
 
-Indeed, [this snipcart docs page](https://docs.snipcart.com/v3/setup/shipping#webhooks) shows that the snipcart process can be integrated with Goshippo using a Snipcart webhook  : 
+Indeed, [this snipcart docs page](https://docs.snipcart.com/v3/setup/shipping#webhooks) shows that the snipcart process can be integrated with Goshippo using a Snipcart webhook.
+
+
+To implement the design, i used The runKit NoteBook which is accessible iun browser via URL : https://runkit.com/ctrtechlead/62cf1a47ebc2880009354ee7
 
 ### The snipcart webhook 
 
@@ -385,13 +388,68 @@ app.post("/shipping/rates", (req, res) => {
     // res.send(`hey ${pokusName} , your nickanme is ${pokusNickName}`)
 })
 
+
+/**
+ * The snipcart events are broadcasted by snipcart via webhooks
+ * 
+ * My Runkit Notebook : https://runkit.com/ctrtechlead/62cf1a47ebc2880009354ee7
+ * 
+ * ---
+ * the [eventName] : gives us the name of the snipcart event. 
+ *                   When this event name is 'order.completed' (snipcart api 'v3.x') : 
+ *                   the order has been compelted, so the 
+ *                   goShippo shipment can be created.
+ * 
+ * ---
+ * the [order.completed] payload : gives us the detailed infos about the 
+ *                                 completed order (what shipping parcels have to
+ *                                 be prepared, etc...) 
+ * 
+ * --
+ * Note : when human operator has delivered the prepared parcel
+ *        to thge carrier, then a new custom notification may be
+ *        sent to either (customer and/or seller), see https://docs.snipcart.com/v3/api-reference/notifications#post-orderstokennotifications
+ * 
+ * -- 
+ * 
+ * References : 
+ * - https://docs.snipcart.com/v3/webhooks/order-events
+ * - https://docs.snipcart.com/v3/sdk/events (that's for client side subscription to snipcart events during payment process)
+ * - https://docs.snipcart.com/v3/api-reference/notifications#post-orderstokennotifications
+ **/
+
+app.post("/shipping/snipcart/webhook", (req, res) => {
+    console.warn(`pokus on expressjs runkit - [GET /shipping/snipcart/webhook] - Request JSON payload is : `)
+    console.warn(JSON.stringify(req.body))
+    let snipcartEventName = req.body.eventName;
+
+    if (snipcartEventName == '') {
+
+    } else {
+        console.log(`[POST /shipping/snipcart/webhook] - `)
+    }
+    // checkExpressVersion()
+    res.status(201)
+    // var pokusCardHolderName = req.body.content.cardHolderName || "[shippingAddressName par défault]";
+    // var pokusShippingAddressName = req.body.content.shippingAddressName || "[shippingAddressName par défault]";
+    let pokusJSONResponse = {
+        message: `Shipping /shipping/snipcart/webhook `,
+        http_snipcart_body: req.body,
+        snipcart_event: `${pokusSnipcartEvent || 'whatever pokusSnipcartEvent '}`,
+        pokusSnipcartEventData: `${pokusSnipcartEventData || 'whatever pokusSnipcartEventData '}`
+    }
+    //res.json(pokusJSONResponse);
+    res.json(pokusJSONResponse);
+    // res.send(`Essai Pokus! :) on expressjs runkit - [GET /essai]`)
+    // res.send(`hey ${pokusName} , your nickanme is ${pokusNickName}`)
+})
+
 ```
 
 
 ## Tests
 
-* Send the POST Http Request sjust as if i was Snipcart sending the WebHook Http Post Request with JSON payload : 
-
+* Send the POST Http Request just as if i was Snipcart sending the WebHook Http Post Request with JSON payload, to fetch shipping rates : 
 
 
 ```bash
@@ -473,6 +531,9 @@ curl -iv \
      -d "${POKUS_JSON_PAYLOAD}" | tail -n 1 | jq .
 
 ```
+
+
+
 
 ## Snipcart Dashboard configuration
 
