@@ -237,18 +237,18 @@ const catPackageJson = () => {
             shell.exit(17);
         }
     } catch (err) {
-        console.warn(`catPackageJson - catched [err] is [${err}] on expressjs runkit - [GET /package]`)
+        console.info(`catPackageJson - catched [err] is [${err}] on expressjs runkit - [GET /package]`)
         shellCmdStdout = shellCmd.stdout;
         shellCmdStderr = shellCmd.stderr;
-        console.warn(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
-        console.warn(shellCmd)
-        console.warn(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
-        console.warn(shellCmdStderr)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
+        console.info(shellCmd)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
+        console.info(shellCmdStderr)
     } finally {
-        console.warn(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
-        console.warn(shellCmd)
-        console.warn(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
-        console.warn(shellCmdStderr)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
+        console.info(shellCmd)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
+        console.info(shellCmdStderr)
     }
     
     return {
@@ -262,7 +262,7 @@ const catPackageJson = () => {
  * curl https://ccc/package
  **/
 app.get("/package", (req, res) => {
-    console.warn(`pokus on expressjs runkit - [GET /package] -  `)
+    console.info(`pokus on expressjs runkit - [GET /package] -  `)
     
     let cmdReport = catPackageJson();
     let package = cmdReport.stdout;
@@ -291,18 +291,18 @@ const checkExpressVersion = () => {
             // shell.exit(1);
         }
     } catch (err) {
-        console.warn(`checkExpressVersion - catched [err] is [${err}] on expressjs runkit - [GET /express]`)
+        console.info(`checkExpressVersion - catched [err] is [${err}] on expressjs runkit - [GET /express]`)
         shellCmdStdout = shellCmd.stdout;
         shellCmdStderr = shellCmd.stderr;
-        console.warn(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
-        console.warn(shellCmd)
-        console.warn(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
-        console.warn(shellCmdStderr)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
+        console.info(shellCmd)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
+        console.info(shellCmdStderr)
     } finally {
-        console.warn(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
-        console.warn(shellCmd)
-        console.warn(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
-        console.warn(shellCmdStderr)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
+        console.info(shellCmd)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
+        console.info(shellCmdStderr)
     }
     
     return {
@@ -318,7 +318,7 @@ const checkExpressVersion = () => {
  * This one just raises an npm error while executing the npm command... :  the npm command is useless to find out version of express since express is not in package.json see [GET /package] endpoint above...
  **/
 app.get("/express", (req, res) => {
-    console.warn(`pokus on expressjs runkit - [GET /express] -  `)
+    console.info(`pokus on expressjs runkit - [GET /express] -  `)
     let expressVersion = checkExpressVersion();
     res.status(201)
     res.send(`Essai - Hello Pokus! :) Your Express Version is [${JSON.stringify(expressVersion)}] on expressjs runkit - [GET /express]`)
@@ -336,8 +336,8 @@ app.get("/", (req, res) => {
  * app.get("/:name", (req, res) => res.send(`hey ${req.params.name}`))
  **/
 app.get("/essai", (req, res) => {
-    console.warn(`pokus on expressjs runkit - [GET /essai] - Request query is : `)
-    console.warn(JSON.stringify(req.query))
+    console.info(`pokus on expressjs runkit - [GET /essai] - Request query is : `)
+    console.info(JSON.stringify(req.query))
     // checkExpressVersion()
     res.status(201)
     var pokusName = req.query.name || "pokusName par défault";
@@ -349,7 +349,7 @@ app.get("/essai", (req, res) => {
  * curl https://ccc/bonjour
  **/
 app.get("/bonjour", (req, res) => {
-    console.warn(`pokus on expressjs runkit - [GET /bonjour]`)
+    console.info(`pokus on expressjs runkit - [GET /bonjour]`)
     // checkExpressVersion()
     res.status('201')
     res.send(`Bonjour Pokus! :) on expressjs runkit - [GET /bonjour]`)
@@ -360,8 +360,8 @@ app.get("/bonjour", (req, res) => {
  * this endpoint is consumed by the Snipcart Webhook to fetch shipping Rates
  **/
 app.post("/shipping/rates", (req, res) => {
-    console.warn(`pokus on expressjs runkit - [GET /shipping/rates] - Request JSON payload is : `)
-    console.warn(JSON.stringify(req.body))
+    console.info(`pokus on expressjs runkit - [GET /shipping/rates] - Request JSON payload is : `)
+    console.info(JSON.stringify(req.body))
     // checkExpressVersion()
     res.status(201)
     var pokusCardHolderName = req.body.content.cardHolderName || "[shippingAddressName par défault]";
@@ -422,18 +422,53 @@ app.post("/shipping/rates", (req, res) => {
  **/
 
 app.post("/shipping/snipcart/webhook", (req, res) => {
-    console.warn(`pokus on expressjs runkit - [GET /shipping/snipcart/webhook] - Request JSON payload is : `)
-    console.warn(JSON.stringify(req.body))
+    console.info(`pokus on expressjs runkit - [GET /shipping/snipcart/webhook] - Request JSON payload is : `)
+    console.info(JSON.stringify(req.body))
     let snipcartEventName = req.body.eventName;
+    let snipCartPayload = req.body;
+
+    // foreach product line in ourchase  : 
+    let purchaseProductNumber = null;
+    let snipcartProductName = null;
+    let snipcartProductPrice = null;
+    let snipcartProductQty = null;
+    let snipcartProductID = null;
+
+
 
     if (snipcartEventName == 'order.completed') {
-        console.log(`[POST /shipping/snipcart/webhook] - Order is NOW COMPLETED! Snipcart EVENT is [ snipcartEventName = [${snipcartEventName}] ] `)
+        console.info(`[POST /shipping/snipcart/webhook] - Order is NOW COMPLETED! Snipcart EVENT is [ snipcartEventName = [${snipcartEventName}] ] `)
         // Okay so now that i know that order is completed, i just
         console.info(` SNIPCART EVENTS WEBHOOK >>>>> Okay so now that i know that order is completed, i just`)
         // take all cart informations to creat the shipping on Goshippo 
-        console.info(` SNIPCART EVENTS WEBHOOK >>>>> take all cart informations to creat the shipping on Goshippo `)
+        console.info(` SNIPCART EVENTS WEBHOOK >>>>> take all cart informations to create the shipping on Goshippo `)
+
+        let invoiceNumber = snipCartPayload.content.invoiceNumber;
+        let shippingAddressName = snipCartPayload.content.shippingAddressName;
+        let billingAddressName = snipCartPayload.content.billingAddressName;
+
+        console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> invoiceNumber=[${invoiceNumber}] `)
+        console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> shippingAddressName=[${shippingAddressName}] `)
+        console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> billingAddressName=[${billingAddressName}] `)
+
+
+        let purchaseProductNumber = snipCartPayload.content.items.lentgh;
+        for (i = 0; i < purchaseProductNumber; i++) {
+
+            snipcartProductName = snipCartPayload.content.items[i].name;
+            snipcartProductPrice = snipCartPayload.content.items[i].price;
+            snipcartProductQty = snipCartPayload.content.items[i].quantity;
+            snipcartProductID = snipCartPayload.content.items[i].id;
+            console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductName=[${snipcartProductName}] `)
+            console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductPrice=[${snipcartProductPrice}] `)
+            console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductQty=[${snipcartProductQty}] `)
+            console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductID=[${snipcartProductID}] `)
+        }
+
+        
+
     } else {
-        console.log(`[POST /shipping/snipcart/webhook] - Order is not completed! Snipcart EVENT is [ snipcartEventName = [${snipcartEventName}] ] `)
+        console.info(`[POST /shipping/snipcart/webhook] - Order is not completed! Snipcart EVENT is [ snipcartEventName = [${snipcartEventName}] ] `)
     }
     // checkExpressVersion()
     res.status(201)
@@ -455,7 +490,7 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
 /**
  * 
  * --- https://stackoverflow.com/questions/51120073/how-to-send-a-message-to-a-specific-channel
- * 
+ *     https://readforlearn.com/discord-js-sending-a-message-to-a-specific-channel/
  * --- google search : discord js send message in specific channel
  * 
  * --- Here implement function to send a message to someone on a specific Text channel
@@ -551,7 +586,11 @@ curl -iv \
 ```
 
 
+* HEre is the JSOn Payload sent by the snipcart Webhook, when `order.completed` event occurs : 
 
+```bash 
+{"eventName":"customauth:customer_updated","mode":"Test","createdOn":"2022-07-14T15:22:55.9845125Z","content":{"id":"3bd0d38e-3748-4b73-8bc3-162bbdb9e7af","email":"croutontechlead@gmail.com","mode":"Test","statistics":{"ordersCount":0,"ordersAmount":null,"subscriptionsCount":0},"creationDate":"2022-07-13T16:03:21.347Z","billingAddressFirstName":null,"billingAddressName":"Jean-Baptiste Lasselle","billingAddressCompanyName":null,"billingAddressAddress1":"8 Impasse du Martin Pêcheur","billingAddressAddress2":"","billingAddressCity":"Agde","billingAddressCountry":"FR","billingAddressProvince":"Occitanie","billingAddressPostalCode":"34300","billingAddressPhone":"","shippingAddressFirstName":null,"shippingAddressName":"Paul Bismuth","shippingAddressCompanyName":null,"shippingAddressAddress1":"5 Rue Achille Martinet","shippingAddressAddress2":"","shippingAddressCity":"Paris","shippingAddressCountry":"FR","shippingAddressProvince":"IDF","shippingAddressPostalCode":"75018","shippingAddressPhone":"","shippingAddressSameAsBilling":false,"status":"Unconfirmed","sessionToken":"7facc5ba-f0a8-4e92-88ab-47bbc2e86e11","gravatarUrl":"https://www.gravatar.com/avatar/5015e40bf1b74ca2913bb5735cb659ad?s=70&d=https%3a%2f%2fcdn.snipcart.com%2fassets%2fimages%2favatar.jpg","billingAddress":{"fullName":"Jean-Baptiste Lasselle","firstName":null,"name":"Jean-Baptiste Lasselle","company":null,"address1":"8 Impasse du Martin Pêcheur","address2":"","fullAddress":"8 Impasse du Martin Pêcheur","city":"Agde","country":"FR","postalCode":"34300","province":"Occitanie","phone":"","vatNumber":null,"hasMinimalRequiredInfo":true,"validationErrors":{}},"shippingAddress":{"fullName":"Paul Bismuth","firstName":null,"name":"Paul Bismuth","company":null,"address1":"5 Rue Achille Martinet","address2":"","fullAddress":"5 Rue Achille Martinet","city":"Paris","country":"FR","postalCode":"75018","province":"IDF","phone":"","vatNumber":null,"hasMinimalRequiredInfo":true,"validationErrors":{}}}}
+```
 
 ## Snipcart Dashboard configuration
 
