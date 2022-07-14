@@ -451,6 +451,17 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
     // res.send(`hey ${pokusName} , your nickanme is ${pokusNickName}`)
 })
 
+
+/**
+ * 
+ * --- https://stackoverflow.com/questions/51120073/how-to-send-a-message-to-a-specific-channel
+ * 
+ * --- google search : discord js send message in specific channel
+ * 
+ * --- Here implement function to send a message to someone on a specific Text channel
+ *     I will finally re-implement all of it, using TypeScript , Express, DiscordJS
+ * 
+ **/
 ```
 
 
