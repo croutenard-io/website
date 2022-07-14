@@ -452,7 +452,7 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
         console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> billingAddressName=[${billingAddressName}] `)
 
 
-        let purchaseProductNumber = snipCartPayload.content.items.lentgh;
+        let purchaseProductNumber = snipCartPayload.content.items.length;
         for (i = 0; i < purchaseProductNumber; i++) {
 
             snipcartProductName = snipCartPayload.content.items[i].name;
