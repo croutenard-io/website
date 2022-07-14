@@ -64,8 +64,8 @@ LABEL io.pokus.cicd.build.id="${CICD_BUILD_ID}"
 LABEL io.pokus.cicd.build.timestamp="${CICD_BUILD_TIMESTAMP}"
 LABEL io.pokus.website="https://pokus.herokuapp.com"
 LABEL io.pokus.github.org="https://github.com/pokus"
-LABEL io.pokus.author="Jean-Baptiste Lasselle <jean.baptiste.ricard.io@gmail.com>"
-LABEL io.pokus.maintainer="Jean-Baptiste Lasselle <jean.baptiste.ricard.io@gmail.com>"
+LABEL io.pokus.author="CroutonTechLead <jean.baptiste.ricard.io@gmail.com>"
+LABEL io.pokus.maintainer="CroutonTechLead <jean.baptiste.ricard.io@gmail.com>"
 
 RUN mkdir -p /pokus.io/hugo/src/
 # COPY . /pokus.io/hugo/src/

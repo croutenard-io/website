@@ -268,7 +268,7 @@ time="2022-06-15T15:01:14.429164052-04:00" level=info msg="API listen on /var/ru
 
 
 
-## --- MANUEL DE JBL 00
+## --- MANUEL DE croutontechlead 00
 
 
 
@@ -282,7 +282,7 @@ time="2022-06-15T15:01:48.367816003-04:00" level=debug msg="Calling GET /v1.41/c
 
 
 
-## --- MANUEL DE JBL 01
+## --- MANUEL DE croutontechlead 01
 
 
 
@@ -296,28 +296,28 @@ time="2022-06-15T15:02:15.867587266-04:00" level=debug msg="Calling GET /v1.41/c
 
 
 
-## --- MANUEL DE JBL 02: [docker stop jbltest]
+## --- MANUEL DE croutontechlead 02: [docker stop croutontechleadtest]
 
 
 
 
 # --
 time="2022-06-15T15:04:02.673979123-04:00" level=debug msg="Calling HEAD /_ping"
-time="2022-06-15T15:04:02.675017256-04:00" level=debug msg="Calling POST /v1.41/containers/jbltest/stop"
+time="2022-06-15T15:04:02.675017256-04:00" level=debug msg="Calling POST /v1.41/containers/croutontechleadtest/stop"
 
 
 
 
 
 
-## --- MANUEL DE JBL 03: [docker rm jbltest]
+## --- MANUEL DE croutontechlead 03: [docker rm croutontechleadtest]
 
 
 
 
 # --
 time="2022-06-15T15:04:52.979763559-04:00" level=debug msg="Calling HEAD /_ping"
-time="2022-06-15T15:04:52.981386498-04:00" level=debug msg="Calling DELETE /v1.41/containers/jbltest"
+time="2022-06-15T15:04:52.981386498-04:00" level=debug msg="Calling DELETE /v1.41/containers/croutontechleadtest"
 
 
 
@@ -326,7 +326,7 @@ time="2022-06-15T15:04:52.981386498-04:00" level=debug msg="Calling DELETE /v1.4
 
 # export GOLANG_VERSION=1.18.3
 # export ALPINE_OCI_IMAGE_TAG=3.16
-## --- MANUEL DE JBL 04: [docker pull golang:$GOLANG_VERSION-alpine$ALPINE_OCI_IMAGE_TAG]
+## --- MANUEL DE croutontechlead 04: [docker pull golang:$GOLANG_VERSION-alpine$ALPINE_OCI_IMAGE_TAG]
 
 
 
@@ -349,24 +349,24 @@ time="2022-06-15T15:06:29.778579877-04:00" level=debug msg="Adding content diges
 
 # export GOLANG_VERSION=1.18.3
 # export ALPINE_OCI_IMAGE_TAG=3.16
-## --- MANUEL DE JBL 05: [docker run -itd --name jbltest --network bridge golang:$GOLANG_VERSION-alpine$ALPINE_OCI_IMAGE_TAG /bin/sh]
+## --- MANUEL DE croutontechlead 05: [docker run -itd --name croutontechleadtest --network bridge golang:$GOLANG_VERSION-alpine$ALPINE_OCI_IMAGE_TAG /bin/sh]
 
 
 
 
 # --
 time="2022-06-15T15:07:39.011499372-04:00" level=debug msg="Calling HEAD /_ping"
-time="2022-06-15T15:07:39.013937164-04:00" level=debug msg="Calling POST /v1.41/containers/create?name=jbltest"
+time="2022-06-15T15:07:39.013937164-04:00" level=debug msg="Calling POST /v1.41/containers/create?name=croutontechleadtest"
 time="2022-06-15T15:07:39.014161321-04:00" level=debug msg="form data: {\"AttachStderr\":false,\"AttachStdin\":false,\"AttachStdout\":false,\"Cmd\":[\"/bin/sh\"],\"Domainname\":\"\",\"Entrypoint\":null,\"Env\":null,\"HostConfig\":{\"AutoRemove\":false,\"Binds\":null,\"BlkioDeviceReadBps\":null,\"BlkioDeviceReadIOps\":null,\"BlkioDeviceWriteBps\":null,\"BlkioDeviceWriteIOps\":null,\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"CapAdd\":null,\"CapDrop\":null,\"Cgroup\":\"\",\"CgroupParent\":\"\",\"CgroupnsMode\":\"\",\"ConsoleSize\":[0,0],\"ContainerIDFile\":\"\",\"CpuCount\":0,\"CpuPercent\":0,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpuShares\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"Devices\":[],\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IOMaximumBandwidth\":0,\"IOMaximumIOps\":0,\"IpcMode\":\"\",\"Isolation\":\"\",\"KernelMemory\":0,\"KernelMemoryTCP\":0,\"Links\":null,\"LogConfig\":{\"Config\":{},\"Type\":\"\"},\"MaskedPaths\":null,\"Memory\":0,\"MemoryReservation\":0,\"MemorySwap\":0,\"MemorySwappiness\":-1,\"NanoCpus\":0,\"NetworkMode\":\"bridge\",\"OomKillDisable\":false,\"OomScoreAdj\":0,\"PidMode\":\"\",\"PidsLimit\":0,\"PortBindings\":{},\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyPaths\":null,\"ReadonlyRootfs\":false,\"RestartPolicy\":{\"MaximumRetryCount\":0,\"Name\":\"no\"},\"SecurityOpt\":null,\"ShmSize\":0,\"UTSMode\":\"\",\"Ulimits\":null,\"UsernsMode\":\"\",\"VolumeDriver\":\"\",\"VolumesFrom\":null},\"Hostname\":\"\",\"Image\":\"golang:1.18.3-alpine3.16\",\"Labels\":{},\"NetworkingConfig\":{\"EndpointsConfig\":{}},\"OnBuild\":null,\"OpenStdin\":true,\"Platform\":null,\"StdinOnce\":false,\"Tty\":true,\"User\":\"\",\"Volumes\":{},\"WorkingDir\":\"\"}"
 time="2022-06-15T15:07:39.076346754-04:00" level=debug msg="container mounted via layerStore: &{/var/lib/docker/overlay2/681e9877daaceac0bc222b2add0bef32dc0d13fbbc463885928ca4a60fcb01a8/merged 0x558868713da0 0x558868713da0}" container=c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e
 time="2022-06-15T15:07:39.161553319-04:00" level=debug msg="Calling POST /v1.41/containers/c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e/wait?condition=next-exit"
 time="2022-06-15T15:07:39.163097893-04:00" level=debug msg="Calling POST /v1.41/containers/c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e/start"
 time="2022-06-15T15:07:39.169386731-04:00" level=debug msg="container mounted via layerStore: &{/var/lib/docker/overlay2/681e9877daaceac0bc222b2add0bef32dc0d13fbbc463885928ca4a60fcb01a8/merged 0x558868713da0 0x558868713da0}" container=c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e
-time="2022-06-15T15:07:39.169859394-04:00" level=debug msg="Assigning addresses for endpoint jbltest's interface on network bridge"
+time="2022-06-15T15:07:39.169859394-04:00" level=debug msg="Assigning addresses for endpoint croutontechleadtest's interface on network bridge"
 time="2022-06-15T15:07:39.169880248-04:00" level=debug msg="RequestAddress(LocalDefault/172.17.0.0/16, <nil>, map[])"
 time="2022-06-15T15:07:39.169898347-04:00" level=debug msg="Request address PoolID:172.17.0.0/16 App: ipam/default/data, ID: LocalDefault/172.17.0.0/16, DBIndex: 0x0, Bits: 65536, Unselected: 65533, Sequence: (0xc0000000, 1)->(0x0, 2046)->(0x1, 1)->end Curr:0 Serial:false PrefAddress:<nil> "
-time="2022-06-15T15:07:39.202403440-04:00" level=debug msg="Assigning addresses for endpoint jbltest's interface on network bridge"
-time="2022-06-15T15:07:39.221000165-04:00" level=debug msg="Programming external connectivity on endpoint jbltest (b9279ce5d77d4d17ac2e186a54b7345b9957a5ee8166f71cb34901aa2f641355)"
+time="2022-06-15T15:07:39.202403440-04:00" level=debug msg="Assigning addresses for endpoint croutontechleadtest's interface on network bridge"
+time="2022-06-15T15:07:39.221000165-04:00" level=debug msg="Programming external connectivity on endpoint croutontechleadtest (b9279ce5d77d4d17ac2e186a54b7345b9957a5ee8166f71cb34901aa2f641355)"
 time="2022-06-15T15:07:39.223488756-04:00" level=debug msg="EnableService c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e START"
 time="2022-06-15T15:07:39.223527207-04:00" level=debug msg="EnableService c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e DONE"
 time="2022-06-15T15:07:39.228007074-04:00" level=debug msg="createSpec: cgroupsPath: system.slice:docker:c08329ac66f2f323f300622e735c04215d440ab3f0ad8107f7d2c50dab666b8e"
@@ -382,15 +382,15 @@ time="2022-06-15T15:07:39.988844218-04:00" level=debug msg=event module=libconta
 
 # export GOLANG_VERSION=1.18.3
 # export ALPINE_OCI_IMAGE_TAG=3.16
-## --- MANUEL DE JBL 06: [docker exec -it jbltest /bin/sh -c "ping -c 4 8.8.8.8"]
+## --- MANUEL DE croutontechlead 06: [docker exec -it croutontechleadtest /bin/sh -c "ping -c 4 8.8.8.8"]
 
 
 
 
 # --
 time="2022-06-15T15:08:50.766860282-04:00" level=debug msg="Calling HEAD /_ping"
-time="2022-06-15T15:08:50.768061915-04:00" level=debug msg="Calling GET /v1.41/containers/jbltest/json"
-time="2022-06-15T15:08:50.769732972-04:00" level=debug msg="Calling POST /v1.41/containers/jbltest/exec"
+time="2022-06-15T15:08:50.768061915-04:00" level=debug msg="Calling GET /v1.41/containers/croutontechleadtest/json"
+time="2022-06-15T15:08:50.769732972-04:00" level=debug msg="Calling POST /v1.41/containers/croutontechleadtest/exec"
 time="2022-06-15T15:08:50.769798515-04:00" level=debug msg="form data: {\"AttachStderr\":true,\"AttachStdin\":true,\"AttachStdout\":true,\"Cmd\":[\"/bin/sh\",\"-c\",\"ping -c 4 8.8.8.8\"],\"Detach\":false,\"DetachKeys\":\"\",\"Env\":null,\"Privileged\":false,\"Tty\":true,\"User\":\"\",\"WorkingDir\":\"\"}"
 time="2022-06-15T15:08:50.771277462-04:00" level=debug msg="Calling POST /v1.41/exec/5e8a524bc2483fd153fd790e109f1ace5057c3a26416346475fa98b7d0b3a123/start"
 time="2022-06-15T15:08:50.771359437-04:00" level=debug msg="form data: {\"Detach\":false,\"Tty\":true}"
@@ -415,7 +415,7 @@ time="2022-06-15T15:16:13.833344967-04:00" level=debug msg="clean 1 unused exec 
 
 # export GOLANG_VERSION=1.18.3
 # export ALPINE_OCI_IMAGE_TAG=3.16
-## --- MANUEL DE JBL 06: [docker exec -it jbltest /bin/sh -c "ping -vvv -c 4 google.com"]
+## --- MANUEL DE croutontechlead 06: [docker exec -it croutontechleadtest /bin/sh -c "ping -vvv -c 4 google.com"]
 
 
 

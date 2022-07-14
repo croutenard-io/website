@@ -116,24 +116,24 @@ ARG CICD_BUILD_ID=${CICD_BUILD_ID}
 ARG CICD_BUILD_TIMESTAMP=${CICD_BUILD_TIMESTAMP}
 ARG QUAY_OCI_IMAGE_TAG=${QUAY_OCI_IMAGE_TAG}
 
-LABEL io.pokus.oci.image.gun="pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev"
+LABEL io.pokus.oci.image.gun="croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev"
 LABEL io.pokus.oci.base.image="golang:${GOLANG_VERSION}-alpine${ALPINE_OCI_IMAGE_TAG}"
 LABEL io.pokus.golang.version="${GOLANG_VERSION}"
 LABEL io.pokus.hugo.version="${HUGO_VERSION}"
 LABEL io.pokus.git.commit.id="${GIT_COMMIT_ID}"
 LABEL io.pokus.cicd.build.id="${CICD_BUILD_ID}"
 LABEL io.pokus.cicd.build.timestamp="${CICD_BUILD_TIMESTAMP}"
-LABEL io.pokus.website="https://jean-baptiste-lasselle.github.io/whoami-web"
+LABEL io.pokus.website="https://croutenard.com"
 # LABEL io.pokus.scm.type="gitlab.com"
 # LABEL io.pokus.scm.type="gitea.com"
 LABEL io.pokus.scm.type="github.com"
 LABEL io.pokus.scm.repo="https://github.com/croutontechlead/snipcart-gohippo-adapter"
-LABEL io.pokus.scm.github.org="https://github.com/Jean-Baptiste-Lasselle"
-LABEL io.pokus.author="Jean-Baptiste Lasselle <jean.baptiste.lasselle.pokus@gmail.com>"
-LABEL io.pokus.maintainer="Jean-Baptiste Lasselle <jean.baptiste.lasselle.pokus@gmail.com>"
+LABEL io.pokus.scm.github.org="https://github.com/croutenard"
+LABEL io.pokus.author="CroutonTechLead <croutontechlead@gmail.com>"
+LABEL io.pokus.maintainer="CroutonTechLead <croutontechlead@gmail.com>"
 
 
-ARG HUGO_BASE_URL=https://jean-baptiste-lasselle.github.io/whoami-web/
+ARG HUGO_BASE_URL=https://croutenard.com/
 ENV HUGO_BASE_URL=$HUGO_BASE_URL
 ARG HUGO_SERVER_BIND_ADDR=0.0.0.0
 ENV HUGO_SERVER_BIND_ADDR=$HUGO_SERVER_BIND_ADDR

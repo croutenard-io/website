@@ -1,4 +1,3 @@
-data.content.
 {
     "eventName": "customauth:customer_updated",
     "mode": "Test",
@@ -14,7 +13,7 @@ data.content.
         },
         "creationDate": "2022-07-13T16:03:21.347Z",
         "billingAddressFirstName": null,
-        "billingAddressName": "Jean-Baptiste Lasselle",
+        "billingAddressName": "CroutonTechLead",
         "billingAddressCompanyName": null,
         "billingAddressAddress1": "8 Impasse du Martin Pêcheur",
         "billingAddressAddress2": "",
@@ -38,9 +37,9 @@ data.content.
         "sessionToken": "7facc5ba-f0a8-4e92-88ab-47bbc2e86e11",
         "gravatarUrl": "https://www.gravatar.com/avatar/5015e40bf1b74ca2913bb5735cb659ad?s=70&d=https%3a%2f%2fcdn.snipcart.com%2fassets%2fimages%2favatar.jpg",
         "billingAddress": {
-            "fullName": "Jean-Baptiste Lasselle",
+            "fullName": "CroutonTechLead",
             "firstName": null,
-            "name": "Jean-Baptiste Lasselle",
+            "name": "CroutonTechLead",
             "company": null,
             "address1": "8 Impasse du Martin Pêcheur",
             "address2": "",

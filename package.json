@@ -22,7 +22,7 @@
     "oci:run:server:dev": "cd ./.containers/dev && ./.run.sh",
     "oci:tear:server:dev": "cd ./.containers/dev && ./.run.sh",
     "oci:run:hugo:dev": "unset export HUGO_BASE_URL && cd ./.containers/dev && ./.run.hugo.build.sh",
-    "oci:run:hugo:prod": "export HUGO_BASE_URL='https://jean-baptiste-lasselle.github.io/whoami-web/' && cd ./.containers/dev && ./.run.hugo.build.sh",
+    "oci:run:hugo:prod": "export HUGO_BASE_URL='https://croutenard.com/' && cd ./.containers/dev && ./.run.hugo.build.sh",
     "dev": "npm run oci:build:dev && npm run oci:tear:server:dev && npm run oci:run:server:dev",
     "deploy:heroku:dev": "./.npm.scripts/dev/deploy/heroku.sh",
     "deploy:surge:dev": "npm run clean && ./.npm.scripts/dev/deploy/surge.sh",

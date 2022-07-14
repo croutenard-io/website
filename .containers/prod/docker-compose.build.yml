@@ -3,7 +3,7 @@ version: "3.7"
 services:
   pokus_dev:
     # we need extended, and nodejs for sass!
-    image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
     # container_name: pokus_dev
     build:
        context: .
@@ -26,7 +26,7 @@ services:
 
 #   pokus_staging:
 #     # we need extended, and nodejs for sass!
-#     image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}
+#     image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}
 #     # container_name: pokus_staging
 #     build:
 #        context: .

@@ -1,6 +1,6 @@
 # Hugo Dev Container Image
 
-The `pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev` is the container image used for the dev environment
+The `croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev` is the container image used for the dev environment
 
 The hugo server serves on port 1313 necessarily, you can change 1313 port number by any other port number above 1024, you just have to rebuild the docker image using `./.build.dev.sh`
 

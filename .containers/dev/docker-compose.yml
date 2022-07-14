@@ -4,14 +4,14 @@ version: "3.9"
 services:
   pokus_dev:
     # we need extended, and nodejs for sass!
-    image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
     container_name: pokus_dev
     user: $POKUS_USER_NAME
     restart: always
     environment:
       - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
       # - HUGO_BASE_URL=http://127.0.0.1:1313
-      # - HUGO_BASE_URL=https://jean-baptiste-lasselle.github.io/whoami-web/
+      # - HUGO_BASE_URL=https://croutenard.com/
     volumes:
       - $PWD/../../:/pokus.io/hugo/src/:rw
       # - type: bind
@@ -30,14 +30,14 @@ services:
 
   pokus_hugo_build:
     # we need extended, and nodejs for sass!
-    image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
     container_name: pokus_hugo_build
     user: $POKUS_USER_NAME
     restart: always
     command: /pokus.io/hugo/hugo.build.sh
     environment:
       - HUGO_BASE_URL=$HUGO_BASE_URL
-      # - HUGO_BASE_URL=https://jean-baptiste-lasselle.github.io/whoami-web/
+      # - HUGO_BASE_URL=https://croutenard.com/
       # - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
       # - HUGO_BASE_URL=http://127.0.0.1:1313
     volumes:
@@ -57,14 +57,14 @@ services:
 
   pokus_dev_build:
     # we need extended, and nodejs for sass!
-    image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
     container_name: pokus_dev_build
     user: $POKUS_USER_NAME
     restart: always
     command: /pokus.io/hugo/hugo.build.sh
     environment:
       - HUGO_BASE_URL=$HUGO_BASE_URL
-      # - HUGO_BASE_URL=https://jean-baptiste-lasselle.github.io/whoami-web/
+      # - HUGO_BASE_URL=https://croutenard.com/
       # - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
       # - HUGO_BASE_URL=http://127.0.0.1:1313
     volumes:
@@ -84,14 +84,14 @@ services:
 
   pokus_prod_build:
     # we need extended, and nodejs for sass!
-    image: pokusio/jb-lasselle-whoami-web:${QUAY_OCI_IMAGE_TAG}-dev
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
     container_name: pokus_prod_build
     user: $POKUS_USER_NAME
     restart: always
     command: /pokus.io/hugo/hugo.build.sh
     environment:
       - HUGO_BASE_URL=$HUGO_BASE_URL
-      # - HUGO_BASE_URL=https://jean-baptiste-lasselle.github.io/whoami-web/
+      # - HUGO_BASE_URL=https://croutenard.com/
       # - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
       # - HUGO_BASE_URL=http://127.0.0.1:1313
     volumes:
