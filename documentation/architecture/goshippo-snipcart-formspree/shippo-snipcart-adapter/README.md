@@ -390,7 +390,10 @@ app.post("/shipping/rates", (req, res) => {
 
 
 /**
- * The snipcart events are broadcasted by snipcart via webhooks
+ * The snipcart events are broadcasted by snipcart via webhooks : 
+ *   thats how i will be notified that order is completed 
+ *   so the shipment can be created in the carrier, by the
+ *   multi-carrier service provider (ShipStation, GoShippo, etc...).
  * 
  * My Runkit Notebook : https://runkit.com/ctrtechlead/62cf1a47ebc2880009354ee7
  * 
@@ -423,10 +426,14 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
     console.warn(JSON.stringify(req.body))
     let snipcartEventName = req.body.eventName;
 
-    if (snipcartEventName == '') {
-
+    if (snipcartEventName == 'order.completed') {
+        console.log(`[POST /shipping/snipcart/webhook] - Order is NOW COMPLETED! Snipcart EVENT is [ snipcartEventName = [${snipcartEventName}] ] `)
+        // Okay so now that i know that order is completed, i just
+        console.info(` SNIPCART EVENTS WEBHOOK >>>>> Okay so now that i know that order is completed, i just`)
+        // take all cart informations to creat the shipping on Goshippo 
+        console.info(` SNIPCART EVENTS WEBHOOK >>>>> take all cart informations to creat the shipping on Goshippo `)
     } else {
-        console.log(`[POST /shipping/snipcart/webhook] - `)
+        console.log(`[POST /shipping/snipcart/webhook] - Order is not completed! Snipcart EVENT is [ snipcartEventName = [${snipcartEventName}] ] `)
     }
     // checkExpressVersion()
     res.status(201)
