@@ -271,6 +271,10 @@ app.get("/package", (req, res) => {
         res.send(`Package - on expressjs runkit - [GET /package] -  Your command report is [${JSON.stringify(cmdReport, " ", 2)}]`)
     } else {
         res.send(`Package - on expressjs runkit - [GET /package] - Hello Pokus! - :) Your Package.json was successfully read and is [${JSON.stringify(package, " ", 2)}]`)
+
+        /**
+         * - - soon i should return a fully fledged HTML page that beautifully display JSON, see https://codepen.io/decodigo/pen/JjzWwr
+         **/
     }
     
 })
