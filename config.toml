@@ -122,7 +122,7 @@ copyright = "| Copyright &copy; 2022 [Croutenard.com](https://croutenard.com) Al
 # snipcartApiKey = "M2E5YjA3NjMtYzRiYS00YzVjLWEyYWYtNDY5ZDI0OWZhYjg5"
 snipcartApiKey = "YWEyNzdlMmYtMjZkNS00ZmU1LTg0ZmQtNzQ5YTA2YmY0ZDNiNjM3OTI4MDgyODI3NTA4NzUx"
 
-# currencySymbol = "$"
+# currencySymbol = "$" 
 currencySymbol = "€"
 
   # Preloader

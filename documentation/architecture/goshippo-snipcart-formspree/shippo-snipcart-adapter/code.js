@@ -81,7 +81,13 @@ const edruptionShippingMgmtChannelID = `977021632696692788`
 const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
 const eruptionDiscordBotToken = `${process.env.ERUPTION_DISCORD_BOT_TOKEN}`
 const eruptionDiscordBotClientID = `${process.env.ERUPTION_DISCORD_BOT_CLIENTID}`
-const eruptionDiscordBotPermissionInteger = `397284858944`
+// const eruptionDiscordBotPermissionInteger = `397284858944`
+
+/**
+ * 535326874947    contgains permissions to manage webhooks
+ * to (re-)generate a Discord Bot Permission Integer, go at https://discord.com/developers/applications
+ */
+const eruptionDiscordBotPermissionInteger = `535326874947`
 const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
 `
 
@@ -142,7 +148,7 @@ const registerSlashCommandsForDiscordBot = () => {
 
 
 
-const initDiscordBot = (botId, command) => {
+const initDiscordApp = (botId, command) => {
     /**
      * - 
      **/
@@ -187,6 +193,33 @@ const initDiscordBot = (botId, command) => {
 
 }
 
+
+
+/**
+ * ----------------------------------------------------------------------
+ *   Iinitializes Discord Bot : creates a WebHook to be used to send messages to discord - 
+ * ----------------------------------------------------------------------
+ * 
+ * - see https://discordjs.guide/popular-topics/webhooks.html
+ * 
+ * That's how to send a message to a channel without having to login as a Discord Bot
+ * 
+ * - first create a webhook like this : https://discordjs.guide/popular-topics/webhooks.html#creating-webhooks-with-discord-js
+ * - then use webhook to send message channel : https://discordjs.guide/popular-topics/webhooks.html#sending-messages
+ * 
+ */
+const initDiscordBot = (message) => {
+    /**
+     * We have to create a Webhook, related to a given Channel
+     */
+    channel.createWebhook('jeanbaptiste#9951', {
+        avatar: 'https://i.imgur.com/AfFp7pu.png',
+    })
+        .then(webhook => console.log(`Created webhook ${webhook}`))
+        .catch(console.error);
+}
+
+
 const sendMessageToDiscordChannel = (message) => {
     /**
      * This code below is throwing an Error : 
@@ -212,7 +245,7 @@ const sendMessageToDiscordChannel = (message) => {
  * First, let's init discord bot at Runkit startup
  * --- + --- +
  **/
-initDiscordBot()
+initDiscordApp()
 
 
 /**
