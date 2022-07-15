@@ -79,8 +79,8 @@ const eruptionDiscordServerIDalsoGuildID = `976956636407136296`
 const edruptionShippingMgmtChannelID = `977021632696692788`
 
 const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
-const eruptionDiscordBotToken = `OTk3MzQwNjg3MTE0NzA2OTY0.GOdf8x.YjAlvVLB4RXUcmnzkAnVENfZyfYA_Foo5Z6yJs`
-const eruptionDiscordBotClientID = `997340687114706964`
+const eruptionDiscordBotToken = `${process.env.ERUPTION_DISCORD_BOT_TOKEN}`
+const eruptionDiscordBotClientID = `${process.env.ERUPTION_DISCORD_BOT_CLIENTID}`
 const eruptionDiscordBotPermissionInteger = `397284858944`
 const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
 `
@@ -188,6 +188,20 @@ const initDiscordBot = (botId, command) => {
 }
 
 const sendMessageToDiscordChannel = (message) => {
+    /**
+     * This code below is throwing an Error : 
+     *      TypeError: Cannot read properties of undefined (reading 'send')
+     *          at sendMessageToDiscordChannel 
+     * 
+     * 
+     * Instead : https://discordjs.guide/popular-topics/webhooks.html
+     * 
+     * That's how to send a message to a channel without having to login as a Discord Bot
+     * 
+     * - first create a webhook like this : https://discordjs.guide/popular-topics/webhooks.html#creating-webhooks-with-discord-js
+     * - then use webhook to send message channel : https://discordjs.guide/popular-topics/webhooks.html#sending-messages
+     * 
+     */
     discordClient2.channels.cache.get(`${edruptionShippingMgmtChannelID}`).send(` [ >EruptionBot< - >> ] Salut c\'est le Robot Eruption !! >> ${message}`)
 }
 
