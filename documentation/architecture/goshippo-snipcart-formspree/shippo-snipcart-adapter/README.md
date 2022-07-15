@@ -225,6 +225,185 @@ app.use(bodyParser.json({ type: 'application/json' }));
 // app.use(cors());
 
 
+
+
+
+/**
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * --- + --- + DISCORD Utils
+ * note: see Discord API Rate Limiting behavior
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * 
+ **/
+
+/**
+ * 
+ * --- https://stackoverflow.com/questions/51120073/how-to-send-a-message-to-a-specific-channel
+ *     https://readforlearn.com/discord-js-sending-a-message-to-a-specific-channel/
+ * --- google search : discord js send message in specific channel
+ * 
+ * --- Here implement function to send a message to someone on a specific Text channel
+ *     I will finally re-implement all of it, using TypeScript , Express, DiscordJS
+ * 
+ * --- https://www.npmjs.com/package/discord.js
+ * 
+ * --- https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands
+ * 
+ * --- https://discordjs.guide/creating-your-bot/creating-commands.html#command-deployment-script
+ * 
+ **/
+
+/**
+ * I created a discord app, and a bot for that discord app, just 
+ * like explained at 
+ * https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
+ * 
+ * ---
+ * 
+ * 
+ * 
+ **/
+
+
+// const guildID = `https://discord.com/api/guilds/976956636407136296/widget.json`
+// const eruptionGuildID = `976956636407136296`
+const eruptionDiscordServerIDalsoGuildID = `976956636407136296`
+const edruptionShippingMgmtChannelID = `977021632696692788`
+
+const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
+const eruptionDiscordBotToken = `OTk3MzQwNjg3MTE0NzA2OTY0.GOdf8x.YjAlvVLB4RXUcmnzkAnVENfZyfYA_Foo5Z6yJs`
+const eruptionDiscordBotClientID = `997340687114706964`
+const eruptionDiscordBotPermissionInteger = `397284858944`
+const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
+`
+
+
+
+const registerSlashCommandsForDiscordBot = () => {
+    /**
+     * - see https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands
+     * - https://www.npmjs.com/package/discord.js
+     * 
+     * - npm install @discordjs/builders @discordjs/rest discord-api-types
+     * 
+     * 
+     * 
+     * -----------------------
+     * - [clientId] : Your application's client id
+     * - [guildId] : Your development server's id
+     * - [commands] : An array of commands to register. The slash command builder from @discordjs/builders is used to build the data for your commands
+     **/
+
+
+    // const { SlashCommandBuilder } = require('@discordjs/builders');
+    // const { REST } = require('@discordjs/rest');
+    // const { Routes } = require('discord-api-types/v9');
+
+    /**
+     * 
+     * - (./config.json) should be generated first, using [ShellJS]
+     * 
+     * - ccc
+     * 
+     * - ccc
+     * 
+     **/
+    // const { clientId, guildId, token } = require('./config.json');
+
+    const commands = [
+        new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
+        new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
+        new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+        new SlashCommandBuilder().setName('ship').setDescription('A slash command to search shipments !'),
+        new SlashCommandBuilder().setName('orders').setDescription('A slash command to search orders !'),
+        new SlashCommandBuilder().setName('customers').setDescription('A slash command to search customers !'),
+    ]
+        .map(command => command.toJSON());
+
+    const rest = new REST({ version: '9' }).setToken(eruptionDiscordBotToken);
+
+
+    /// 
+    rest.put(Routes.applicationGuildCommands(eruptionDiscordBotClientID, eruptionDiscordServerIDalsoGuildID), { body: commands })
+        .then(() => console.log(' [ >EruptionBot< - >> ] Successfully registered application commands.'))
+        .catch(console.error);
+
+
+
+}
+
+
+
+const initDiscordBot = (botId, command) => {
+    /**
+     * - 
+     **/
+    console.info(`Invite the Eruption Disocrd Bot in your discord server, by clicking the following link :  ${eruptionBotInviteLinkIntoAServer}  `)
+    console.info(`${eruptionBotInviteLinkIntoAServer}`)
+
+    /**
+     * - Aftetr that we register Bots Commands
+     **/
+    registerSlashCommandsForDiscordBot();
+
+
+    /**
+     * - Afterr registering Commands, we can now create Bot
+     **/
+
+    // const { Client, Intents } = require('discord.js');
+    // const discordClient2 = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+    discordClient2.on('ready', () => {
+    console.log(` [ >EruptionBot< - >> ] Logged in as ${discordClient2.user.tag}!`);
+    });
+
+    discordClient2.on('interactionCreate', async interaction => {
+        if (!interaction.isCommand()) return;
+
+        if (interaction.commandName === 'ping') {
+            await interaction.reply('Pong!');
+        }
+
+        if (interaction.commandName === 'ping') {
+            await interaction.reply('Pong!');
+        }
+    });
+
+    try {
+        discordClient2.login(`${eruptionDiscordBotToken}`);
+    } catch (discordLoginErr) {
+        console.error(` [ >EruptionBot< - >> ] Omy ! there has been an error login in Discord as the Eruption Bot`);
+        console.error(discordLoginErr);
+    }
+
+}
+
+const sendMessageToDiscordChannel = (message) => {
+    discordClient2.channels.cache.get(`${edruptionShippingMgmtChannelID}`).send(` [ >EruptionBot< - >> ] Salut c\'est le Robot Eruption !! >> ${message}`)
+}
+
+
+
+/**
+ * --- + --- +
+ * First, let's init discord bot at Runkit startup
+ * --- + --- +
+ **/
+initDiscordBot()
+
+
+/**
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * --- + --- + SNIPCART / DISCORD - ADPATER
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
+ * 
+ **/
+
 /**
  * There you can check content of package.json : express is not declared in there, npm installations are made without --save option by runkit
  */
@@ -476,6 +655,17 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
             console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductPrice=[${snipcartProductPrice}] `)
             console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductQty=[${snipcartProductQty}] `)
             console.info(` SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductID=[${snipcartProductID}] `)
+
+
+            // --- 
+
+            
+
+            sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductName=[${snipcartProductName}] `)
+            sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductPrice=[${snipcartProductPrice}] `)
+            sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductQty=[${snipcartProductQty}] `)
+            sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductID=[${snipcartProductID}] `)
+
         }
 
         
@@ -499,148 +689,6 @@ app.post("/shipping/snipcart/webhook", (req, res) => {
     // res.send(`hey ${pokusName} , your nickanme is ${pokusNickName}`)
 })
 
-
-/**
- * 
- * --- https://stackoverflow.com/questions/51120073/how-to-send-a-message-to-a-specific-channel
- *     https://readforlearn.com/discord-js-sending-a-message-to-a-specific-channel/
- * --- google search : discord js send message in specific channel
- * 
- * --- Here implement function to send a message to someone on a specific Text channel
- *     I will finally re-implement all of it, using TypeScript , Express, DiscordJS
- * 
- * --- https://www.npmjs.com/package/discord.js
- * 
- * --- https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands
- * 
- * --- https://discordjs.guide/creating-your-bot/creating-commands.html#command-deployment-script
- * 
- **/
-
-/**
- * I created a discord app, and a bot for that discord app, just 
- * like explained at 
- * https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
- * 
- * ---
- * 
- * 
- * 
- **/
-
-
-// const guildID = `https://discord.com/api/guilds/976956636407136296/widget.json`
-// const eruptionGuildID = `976956636407136296`
-const eruptionDiscordServerIDalsoGuildID = `976956636407136296`
-const edruptionShippingMgmtChannelID = `977021632696692788`
-
-const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
-const eruptionDiscordBotToken = `OTk3MzQwNjg3MTE0NzA2OTY0.GOdf8x.YjAlvVLB4RXUcmnzkAnVENfZyfYA_Foo5Z6yJs`
-const eruptionDiscordBotClientID = `997340687114706964`
-const eruptionDiscordBotPermissionInteger = `397284858944`
-const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
-`
-
-
-
-const registerSlashCommandsForDiscordBot = () => {
-    /**
-     * - see https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands
-     * - https://www.npmjs.com/package/discord.js
-     * 
-     * - npm install @discordjs/builders @discordjs/rest discord-api-types
-     * 
-     * 
-     * 
-     * -----------------------
-     * - [clientId] : Your application's client id
-     * - [guildId] : Your development server's id
-     * - [commands] : An array of commands to register. The slash command builder from @discordjs/builders is used to build the data for your commands
-     **/
-
-
-    // const { SlashCommandBuilder } = require('@discordjs/builders');
-    // const { REST } = require('@discordjs/rest');
-    // const { Routes } = require('discord-api-types/v9');
-
-    /**
-     * 
-     * - (./config.json) should be generated first, using [ShellJS]
-     * 
-     * - ccc
-     * 
-     * - ccc
-     * 
-     **/
-    // const { clientId, guildId, token } = require('./config.json');
-
-    const commands = [
-        new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
-        new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
-        new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
-        new SlashCommandBuilder().setName('ship').setDescription('A slash command to search shipments !'),
-        new SlashCommandBuilder().setName('orders').setDescription('A slash command to search orders !'),
-        new SlashCommandBuilder().setName('customers').setDescription('A slash command to search customers !'),
-    ]
-        .map(command => command.toJSON());
-
-    const rest = new REST({ version: '9' }).setToken(eruptionDiscordBotToken);
-
-
-    /// 
-    rest.put(Routes.applicationGuildCommands(eruptionDiscordBotClientID, eruptionDiscordServerIDalsoGuildID), { body: commands })
-        .then(() => console.log(' [ >EruptionBot< - >> ] Successfully registered application commands.'))
-        .catch(console.error);
-
-
-
-}
-
-
-
-const initDiscordBot = (botId, command) => {
-    /**
-     * - 
-     **/
-    console.info(`Invite the Eruption Disocrd Bot in your discord server, by clicking the following link :  ${eruptionBotInviteLinkIntoAServer}  `)
-    console.info(`${eruptionBotInviteLinkIntoAServer}`)
-
-    /**
-     * - Aftetr that we register Bots Commands
-     **/
-    registerSlashCommandsForDiscordBot();
-
-
-    /**
-     * - Afterr registering Commands, we can now create Bot
-     **/
-
-    // const { Client, Intents } = require('discord.js');
-    // const discordClient2 = new Client({ intents: [Intents.FLAGS.GUILDS] });
-
-    discordClient2.on('ready', () => {
-    console.log(`Logged in as ${discordClient2.user.tag}!`);
-    });
-
-    discordClient2.on('interactionCreate', async interaction => {
-        if (!interaction.isCommand()) return;
-
-        if (interaction.commandName === 'ping') {
-            await interaction.reply('Pong!');
-        }
-
-        if (interaction.commandName === 'ping') {
-            await interaction.reply('Pong!');
-        }
-    });
-
-    discordClient2.login(`${eruptionDiscordBotToken}`);
-
-}
-
-const sendMessageToDiscordChannel = (message, channelID) => {
-    discordClient2.channels.cache.get('CHANNEL ID').send('Hello here!')
-}
 
 ```
 
