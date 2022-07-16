@@ -31,12 +31,6 @@ app.use(bodyParser.json({ type: 'application/json' }));
 // app.use(cors());
 
 
-/**
- * EJS page templates for views
- **/
- app.set('view engine', 'ejs');
-
-
 
 
 
@@ -88,13 +82,7 @@ const edruptionShippingMgmtChannelID = `977021632696692788`
 const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
 const eruptionDiscordBotToken = `${process.env.ERUPTION_DISCORD_BOT_TOKEN}`
 const eruptionDiscordBotClientID = `${process.env.ERUPTION_DISCORD_BOT_CLIENTID}`
-// const eruptionDiscordBotPermissionInteger = `397284858944`
-
-/**
- * 535326874947    contgains permissions to manage webhooks
- * to (re-)generate a Discord Bot Permission Integer, go at https://discord.com/developers/applications
- */
-const eruptionDiscordBotPermissionInteger = `535326874947`
+const eruptionDiscordBotPermissionInteger = `397284858944`
 const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
 `
 
@@ -155,7 +143,7 @@ const registerSlashCommandsForDiscordBot = () => {
 
 
 
-const initDiscordApp = (botId, command) => {
+const initDiscordBot = (botId, command) => {
     /**
      * - 
      **/
@@ -200,48 +188,7 @@ const initDiscordApp = (botId, command) => {
 
 }
 
-
-
-/**
- * ----------------------------------------------------------------------
- *   Iinitializes Discord Bot : creates a WebHook to be used to send messages to discord - 
- * ----------------------------------------------------------------------
- * 
- * - see https://discordjs.guide/popular-topics/webhooks.html
- * 
- * That's how to send a message to a channel without having to login as a Discord Bot
- * 
- * - first create a webhook like this : https://discordjs.guide/popular-topics/webhooks.html#creating-webhooks-with-discord-js
- * - then use webhook to send message channel : https://discordjs.guide/popular-topics/webhooks.html#sending-messages
- * 
- */
-const initDiscordBot = (message) => {
-    /**
-     * We have to create a Webhook, related to a given Channel
-     */
-    channel.createWebhook('jeanbaptiste#9951', {
-        avatar: 'https://i.imgur.com/AfFp7pu.png',
-    })
-        .then(webhook => console.log(`Created webhook ${webhook}`))
-        .catch(console.error);
-}
-
-
 const sendMessageToDiscordChannel = (message) => {
-    /**
-     * This code below is throwing an Error : 
-     *      TypeError: Cannot read properties of undefined (reading 'send')
-     *          at sendMessageToDiscordChannel 
-     * 
-     * 
-     * Instead : https://discordjs.guide/popular-topics/webhooks.html
-     * 
-     * That's how to send a message to a channel without having to login as a Discord Bot
-     * 
-     * - first create a webhook like this : https://discordjs.guide/popular-topics/webhooks.html#creating-webhooks-with-discord-js
-     * - then use webhook to send message channel : https://discordjs.guide/popular-topics/webhooks.html#sending-messages
-     * 
-     */
     discordClient2.channels.cache.get(`${edruptionShippingMgmtChannelID}`).send(` [ >EruptionBot< - >> ] Salut c\'est le Robot Eruption !! >> ${message}`)
 }
 
@@ -252,7 +199,7 @@ const sendMessageToDiscordChannel = (message) => {
  * First, let's init discord bot at Runkit startup
  * --- + --- +
  **/
-initDiscordApp()
+initDiscordBot()
 
 
 /**
@@ -328,40 +275,32 @@ app.get("/package", (req, res) => {
 })
 
 
-
-/**
- * There you can execute any shell command in the Runkit Notebook nodejs project
- */
-const executeShellCmd = (shellCmdToExec) => {
+const checkExpressVersion = () => {
     // Run external tool synchronously
     let shellCmd = {};
     let shellCmdStdout = {};
     let shellCmdStderr = {};
-    // const POKUS_RAW_CHECK_CMD = 'ls -alh ./package.json'; // will be executed to check [./package.json] file exists on filesystem
-    // const POKUS_RAW_CMD = 'cat ./package.json';
-    const POKUS_RAW_CMD = shellCmdToExec;
-
     try {
-        shellCmd = shell.exec(`${POKUS_RAW_CMD}`);
+        shellCmd = shell.exec('npm list express');
         shellCmdStdout = shellCmd.stdout;
         shellCmdStderr = shellCmd.stderr;
         if (shellCmd.code !== 0) {
-            console.error(`Error (Pokus): [${POKUS_RAW_CMD}] command failed`);
+            console.error('Error (Pokus): [npm list express] command failed');
             // shell.echo('Error (Pokus): [npm list express] command failed');
-            shell.exit(17);
+            // shell.exit(1);
         }
     } catch (err) {
-        console.info(`executeShellCmd - catched [err] is [${err}] on expressjs runkit`)
+        console.info(`checkExpressVersion - catched [err] is [${err}] on expressjs runkit - [GET /express]`)
         shellCmdStdout = shellCmd.stdout;
         shellCmdStderr = shellCmd.stderr;
-        console.info(`executeShellCmd - on expressjs runkit - [shellCmd] is :`)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
         console.info(shellCmd)
-        console.info(`executeShellCmd - on expressjs runkit - [shellCmdStderr] is :`)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
         console.info(shellCmdStderr)
     } finally {
-        console.info(`executeShellCmd - on expressjs runkit - [shellCmd] is :`)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
         console.info(shellCmd)
-        console.info(`executeShellCmd - on expressjs runkit - [shellCmdStderr] is :`)
+        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
         console.info(shellCmdStderr)
     }
     
@@ -372,135 +311,19 @@ const executeShellCmd = (shellCmdToExec) => {
     }
 }
 
-/**
- * cat <<EOF> ./config.toml
- * baseURL = 'http://example.org/'
- * languageCode = 'en-us'
- * title = 'My New Hugo Site'
- * themesDir = "./themes/"
- * theme = "hargo"
- * EOF
- */
 
- const generateTextFile = (withThatText) => {
-    let cmdToexecute = ``;
-    cmdToexecute = ```
-    cat <<EOF> ./config.toml
-    ${withThatText}
-    EOF
-    ```;
-    console.info(` >>> Eruption generateTextFile >>> cmdToexecute    is now :  `)
-    console.info(cmdToexecute)
- }
 /**
- * curl https://ccc/test
- * 
+ * curl https://ccc/express
+ * This one just raises an npm error while executing the npm command... :  the npm command is useless to find out version of express since express is not in package.json see [GET /package] endpoint above...
  **/
- app.get("/test", (req, res) => {
-    console.info(`Eruption on expressjs runkit - [GET /test] - Request query is : `)
-    
-    let cmdToexecute = ```
-    cat <<EOF> ./config.toml
-    version: '3'
-    services:
-      my_webapp:
-        image: eruption/snipcart-shippo-adapter
-        build: ./oci/endpoint/
-        dockerfile: ./.eruption.Dockerfile
-        environment:
-          RUNKIT_HOST: "https://runkit.com/crtntechlead/23DFVsqdefsdf"
-          ERUPTION_SHIPMENT_API_HOST: "https://api.shippo.com/"
-    EOF
-    ```;
-    
-    let textFileContent = ```
-    version: '3'
-    services:
-      my_webapp:
-        image: eruption/snipcart-shippo-adapter
-        build: ./oci/endpoint/
-        dockerfile: ./.eruption.Dockerfile
-        environment:
-          RUNKIT_HOST: "https://runkit.com/crtntechlead/23DFVsqdefsdf"
-          ERUPTION_SHIPMENT_API_HOST: "https://api.shippo.com/"
-    ```;
-
-    // console.info(JSON.stringify(req.query))
-    // var pokusName = req.query.name || "pokusName par défault";
-    // var pokusNickName = req.query.nick;
-
-
-    console.info(` >>> Eruption on expressjs runkit - [GET /test] - >>> cmdToexecute  is :  `)
-    console.info(cmdToexecute)
-    console.info(` >>> Eruption on expressjs runkit - [GET /test] - >>> textFileContent  is :  `)
-    console.info(textFileContent)
-    
-    console.info(` >>> Eruption on expressjs runkit - [GET /test] - >>> Now executing test :  [generateTextFile(textFileContent)]  `)
-    
-    generateTextFile(textFileContent)
-
-    
-    
-    res.status(201) // that's if test result is successfull
-
-    res.send(` >>> Eruption  on expressjs runkit - [GET /test] - >>> cmdToexecute is now :  <br> <pre>${cmdToexecute}</pre>`)
+app.get("/express", (req, res) => {
+    console.info(`pokus on expressjs runkit - [GET /express] -  `)
+    let expressVersion = checkExpressVersion();
+    res.status(201)
+    res.send(`Essai - Hello Pokus! :) Your Express Version is [${JSON.stringify(expressVersion)}] on expressjs runkit - [GET /express]`)
 })
-/**
- * -------------  PREPARE EJS TEMPLATES
- * Just like https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application
- */
-const prepareEJStemplates = (shellCmdToExec) => {
-  /**
-   * mkdir -p views/partials
-   */
-   executeShellCmd(`mkdir -p views/partials`)
 
-  /**
-   * mkdir -p views/partials
-   */
-
-}
-/**
- * -------------  BOT'S LANDING PAGE EXPRESS ROUTER
- */
-// app.get("/", (req, res) => res.send(`hey ${req.query.name}`))
-
-
-// index page
-app.get("/", function(req, res) {
-    var mascots = [
-      { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
-      { name: 'Tux', organization: "Linux", birth_year: 1996},
-      { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
-    ];
-    var tagline = "No programming concept is complete without a cute animal mascot.";
-  
-    res.render('pages/index', {
-      mascots: mascots,
-      tagline: tagline
-    });
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get("/", (req, res) => res.send(`hey ${req.query.name}`))
 /*
 app.get("/", (req, res) => {
     console.info(`[Endpoiçnt | /] - pokus on expressjs runkit!!!`)
