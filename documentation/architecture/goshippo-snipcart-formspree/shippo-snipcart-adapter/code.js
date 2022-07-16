@@ -31,6 +31,13 @@ app.use(bodyParser.json({ type: 'application/json' }));
 // app.use(cors());
 
 
+/**
+ * EJS page templates for views
+ **/
+ app.set('view engine', 'ejs');
+
+
+
 
 
 
@@ -321,32 +328,43 @@ app.get("/package", (req, res) => {
 })
 
 
-const checkExpressVersion = () => {
+/**
+ * -------------  PREPARE EJS TEMPLATES
+ * Just like https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application
+ */
+ const prepareEJStemplates = (shellCmdToExec) => {}
+/**
+ * There you can execute any shell command in the Runkit Notebook nodejs project
+ */
+ const executeShellCmd = (shellCmdToExec) => {
     // Run external tool synchronously
     let shellCmd = {};
     let shellCmdStdout = {};
     let shellCmdStderr = {};
+    const POKUS_RAW_CHECK_CMD = 'ls -alh ./package.json'; // will be executed to check [./package.json] file exists on filesystem
+    const POKUS_RAW_CMD = 'cat ./package.json';
+
     try {
-        shellCmd = shell.exec('npm list express');
+        shellCmd = shell.exec(`${POKUS_RAW_CMD}`);
         shellCmdStdout = shellCmd.stdout;
         shellCmdStderr = shellCmd.stderr;
         if (shellCmd.code !== 0) {
-            console.error('Error (Pokus): [npm list express] command failed');
+            console.error(`Error (Pokus): [${POKUS_RAW_CMD}] command failed`);
             // shell.echo('Error (Pokus): [npm list express] command failed');
-            // shell.exit(1);
+            shell.exit(17);
         }
     } catch (err) {
-        console.info(`checkExpressVersion - catched [err] is [${err}] on expressjs runkit - [GET /express]`)
+        console.info(`catPackageJson - catched [err] is [${err}] on expressjs runkit - [GET /package]`)
         shellCmdStdout = shellCmd.stdout;
         shellCmdStderr = shellCmd.stderr;
-        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
         console.info(shellCmd)
-        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
         console.info(shellCmdStderr)
     } finally {
-        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmd] is :`)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
         console.info(shellCmd)
-        console.info(`checkExpressVersion - on expressjs runkit - [GET /express] - [shellCmdStderr] is :`)
+        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
         console.info(shellCmdStderr)
     }
     
@@ -357,19 +375,47 @@ const checkExpressVersion = () => {
     }
 }
 
-
 /**
- * curl https://ccc/express
- * This one just raises an npm error while executing the npm command... :  the npm command is useless to find out version of express since express is not in package.json see [GET /package] endpoint above...
- **/
-app.get("/express", (req, res) => {
-    console.info(`pokus on expressjs runkit - [GET /express] -  `)
-    let expressVersion = checkExpressVersion();
-    res.status(201)
-    res.send(`Essai - Hello Pokus! :) Your Express Version is [${JSON.stringify(expressVersion)}] on expressjs runkit - [GET /express]`)
-})
+ * -------------  BOT'S LANDING PAGE EXPRESS ROUTER
+ */
+// app.get("/", (req, res) => res.send(`hey ${req.query.name}`))
 
-app.get("/", (req, res) => res.send(`hey ${req.query.name}`))
+
+// index page
+app.get('/', function(req, res) {
+    var mascots = [
+      { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
+      { name: 'Tux', organization: "Linux", birth_year: 1996},
+      { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
+    ];
+    var tagline = "No programming concept is complete without a cute animal mascot.";
+  
+    res.render('pages/index', {
+      mascots: mascots,
+      tagline: tagline
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 app.get("/", (req, res) => {
     console.info(`[Endpoiçnt | /] - pokus on expressjs runkit!!!`)

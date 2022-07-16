@@ -226,6 +226,11 @@ app.use(bodyParser.json({ type: 'application/json' }));
 
 
 
+/**
+ * EJS page templates for views
+ **/
+app.set('view engine', 'ejs');
+
 
 
 /**
