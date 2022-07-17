@@ -2,6 +2,7 @@
 
 var express = require("@runkit/runkit/express-endpoint/1.0.0");
 const shell = require("shelljs");
+const ejs = require("ejs");
 
 // const discordClient = require("discord.js");
 const { Client, Intents } = require('discord.js');
@@ -252,7 +253,9 @@ const sendMessageToDiscordChannel = (message) => {
  * First, let's init discord bot at Runkit startup
  * --- + --- +
  **/
-initDiscordApp()
+
+/// [initDiscordApp()]  execution is long, and it just registers the bot commands, after login in as bot  : so i just comment that for now
+// initDiscordApp()
 
 
 /**
@@ -263,71 +266,6 @@ initDiscordApp()
  * --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + --- + 
  * 
  **/
-
-/**
- * There you can check content of package.json : express is not declared in there, npm installations are made without --save option by runkit
- */
-const catPackageJson = () => {
-    // Run external tool synchronously
-    let shellCmd = {};
-    let shellCmdStdout = {};
-    let shellCmdStderr = {};
-    const POKUS_RAW_CHECK_CMD = 'ls -alh ./package.json'; // will be executed to check [./package.json] file exists on filesystem
-    const POKUS_RAW_CMD = 'cat ./package.json';
-
-    try {
-        shellCmd = shell.exec(`${POKUS_RAW_CMD}`);
-        shellCmdStdout = shellCmd.stdout;
-        shellCmdStderr = shellCmd.stderr;
-        if (shellCmd.code !== 0) {
-            console.error(`Error (Pokus): [${POKUS_RAW_CMD}] command failed`);
-            // shell.echo('Error (Pokus): [npm list express] command failed');
-            shell.exit(17);
-        }
-    } catch (err) {
-        console.info(`catPackageJson - catched [err] is [${err}] on expressjs runkit - [GET /package]`)
-        shellCmdStdout = shellCmd.stdout;
-        shellCmdStderr = shellCmd.stderr;
-        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
-        console.info(shellCmd)
-        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
-        console.info(shellCmdStderr)
-    } finally {
-        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmd] is :`)
-        console.info(shellCmd)
-        console.info(`catPackageJson - on expressjs runkit - [GET /package] - [shellCmdStderr] is :`)
-        console.info(shellCmdStderr)
-    }
-    
-    return {
-        exec_code: shellCmd.code,
-        stdout: shellCmdStdout,
-        stderr: shellCmdStderr
-    }
-}
-
-/**
- * curl https://ccc/package
- **/
-app.get("/package", (req, res) => {
-    console.info(`pokus on expressjs runkit - [GET /package] -  `)
-    
-    let cmdReport = catPackageJson();
-    let package = cmdReport.stdout;
-    res.status(201)
-    if (cmdReport.exec_code != 0) {
-        res.send(`Package - on expressjs runkit - [GET /package] -  Your command report is [${JSON.stringify(cmdReport, " ", 2)}]`)
-    } else {
-        res.send(`Package - on expressjs runkit - [GET /package] - Hello Pokus! - :) Your Package.json was successfully read and is [${JSON.stringify(package, " ", 2)}]`)
-
-        /**
-         * - - soon i should return a fully fledged HTML page that beautifully display JSON, see https://codepen.io/decodigo/pen/JjzWwr
-         **/
-    }
-    
-})
-
-
 
 /**
  * There you can execute any shell command in the Runkit Notebook nodejs project
@@ -347,6 +285,8 @@ const executeShellCmd = (shellCmdToExec) => {
         shellCmdStderr = shellCmd.stderr;
         if (shellCmd.code !== 0) {
             console.error(`Error (Pokus): [${POKUS_RAW_CMD}] command failed`);
+            console.error(shellCmd.stderr)
+            console.error(shellCmd.stdout)
             // shell.echo('Error (Pokus): [npm list express] command failed');
             shell.exit(17);
         }
@@ -382,16 +322,37 @@ const executeShellCmd = (shellCmdToExec) => {
  * EOF
  */
 
- const generateTextFile = (withThatText) => {
-    let cmdToexecute = ``;
-    cmdToexecute = ```
-    cat <<EOF> ./config.toml
-    ${withThatText}
-    EOF
-    ```;
-    console.info(` >>> Eruption generateTextFile >>> cmdToexecute    is now :  `)
-    console.info(cmdToexecute)
- }
+const generateTextFile = (withThatText, filePath) => {
+let cmdToexecute = ``;
+cmdToexecute = `
+cat <<EOF> ${filePath}
+${withThatText}s
+EOF
+`;
+console.info(` >>> Eruption generateTextFile >>> cmdToexecute    is now :  `)
+console.info(cmdToexecute)
+executeShellCmd(cmdToexecute)
+
+
+console.info(` >>> Eruption generateTextFile >>> !!!! findProblematicBufferUse !!!! : START `)
+
+
+/**
+ * 
+ * Below just a command to execute to check where is the deprecated Buffer used : 
+ * 
+ * - https://nodejs.org/en/docs/guides/buffer-constructor-deprecation/#finding-problematic-bits-of-code-using-grep
+ *   
+ *   // grep -nrE '[^a-zA-Z](Slow)?Buffer\s*\(' --exclude-dir node_modules
+ */
+
+// const findProblematicBufferUse =`grep -nrE '[^a-zA-Z](Slow)?Buffer\\s*\\(' --exclude-dir node_modules`;
+// executeShellCmd(findProblematicBufferUse)
+// console.info(` >>> Eruption generateTextFile >>> !!!! findProblematicBufferUse !!!! : END `)
+
+
+
+}
 /**
  * curl https://ccc/test
  * 
@@ -399,7 +360,7 @@ const executeShellCmd = (shellCmdToExec) => {
  app.get("/test", (req, res) => {
     console.info(`Eruption on expressjs runkit - [GET /test] - Request query is : `)
     
-    let cmdToexecute = ```
+    let cmdToexecute = `
     cat <<EOF> ./config.toml
     version: '3'
     services:
@@ -411,9 +372,9 @@ const executeShellCmd = (shellCmdToExec) => {
           RUNKIT_HOST: "https://runkit.com/crtntechlead/23DFVsqdefsdf"
           ERUPTION_SHIPMENT_API_HOST: "https://api.shippo.com/"
     EOF
-    ```;
+    `;
     
-    let textFileContent = ```
+    let textFileContent = `
     version: '3'
     services:
       my_webapp:
@@ -423,7 +384,7 @@ const executeShellCmd = (shellCmdToExec) => {
         environment:
           RUNKIT_HOST: "https://runkit.com/crtntechlead/23DFVsqdefsdf"
           ERUPTION_SHIPMENT_API_HOST: "https://api.shippo.com/"
-    ```;
+    `;
 
     // console.info(JSON.stringify(req.query))
     // var pokusName = req.query.name || "pokusName par défault";
@@ -437,8 +398,16 @@ const executeShellCmd = (shellCmdToExec) => {
     
     console.info(` >>> Eruption on expressjs runkit - [GET /test] - >>> Now executing test :  [generateTextFile(textFileContent)]  `)
     
-    generateTextFile(textFileContent)
+    generateTextFile(textFileContent, `./docker-compose.yml`)
 
+    console.info(` >> Eruption >> [pwd && ls -alh ./ && ls -alh ./docker-compose.yml] >> Check created folders and files :)  `)
+    console.info(` >> Eruption >>  >> Check created folders and files :)  `)
+   
+    // pwd && ls -alh ./ && ls -alh ./docker-compose.yml
+    executeShellCmd('pwd && ls -alh ./ && ls -alh ./docker-compose.yml')
+    console.info(` >>> - ---------------------------------------------------------------- - >>>`)
+    console.info(` >>> Eruption  on expressjs runkit - [prepareEJStemplates()] - >>>  END `)
+    console.info(` >>> - ---------------------------------------------------------------- - >>>`)
     
     
     res.status(201) // that's if test result is successfull
@@ -449,16 +418,45 @@ const executeShellCmd = (shellCmdToExec) => {
  * -------------  PREPARE EJS TEMPLATES
  * Just like https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application
  */
-const prepareEJStemplates = (shellCmdToExec) => {
+const prepareEJStemplates = () => {
+
+   console.info(` >>> - ---------------------------------------------------------------- - >>>`)
+   console.info(` >>> Eruption  on expressjs runkit - [prepareEJStemplates()] - >>>`)
+   console.info(` >>> - ---------------------------------------------------------------- - >>>`)
+   console.info(` >>> Eruption  on expressjs runkit - [prepareEJStemplates()] - >>> START : generates all files and folders for EJS Tamplates of the Express JS app`)
+   console.info(` >>> - ---------------------------------------------------------------- - >>>`)
+   
   /**
    * mkdir -p views/partials
    */
    executeShellCmd(`mkdir -p views/partials`)
+   
+   /**
+    * generate views/partials/head.ejs
+    */
+   let headEJSFileContent = `
+   <meta charset="UTF-8">
+   <title>EJS Is Fun</title>
+
+   <!-- CSS (load bootstrap from a CDN) -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+   <style>
+   body { padding-top:50px; }
+   </style>
+   `
+   generateTextFile(textFileContent, `./views/partials/head.ejs`)
 
   /**
-   * mkdir -p views/partials
+   * Check created files :) 
    */
-
+   console.info(` >> Eruption >> [pwd && ls -alh views/ && ls -alh views/partials] >> Check created folders and files :)  `)
+   console.info(` >> Eruption >>  >> Check created folders and files :)  `)
+  
+   executeShellCmd(`pwd && ls -alh views/ && ls -alh views/partials`)
+   console.info(` >>> - ---------------------------------------------------------------- - >>>`)
+   console.info(` >>> Eruption  on expressjs runkit - [prepareEJStemplates()] - >>>  END `)
+   console.info(` >>> - ---------------------------------------------------------------- - >>>`)
+   
 }
 /**
  * -------------  BOT'S LANDING PAGE EXPRESS ROUTER
@@ -467,7 +465,9 @@ const prepareEJStemplates = (shellCmdToExec) => {
 
 
 // index page
+/* 
 app.get("/", function(req, res) {
+
     var mascots = [
       { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
       { name: 'Tux', organization: "Linux", birth_year: 1996},
@@ -481,7 +481,7 @@ app.get("/", function(req, res) {
     });
   });
 
-
+ */
 
 
 
