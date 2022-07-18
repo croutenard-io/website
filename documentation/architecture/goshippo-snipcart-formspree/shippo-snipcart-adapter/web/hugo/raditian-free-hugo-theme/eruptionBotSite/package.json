@@ -1,0 +1,15 @@
+{
+  "name": "eruptionbotsite",
+  "version": "1.0.0",
+  "description": "```bash\r export RUNKIT_NOTENOOK_ID=\"ctrtechlead/62cf1a47ebc2880009354ee7\"\r export DEPLOYMENT_DOMAIN=runkit.com\r export DEPLOYMENT_BASE_URL=https://${DEPLOYMENT_DOMAIN}/${RUNKIT_NOTENOOK_ID}",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "interpolate" : "bash ./.npm.scripts/interpolate.sh",
+    "hugo": "npm run interpolate && bash ./.npm.scripts/build.sh",
+    "dev": "npm run interpolate && bash ./.npm.scripts/watch.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
