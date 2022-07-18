@@ -4,9 +4,46 @@ var express = require("@runkit/runkit/express-endpoint/1.0.0");
 const shell = require("shelljs");
 const ejs = require("ejs");
 
+
+/**
+ * I created a discord app, and a bot for that discord app, just 
+ * like explained at 
+ * https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
+ * 
+ * ---
+ * 
+ * 
+ * 
+ **/
+
+
+// const guildID = `https://discord.com/api/guilds/976956636407136296/widget.json`
+// const eruptionGuildID = `976956636407136296`
+const eruptionDiscordServerIDalsoGuildID = `976956636407136296`
+const edruptionShippingMgmtChannelID = `977021632696692788`
+
+const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
+const eruptionDiscordBotToken = `${process.env.ERUPTION_DISCORD_BOT_TOKEN}`
+const eruptionDiscordBotClientID = `${process.env.ERUPTION_DISCORD_BOT_CLIENTID}`
+// const eruptionDiscordBotPermissionInteger = `397284858944`
+
+/**
+ * '535326874947'    contains permissions to manage webhooks
+ * to (re-)generate a Discord Bot Permission Integer, go at https://discord.com/developers/applications
+ * 
+ * 
+ * '8'               contains full admin permissions
+ */
+// const eruptionDiscordBotPermissionInteger = `535326874947`
+const eruptionDiscordBotPermissionInteger = `8`
+
+const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
+`
+
 // const discordClient = require("discord.js");
 const { Client, Intents } = require('discord.js');
 const discordClient2 = new Client({ intents: [Intents.FLAGS.GUILDS] });
+let shippingMgmtChannel = null;
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
@@ -81,26 +118,6 @@ app.use(bodyParser.json({ type: 'application/json' }));
  **/
 
 
-// const guildID = `https://discord.com/api/guilds/976956636407136296/widget.json`
-// const eruptionGuildID = `976956636407136296`
-const eruptionDiscordServerIDalsoGuildID = `976956636407136296`
-const edruptionShippingMgmtChannelID = `977021632696692788`
-
-const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
-const eruptionDiscordBotToken = `${process.env.ERUPTION_DISCORD_BOT_TOKEN}`
-const eruptionDiscordBotClientID = `${process.env.ERUPTION_DISCORD_BOT_CLIENTID}`
-// const eruptionDiscordBotPermissionInteger = `397284858944`
-
-/**
- * 535326874947    contgains permissions to manage webhooks
- * to (re-)generate a Discord Bot Permission Integer, go at https://discord.com/developers/applications
- */
-const eruptionDiscordBotPermissionInteger = `535326874947`
-const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
-`
-
-
-
 const registerSlashCommandsForDiscordBot = () => {
     /**
      * - see https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands
@@ -139,28 +156,45 @@ const registerSlashCommandsForDiscordBot = () => {
         new SlashCommandBuilder().setName('ship').setDescription('A slash command to search shipments !'),
         new SlashCommandBuilder().setName('orders').setDescription('A slash command to search orders !'),
         new SlashCommandBuilder().setName('customers').setDescription('A slash command to search customers !'),
-    ]
-        .map(command => command.toJSON());
+        new SlashCommandBuilder().setName('init').setDescription('A slash command to initialize your Eruption Bot !')
+    ].map(command => command.toJSON());
 
     const rest = new REST({ version: '9' }).setToken(eruptionDiscordBotToken);
-
 
     /// 
     rest.put(Routes.applicationGuildCommands(eruptionDiscordBotClientID, eruptionDiscordServerIDalsoGuildID), { body: commands })
         .then(() => console.log(' [ >EruptionBot< - >> ] Successfully registered application commands.'))
         .catch(console.error);
 
-
-
 }
 
+const slashInitHandler = async (interaction) => {
+    console.info(`  [ >EruptionBot< - >> slashInitHandler ] Bon ça c'est le slashInitHandler qui est déclenché à chaque fois que l'on utilise le bot avec la command slash /init `)
 
+    let initilizerUser = interaction.user.id;
+
+
+    /**
+     * We have to create a Webhook, related to a given Channel
+     */
+
+    shippingMgmtChannel.send('[ >EruptionBot< - >> slashInitHandler ] I ma now creating a webhook that i will use to send further messages to your shipping management Discord Channel');
+
+    const webhookName = `eruptionShippingBotWebHook`
+    shippingMgmtChannel.createWebhook(`${webhookName}`, {
+    avatar: 'https://i.imgur.com/AfFp7pu.png'
+    }).then(webhook => {
+        console.log(`Created webhook ${webhook}`)
+    })
+    .catch(console.error);
+
+}
 
 const initDiscordApp = (botId, command) => {
     /**
      * - 
      **/
-    console.info(`Invite the Eruption Disocrd Bot in your discord server, by clicking the following link :  ${eruptionBotInviteLinkIntoAServer}  `)
+    console.info(`Invite the Eruption Discord Bot in your discord server, by clicking the following link :  ${eruptionBotInviteLinkIntoAServer}  `)
     console.info(`${eruptionBotInviteLinkIntoAServer}`)
 
     /**
@@ -178,18 +212,30 @@ const initDiscordApp = (botId, command) => {
 
     discordClient2.on('ready', () => {
     console.log(` [ >EruptionBot< - >> ] Logged in as ${discordClient2.user.tag}!`);
+
+
+    /**
+     * We have to create a Webhook, related to a given Channel
+     */
+
+    // It's only when the bot is logged in "ready", that we can get a reference over a given channel
+    shippingMgmtChannel = discordClient2.channels.cache.get(`${edruptionShippingMgmtChannelID}`);
+    shippingMgmtChannel.send('[ >EruptionBot< - >> ] Hey I am the Eruption Shipping Bot, providing Snipcart / GoShippo Interaction !!! ');
+
     });
 
     discordClient2.on('interactionCreate', async interaction => {
         if (!interaction.isCommand()) return;
 
         if (interaction.commandName === 'ping') {
-            await interaction.reply('Pong!');
+            await interaction.reply('Pong Eruption!');
         }
 
-        if (interaction.commandName === 'ping') {
-            await interaction.reply('Pong!');
+        if (interaction.commandName === 'init') {
+            await slashInitHandler(interaction);
         }
+
+
     });
 
     try {
@@ -220,13 +266,25 @@ const initDiscordBot = (message) => {
     /**
      * We have to create a Webhook, related to a given Channel
      */
-    channel.createWebhook('jeanbaptiste#9951', {
-        avatar: 'https://i.imgur.com/AfFp7pu.png',
-    })
-        .then(webhook => console.log(`Created webhook ${webhook}`))
-        .catch(console.error);
+
 }
 
+/**
+ * 
+ * Misc test
+ * curl https://ccc/test
+ * 
+ **/
+app.get("/test", (req, res) => {
+    /**
+     * We have to create a Webhook, related to a given Channel
+     */
+    const webhookName = `eruptionShippingBotWebHook`
+    shippingMgmtChannel.createWebhook(`${webhookName}`, {
+        avatar: 'https://i.imgur.com/AfFp7pu.png',
+    }).then(webhook => console.log(`Created webhook ${webhook}`))
+      .catch(console.error);
+});
 
 const sendMessageToDiscordChannel = (message) => {
     /**
@@ -255,7 +313,7 @@ const sendMessageToDiscordChannel = (message) => {
  **/
 
 /// [initDiscordApp()]  execution is long, and it just registers the bot commands, after login in as bot  : so i just comment that for now
-// initDiscordApp()
+initDiscordApp()
 
 
 /**
@@ -353,11 +411,15 @@ console.info(` >>> Eruption generateTextFile >>> !!!! findProblematicBufferUse !
 
 
 }
+
+
+
+
 /**
- * curl https://ccc/test
+ * curl https://ccc/testFileGeneration
  * 
  **/
- app.get("/test", (req, res) => {
+ app.get("/testFileGeneration", (req, res) => {
     console.info(`Eruption on expressjs runkit - [GET /test] - Request query is : `)
     
     let cmdToexecute = `
@@ -454,10 +516,13 @@ let headEJSFileContent = `
 
    let headerEJSFileContent = `
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="/">EJS Is Fun</a>
+<a class="navbar-brand" href="/">Eruption Bot</a>
 <ul class="navbar-nav mr-auto">
   <li class="nav-item">
     <a class="nav-link" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs">Docs</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/about">About</a>
