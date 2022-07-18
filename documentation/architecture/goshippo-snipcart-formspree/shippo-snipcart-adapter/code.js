@@ -412,7 +412,7 @@ console.info(` >>> Eruption generateTextFile >>> !!!! findProblematicBufferUse !
     
     res.status(201) // that's if test result is successfull
 
-    res.send(` >>> Eruption  on expressjs runkit - [GET /test] - >>> cmdToexecute is now :  <br> <pre>${cmdToexecute}</pre>`)
+    res.send(` >>> Eruption  on expressjs runkit - [GET /test] - >>> just executed the following shell command :  <br> <pre>${cmdToexecute}</pre>`)
 })
 /**
  * -------------  PREPARE EJS TEMPLATES
@@ -429,35 +429,126 @@ const prepareEJStemplates = () => {
   /**
    * mkdir -p views/partials
    */
-   executeShellCmd(`mkdir -p views/partials`)
+   executeShellCmd(`mkdir -p views/partials && mkdir -p views/pages`)
    
    /**
     * generate views/partials/head.ejs
     */
-   let headEJSFileContent = `
-   <meta charset="UTF-8">
-   <title>EJS Is Fun</title>
+let headEJSFileContent = `
+<meta charset="UTF-8">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- CSS (load bootstrap from a CDN) -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-   <style>
-   body { padding-top:50px; }
-   </style>
-   `
-   generateTextFile(textFileContent, `./views/partials/head.ejs`)
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<title>Eruption Bot</title>
+`
+   generateTextFile(headEJSFileContent, `./views/partials/head.ejs`)
+
+   /**
+    * generate views/partials/header.ejs
+    */
+
+   let headerEJSFileContent = `
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<a class="navbar-brand" href="/">EJS Is Fun</a>
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/about">About</a>
+  </li>
+</ul>
+</nav>
+`
+
+    generateTextFile(headerEJSFileContent, `./views/partials/header.ejs`)
+
+   /**
+    * generate views/partials/header.ejs
+    */
+
+    let footerEJSFileContent = `
+<p class="text-center text-muted">&copy; Copyright 2022 Eruption</p>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+`
+
+    generateTextFile(footerEJSFileContent, `./views/partials/footer.ejs`)
+
+   /**
+    * generate views/pages/index.ejs
+    */
+    let indexEJSFileContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <h1>Eruption Bot</h1>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, Iam the Eruption Bot!</h1>
+        <p class="lead">I am a bot that helps you with Goshippo Shipping with your static website.</p>
+        <p class="lead">For example, you could use me to integrate Snipcart and Goshippo, using my <code>"Snipcart GoShippo Adapter"</code>.</p>
+        <hr class="my-4">
+        <p>invite me in your Discord Server and i'll help you with Shipping Management!</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="<%= eruptionBotInviteLinkIntoAServer %>" role="button">Invite me in your Discord Server</a>
+        </p>
+    </div>
+  <div class="jumbotron">
+    <h1>This is great</h1>
+    <p>Welcome to templating using EJS</p>
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
+`
+
+    generateTextFile(indexEJSFileContent, `./views/pages/index.ejs`)
   /**
    * Check created files :) 
    */
    console.info(` >> Eruption >> [pwd && ls -alh views/ && ls -alh views/partials] >> Check created folders and files :)  `)
    console.info(` >> Eruption >>  >> Check created folders and files :)  `)
-  
    executeShellCmd(`pwd && ls -alh views/ && ls -alh views/partials`)
+   executeShellCmd(`ls -alh views/pages`)
+   executeShellCmd(`ls -alh ./views/partials/head.ejs`)
+   executeShellCmd(`ls -alh ./views/partials/header.ejs`)
+   executeShellCmd(`ls -alh ./views/partials/footer.ejs`)
+   executeShellCmd(`ls -alh ./views/pages/index.ejs`)
    console.info(` >>> - ---------------------------------------------------------------- - >>>`)
    console.info(` >>> Eruption  on expressjs runkit - [prepareEJStemplates()] - >>>  END `)
    console.info(` >>> - ---------------------------------------------------------------- - >>>`)
    
 }
+
+prepareEJStemplates()
 /**
  * -------------  BOT'S LANDING PAGE EXPRESS ROUTER
  */
@@ -465,21 +556,22 @@ const prepareEJStemplates = () => {
 
 
 // index page
-/* 
 app.get("/", function(req, res) {
 
     var mascots = [
-      { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
-      { name: 'Tux', organization: "Linux", birth_year: 1996},
-      { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
+        { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
+        { name: 'Tux', organization: "Linux", birth_year: 1996},
+        { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
     ];
     var tagline = "No programming concept is complete without a cute animal mascot.";
-  
+    
     res.render('pages/index', {
-      mascots: mascots,
-      tagline: tagline
+        mascots: mascots,
+        tagline: tagline,
+        eruptionBotInviteLinkIntoAServer: eruptionBotInviteLinkIntoAServer
     });
-  });
+});
+/* 
 
  */
 
