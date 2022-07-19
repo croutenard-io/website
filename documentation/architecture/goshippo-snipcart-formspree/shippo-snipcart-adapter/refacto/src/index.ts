@@ -57,7 +57,44 @@ import bodyParser from 'body-parser';
  * 
  */
 const app: express.Application = express();
-const server: http.Server = http.createServer(app);
+
+
+
+
+/**
+ * ----------------------------------------------------------
+ * see : https://stackoverflow.com/questions/60765304/why-we-pass-app-in-http-createserverapp
+ * ----------
+ * I'm assuming that app represents an Express instance from something like this:
+ * 
+ *     const app = express();
+ * 
+ * If so, then app is a request handler function that also has properties. You can pass it like this:
+ * 
+ *     var server = http.createServer(app); 
+ * 
+ * because that app function is specifically designed to be an http request listener which is passed the arguments (req, res) from an incoming http request as you can see here in the doc.
+ * 
+ * Or, in Express, you can also do:
+ * 
+ *     const server = app.listen(80);
+ * 
+ * In that case, it will do the http.createServer(app) for you and then also call server.
+ */
+
+// const server: http.Server = http.createServer(app); //// I prefer using [app.listen], and keep a reference over the Global enclosing Http Server
+
+
+
+
+
+
+
+
+
+
+
+
 // const port = 3000;
 const bot_port: number = parseInt(`${process.env.ERUPTIONBOT_PORT}`) || 5656;
 const bot_host: string = process.env.ERUPTIONBOT_HOST || "127.0.0.1";
@@ -134,7 +171,8 @@ routes.push(new SnipcartRoutes(app));
 
 // this is a simple route to make sure everything is working properly
 const runningMessage = `⚡️[Eruption Bot!]: Service is running at ${bot_http_proto}://${bot_host}:${bot_port}`;
-app.get('/', (req: express.Request, res: express.Response) => {
+
+const eruptionBotHTTPServer = app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage)
 });
 
