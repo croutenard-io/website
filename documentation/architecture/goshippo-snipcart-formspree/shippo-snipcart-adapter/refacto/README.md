@@ -189,9 +189,11 @@ This tutorial is perfect : https://www.freecodecamp.org/news/build-a-100-days-of
 * It's typescript
 * its v13 of Discord JS (the latest version)
 * It shows how to work with `Intents` in Typescript without a require, but with `import` Keyword instead.
-* theres more to learn about intents on diiscordjs v13 : https://stackoverflow.com/questions/68791091/about-discord-js-v13-start-all-intents
+* theres more to learn about intents on diiscordjs v13 : 
+  * https://stackoverflow.com/questions/68791091/about-discord-js-v13-start-all-intents  
+  * there's something to learn about `IntentBitField`, and what are `BitField`.
 * it uses mongodb for persistence ( i will need to persist the state tof each Stateful Discord Object, eg we shall not register slash commands while they are already registered)
-* 
+
 
 ## References
 
