@@ -1,6 +1,10 @@
+/**
+ * Global Eruption Bot Configuration
+ */
+import {EruptionConfig,  eruptionConfiguration} from './../../../modules/config/'
+import eruptionBotLogger from './../../../modules/logger'
 import {CommonRoutesConfig} from '../../../common/common.routes.config';
 import express from 'express';
-import eruptionBotLogger from './../../../modules/logger' 
 
 export class SnipcartRoutes extends CommonRoutesConfig {
     constructor(app: express.Application) {
@@ -45,7 +49,8 @@ export class SnipcartRoutes extends CommonRoutesConfig {
 
         return this.app;
     }
-    configureFetchShippingratesRoute(): express.Application {
+
+    configureFetchShippingratesRoute(): void {
       this.app.route(`/snipcart/shipping/rates`) // must be configured at https://app.snipcart.com/dashboard/carriers/webhooks
       .get((req: express.Request, res: express.Response) => {
           res.status(200).send(`This endpoint is consumed by Snipcart to fetch shipping rates (I don't understand with its not a get... but well..)`);
@@ -78,7 +83,7 @@ export class SnipcartRoutes extends CommonRoutesConfig {
         // res.status(200).send(`Post to users`);
 
       });
-
+      
     }
     configureOrderPaymentSuccessRoute(): void {
 

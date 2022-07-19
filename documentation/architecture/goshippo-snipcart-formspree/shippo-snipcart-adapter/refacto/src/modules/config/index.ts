@@ -1,3 +1,6 @@
+import eruptionBotLogger from './../../modules/logger'
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * I created a discord app, and a bot for that discord app, just 
@@ -54,3 +57,5 @@ export const eruptionConfiguration: EruptionConfig = {
     discordBotPermissionInteger: `${eruptionDiscordBotPermissionInteger}`,
     botInviteLinkIntoAServer: `${eruptionBotInviteLinkIntoAServer}`
 };
+
+

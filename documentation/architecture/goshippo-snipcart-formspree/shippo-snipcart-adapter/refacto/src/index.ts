@@ -1,13 +1,14 @@
 //// REQUIRES NODE v18.5.0 +
 
-import dotenv from 'dotenv';
-dotenv.config();
-
+/**
+ * Global Eruption Bot Configuration
+ */
+import {EruptionConfig,  eruptionConfiguration} from './modules/config/'
+import eruptionBotLogger from './modules/logger'
 import express from 'express';
 import ejs from "ejs";
 import * as http from 'http';
 
-import eruptionBotLogger from './modules/logger' 
 
 import cors from 'cors';
 
@@ -17,10 +18,7 @@ import {SnipcartRoutes} from './modules/adapter/snipcart/'; // webhook for order
 
 import debug from 'debug';
 
-/**
- * Global Eruption Bot Configuration
- */
-import {EruptionConfig,  eruptionConfiguration} from './modules/config/'
+
 
 /**
  * I created a discord app, and a bot for that discord app, just 
