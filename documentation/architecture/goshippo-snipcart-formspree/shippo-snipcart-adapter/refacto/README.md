@@ -182,6 +182,16 @@ And here below the endpoint displays you all order details when `order.completed
 ![snipcart fetching runkit endpoint](./documentation/images/snipcart/first-integration-result-via-runkit.5.order.completed.event.catched.PNG)
 
 
+## MongoDB persistence with Mongoose
+
+This tutorial is perfect : https://www.freecodecamp.org/news/build-a-100-days-of-code-discord-bot-with-typescript-mongodb-and-discord-js-13/
+
+* It's typescript
+* its v13 of Discord JS (the latest version)
+* It shows how to work with `Intents` in Typescript without a require, but with `import` Keyword instead.
+* theres more to learn about intents on diiscordjs v13 : https://stackoverflow.com/questions/68791091/about-discord-js-v13-start-all-intents
+* it uses mongodb for persistence ( i will need to persist the state tof each Stateful Discord Object, eg we shall not register slash commands while they are already registered)
+* 
 
 ## References
 

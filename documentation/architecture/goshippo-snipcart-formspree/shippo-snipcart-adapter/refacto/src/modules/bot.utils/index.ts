@@ -186,7 +186,7 @@ const initDiscordApp = () => {
     console.info(`${eruptionBotInviteLinkIntoAServer}`)
 
     /**
-     * - Aftetr that we register Bots Commands
+     * - After that we register Bots Commands
      **/
     registerSlashCommandsForDiscordBot();
 
