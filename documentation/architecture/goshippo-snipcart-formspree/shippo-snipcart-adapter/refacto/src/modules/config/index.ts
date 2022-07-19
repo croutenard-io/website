@@ -33,3 +33,24 @@ const eruptionDiscordBotPermissionInteger = `8`
 
 const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
 `
+
+export interface EruptionConfig {
+    discordServerIDalsoGuildID: string;
+    shippingMgmtChannelID: string;
+    discordBotUserUniqueName: string;
+    discordBotToken: string;
+    discordBotClientID: string;
+    discordBotPermissionInteger: string;
+    botInviteLinkIntoAServer: string;
+}
+
+
+export const eruptionConfiguration: EruptionConfig = {
+    discordServerIDalsoGuildID: `${eruptionDiscordServerIDalsoGuildID}`,
+    shippingMgmtChannelID: `${edruptionShippingMgmtChannelID}`,
+    discordBotUserUniqueName: `${eruptionDiscordBotUserUniqueName}`,
+    discordBotToken: `${eruptionDiscordBotToken}`,
+    discordBotClientID: `${eruptionDiscordBotClientID}`,
+    discordBotPermissionInteger: `${eruptionDiscordBotPermissionInteger}`,
+    botInviteLinkIntoAServer: `${eruptionBotInviteLinkIntoAServer}`
+};

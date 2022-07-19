@@ -1,7 +1,10 @@
+//// REQUIRES NODE v18.5.0 +
+
 import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import ejs from "ejs";
 import * as http from 'http';
 
 import eruptionBotLogger from './modules/logger' 
@@ -14,24 +17,10 @@ import {SnipcartRoutes} from './modules/adapter/snipcart/'; // webhook for order
 
 import debug from 'debug';
 
-/***************************
- * 
- * 
- * 
- * 
- *   ------------------------------
+/**
+ * Global Eruption Bot Configuration
  */
-
-
-
-
-//// REQUIRES NODE v18.5.0 +
-
-import {CommonRoutesConfig} from '../../common/common.routes.config';
-import express from 'express';
-import eruptionBotLogger from './../../modules/logger' 
-import shell from "shelljs";
-import ejs from "ejs";
+import {EruptionConfig,  eruptionConfiguration} from './modules/config/'
 
 /**
  * I created a discord app, and a bot for that discord app, just 
@@ -45,30 +34,6 @@ import ejs from "ejs";
  **/
 
 
-// const guildID = `https://discord.com/api/guilds/976956636407136296/widget.json`
-// const eruptionGuildID = `976956636407136296`
-const eruptionDiscordServerIDalsoGuildID = `976956636407136296`
-const edruptionShippingMgmtChannelID = `977021632696692788`
-
-const eruptionDiscordBotUserUniqueName = `eruption__app_bot#2352`
-const eruptionDiscordBotToken = `${process.env.ERUPTION_DISCORD_BOT_TOKEN}`
-const eruptionDiscordBotClientID = `${process.env.ERUPTION_DISCORD_BOT_CLIENTID}`
-// const eruptionDiscordBotPermissionInteger = `397284858944`
-
-/**
- * '535326874947'    contains permissions to manage webhooks
- * to (re-)generate a Discord Bot Permission Integer, go at https://discord.com/developers/applications
- * 
- * 
- * '8'               contains full admin permissions
- */
-// const eruptionDiscordBotPermissionInteger = `535326874947`
-const eruptionDiscordBotPermissionInteger = `8`
-
-const eruptionBotInviteLinkIntoAServer = `https://discord.com/api/oauth2/authorize?client_id=${eruptionDiscordBotClientID}&permissions=${eruptionDiscordBotPermissionInteger}&scope=bot%20applications.commands
-`
-
-// const discordClient = require("discord.js");
 const { Client, Intents } = require('discord.js');
 const discordClient2 = new Client({ intents: [Intents.FLAGS.GUILDS] });
 let shippingMgmtChannel = null;
@@ -76,11 +41,8 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
-
-const { query, validationResult } = require("express-validator");
-const cors = require("cors");
-const request = require("request");
-var bodyParser = require('body-parser');
+import { query, validationResult } from "express-validator";
+import bodyParser from 'body-parser';
 
 
 
@@ -89,8 +51,6 @@ var bodyParser = require('body-parser');
 /**
  * --------------------------------
  */
-
-
 
 
 /**
