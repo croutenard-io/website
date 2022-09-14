@@ -6,9 +6,43 @@ import eruptionBotLogger from './../../../modules/logger'
 import {CommonRoutesConfig} from '../../../common/common.routes.config';
 import express from 'express';
 
+/**
+ * I created a discord app, and a bot for that discord app, just 
+ * like explained at 
+ * https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
+ * 
+ * ---
+ * 
+ * 
+ * 
+ **/
+
+/**
+const { Client, Intents } = require('discord.js');
+const discordClient = new Client({ intents: [Intents.FLAGS.GUILDS] });
+*/
+
+const { Client, IntentsBitField, GatewayIntentBits } = require('discord.js');
+
+
+
+
+/**
+ * The SnipcartRoutes  
+ */
 export class SnipcartRoutes extends CommonRoutesConfig {
+
+    myIntents: typeof IntentsBitField; // any is the type, its just in case type changes in future versions of DiscordJS
+    
+    discordClient:typeof Client; // any is the type, its just in case type changes in future versions of DiscordJS
+    
     constructor(app: express.Application) {
         super(app, 'SnipcartRoutes');
+        this.myIntents = new IntentsBitField();
+        this.myIntents.add(IntentsBitField.Flags.GuildPresences, IntentsBitField.Flags.GuildMembers, IntentsBitField.Flags.Guilds);
+        this.discordClient = new Client({ intents: this.myIntents });   
+        // this.discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
+
     }
 
     configureRoutes(): express.Application {
@@ -90,7 +124,7 @@ export class SnipcartRoutes extends CommonRoutesConfig {
 
       this.app.route(`/snipcart/order/payment/success/webhook`) // must be configured at https://app.snipcart.com/dashboard/webhooks
       .get((req: express.Request, res: express.Response) => {
-          res.status(200).send(`This endpoint is consumed by Snipcart's Webhook, which is triggered when the Snicpcart process completes, whether it is with success or failure of the payment, whatever proces error might happen.`);
+          res.status(200).send(`This endpoint is consumed by Snipcart's Webhook, which is triggered when the Snicpcart process completes, whether it is with success or failure of the payment, whatever snipcart payment process error might have occured.`);
       })
       .post((req: express.Request, res: express.Response) => {
 
@@ -126,7 +160,7 @@ export class SnipcartRoutes extends CommonRoutesConfig {
     
     
             let purchaseProductNumber = snipCartPayload.content.items.length;
-            for (i = 0; i < purchaseProductNumber; i++) {
+            for (var i = 0; i < purchaseProductNumber; i++) {
     
                 snipcartProductName = snipCartPayload.content.items[i].name;
                 snipcartProductPrice = snipCartPayload.content.items[i].price;
@@ -142,10 +176,10 @@ export class SnipcartRoutes extends CommonRoutesConfig {
     
                 
     
-                sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductName=[${snipcartProductName}] `)
-                sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductPrice=[${snipcartProductPrice}] `)
-                sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductQty=[${snipcartProductQty}] `)
-                sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductID=[${snipcartProductID}] `)
+                this.sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductName=[${snipcartProductName}] `)
+                this.sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductPrice=[${snipcartProductPrice}] `)
+                this.sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductQty=[${snipcartProductQty}] `)
+                this.sendMessageToDiscordChannel(` ERUPTIUON DISCORD BOT ] -x- SNIPCART EVENTS WEBHOOK >>>>> ORDER COMPLETED >>> snipcartProductID=[${snipcartProductID}] `)
     
             }
     
@@ -171,5 +205,25 @@ export class SnipcartRoutes extends CommonRoutesConfig {
       });
 
   }
+
+  
+  sendMessageToDiscordChannel(message: string): void {
+    //const sendMessageToDiscordChannel = (message) => {
+    /**
+     * This code below is throwing an Error : 
+     *      TypeError: Cannot read properties of undefined (reading 'send')
+     *          at sendMessageToDiscordChannel 
+     * 
+     * 
+     * Instead : https://discordjs.guide/popular-topics/webhooks.html
+     * 
+     * That's how to send a message to a channel without having to login as a Discord Bot
+     * 
+     * - first create a webhook like this : https://discordjs.guide/popular-topics/webhooks.html#creating-webhooks-with-discord-js
+     * - then use webhook to send message channel : https://discordjs.guide/popular-topics/webhooks.html#sending-messages
+     * 
+     */
+     this.discordClient.channels.cache.get(`${eruptionConfiguration.shippingMgmtChannelID}`).send(` [ >EruptionBot< - >> ] Salut c\'est le Robot Eruption !! >> ${message}`)
+    }
   
 }

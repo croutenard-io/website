@@ -13,28 +13,14 @@ import * as http from 'http';
 import cors from 'cors';
 
 import {CommonRoutesConfig} from './common/common.routes.config';
-import {UsersRoutes} from './users/users.routes.config';
+// import {UsersRoutes} from './users/users.routes.config';
 import {SnipcartRoutes} from './modules/adapter/snipcart/'; // webhook for order payment success
 
 import debug from 'debug';
 
 
 
-/**
- * I created a discord app, and a bot for that discord app, just 
- * like explained at 
- * https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot
- * 
- * ---
- * 
- * 
- * 
- **/
 
-
-const { Client, Intents } = require('discord.js');
-const discordClient2 = new Client({ intents: [Intents.FLAGS.GUILDS] });
-let shippingMgmtChannel = null;
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
@@ -166,7 +152,7 @@ app.use(cors());
  */
 // here we are adding the UserRoutes to our array,
 // after sending the Express.js application object to have the routes added to our app!
-routes.push(new UsersRoutes(app));
+// routes.push(new UsersRoutes(app));
 routes.push(new SnipcartRoutes(app));
 
 // this is a simple route to make sure everything is working properly

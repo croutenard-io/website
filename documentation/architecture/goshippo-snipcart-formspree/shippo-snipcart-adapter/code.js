@@ -614,6 +614,7 @@ let headEJSFileContent = `
 }
 
 prepareEJStemplates()
+
 /**
  * -------------  BOT'S LANDING PAGE EXPRESS ROUTER
  */
@@ -635,7 +636,11 @@ app.get("/", function(req, res) {
         tagline: tagline,
         eruptionBotInviteLinkIntoAServer: eruptionBotInviteLinkIntoAServer
     });
+
 });
+
+
+
 /* 
 
  */

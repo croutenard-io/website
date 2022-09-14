@@ -1,5 +1,56 @@
 # The Snipcart Shippo Adapter Bot
 
+
+## The idea (specs)
+
+### High level Scenario 
+
+
+* `Snipcart` will first query adapter using a webhook, to get shipment rates (and add the shipment costs to the bill)
+* Adapter will, after payment is complete, trigger the `goshippo` shipment, and it should end by making a notification on a chatops like `discord` ("create shipment" endpoint)
+* anyway, the adapter will : 
+  * receive the snipcart webhook request to get shippo rates (and answer to the webhook) 
+  * the snipcart payment process will then complete, on client browser side
+  * When the payment is complete, Snipcart will send another Webhook, to the `Snipcart Shippo Adapter Bot`, and if the payment succeeded,  query goshippo api to create the shipment (to be confirmed, probably realted to using the _"Discord Gateway Intents"_)
+  * send the discord message via a hubot discord chatbot 
+  * all of actions must be persisted by the discord chatbot
+
+
+_Persistence of all workflow executions history_
+
+will be performed using mongoose, to a mongo db replicaset
+
+## Run the Adapter
+
+* Run the Adapter : 
+
+```bash
+# 
+export WHERE_I_WORK_PATH=$(mktemp -d -t WHERE_I_WORK_PATH_XXXX)
+
+echo "  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  "
+echo "  >>>  WHERE_I_WORK_PATH=[${WHERE_I_WORK_PATH}]"
+echo "  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  "
+ls -alh ${WHERE_I_WORK_PATH}
+echo "  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  "
+echo "  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  >>>  "
+
+
+export DESIRED_ADAPTER_VERSION=master
+export DESIRED_ADAPTER_VERSION=develop
+export DESIRED_ADAPTER_VERSION="feature/hugo-spin-up"
+
+git clone git@github.com:croutenard-io/website.git ${WHERE_I_WORK_PATH}
+cd ${WHERE_I_WORK_PATH}
+git checkout ${DESIRED_ADAPTER_VERSION}
+
+npm run preps
+
+npm run dev
+
+```
+
+
 ## Set up the Express JS TypeScript Project
 
 * create the `package.json` : 
@@ -155,7 +206,7 @@ curl -iv \
 ```
 
 
-* HEre is the JSOn Payload sent by the snipcart Webhook, when `order.completed` event occurs : 
+* Here is the JSon Payload sent by the snipcart Webhook, when `order.completed` event occurs : 
 
 ```bash 
 {"eventName":"customauth:customer_updated","mode":"Test","createdOn":"2022-07-14T15:22:55.9845125Z","content":{"id":"3bd0d38e-3748-4b73-8bc3-162bbdb9e7af","email":"croutontechlead@gmail.com","mode":"Test","statistics":{"ordersCount":0,"ordersAmount":null,"subscriptionsCount":0},"creationDate":"2022-07-13T16:03:21.347Z","billingAddressFirstName":null,"billingAddressName":"CroutonTechLead","billingAddressCompanyName":null,"billingAddressAddress1":"8 Impasse du Martin Pêcheur","billingAddressAddress2":"","billingAddressCity":"Agde","billingAddressCountry":"FR","billingAddressProvince":"Occitanie","billingAddressPostalCode":"34300","billingAddressPhone":"","shippingAddressFirstName":null,"shippingAddressName":"Paul Bismuth","shippingAddressCompanyName":null,"shippingAddressAddress1":"5 Rue Achille Martinet","shippingAddressAddress2":"","shippingAddressCity":"Paris","shippingAddressCountry":"FR","shippingAddressProvince":"IDF","shippingAddressPostalCode":"75018","shippingAddressPhone":"","shippingAddressSameAsBilling":false,"status":"Unconfirmed","sessionToken":"7facc5ba-f0a8-4e92-88ab-47bbc2e86e11","gravatarUrl":"https://www.gravatar.com/avatar/5015e40bf1b74ca2913bb5735cb659ad?s=70&d=https%3a%2f%2fcdn.snipcart.com%2fassets%2fimages%2favatar.jpg","billingAddress":{"fullName":"CroutonTechLead","firstName":null,"name":"CroutonTechLead","company":null,"address1":"8 Impasse du Martin Pêcheur","address2":"","fullAddress":"8 Impasse du Martin Pêcheur","city":"Agde","country":"FR","postalCode":"34300","province":"Occitanie","phone":"","vatNumber":null,"hasMinimalRequiredInfo":true,"validationErrors":{}},"shippingAddress":{"fullName":"Paul Bismuth","firstName":null,"name":"Paul Bismuth","company":null,"address1":"5 Rue Achille Martinet","address2":"","fullAddress":"5 Rue Achille Martinet","city":"Paris","country":"FR","postalCode":"75018","province":"IDF","phone":"","vatNumber":null,"hasMinimalRequiredInfo":true,"validationErrors":{}}}}
@@ -188,7 +239,7 @@ This tutorial is perfect : https://www.freecodecamp.org/news/build-a-100-days-of
 
 * It's typescript
 * its v13 of Discord JS (the latest version)
-* It shows how to work with `Intents` in Typescript without a require, but with `import` Keyword instead.
+* It shows how to work with `Intents` in `TypeScript` without a `require`, but with `import` Keyword instead.
 * theres more to learn about intents on diiscordjs v13 : 
   * https://stackoverflow.com/questions/68791091/about-discord-js-v13-start-all-intents  
   * there's something to learn about `IntentBitField`, and what are `BitField`.
@@ -207,3 +258,23 @@ About ExpressJS patterns :
 * http://expressjs.com/en/guide/routing.html (especially the `Router()` )
 * https://www.toptal.com/express-js/nodejs-typescript-rest-api-pt-1
 * https://kimsereylam.com/typescript/2021/12/03/winston-logger-with-typescript.html
+
+Bot : 
+
+* An example effrot to accelerate discord bot dev : https://purplet.js.org/docs/getting-started
+* wouala : https://github.com/RasaHQ/rasa
+
+* I want **Cloudflare AND Heroku** deployments on free tier, and testing Webhooks with NGROK-like HTTP Tunnel : 
+  * https://discord.com/developers/docs/tutorials/hosting-on-cloudflare-workers#setting-up-ngrok
+  * I don't want to use ngrok, instead i want to use : 
+    * https://github.com/fatedier/frp together with prometheus for monitoring inspection during tests
+    * I am really not sure if i can find a production ready UDP / TCP tunnel, that is really open source ... made of / with a revere proxy and its cleint....
+    * https://github.com/anderspitman/awesome-tunneling#open-source-at-least-with-a-reasonably-permissive-license
+  * I want pipeline smade with Circle CI AND Tekton.dev AND Drone ( I will do them in that order, tekton before drone)
+  * then im back on terraform Packer ICMP Scan for VirtualBox : 
+    * will be used to terraform the whole
+    * i will use pokusbox virtual box terraform provider, and ansible to terraform Drone and Tekton CICD with Ngrok
+
+* Snowflakes : https://discord.com/developers/docs/reference#snowflakes
+* important upgrade to proceed with : https://discord.com/developers/docs/tutorials/upgrading-to-application-commands
+* terminology : https://sellercentral.amazon.com/gp/help/external/G34151?language=en_US
