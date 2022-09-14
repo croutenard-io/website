@@ -1,0 +1,79 @@
+# version: "3.7"
+version: "3.9"
+
+services:
+  pokus_dev:
+    # we need extended, and nodejs for sass!
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
+    container_name: pokus_dev
+    user: $POKUS_USER_NAME
+    restart: always
+    environment:
+      - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
+      # - HUGO_BASE_URL=http://127.0.0.1:1313
+      # - HUGO_BASE_URL=https://croutenard.com/
+    volumes:
+      - $PWD/../../:/pokus.io/hugo/src/:rw
+      # - type: bind
+        # source: ./../../
+        # target: /opt/app/staticvolumes:
+    ports:
+      # http://127.0.0.1:3112/livereload.js?mindelay=5&v=2&port=3112&path=livereload
+      - "127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}:${HUGO_SERVER_PORT_NUMBER}"
+      # # http://127.0.0.1:1313/livereload.js?mindelay=5&v=2&port=1313&path=livereload
+      # - "127.0.0.1:1313:1313"
+    env_file:
+      - ./.env
+      # - ./.dev.env
+
+
+  pokus_dev_build:
+    # we need extended, and nodejs for sass!
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
+    container_name: pokus_dev
+    user: $POKUS_USER_NAME
+    restart: always
+    command: /pokus.io/hugo/hugo.build.sh
+    environment:
+      - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
+      # - HUGO_BASE_URL=http://127.0.0.1:1313
+      # - HUGO_BASE_URL=https://croutenard.com/
+    volumes:
+      - $PWD/../../:/pokus.io/hugo/src/:rw
+      # - type: bind
+        # source: ./../../
+        # target: /opt/app/staticvolumes:
+    # ports:
+      # # http://127.0.0.1:3112/livereload.js?mindelay=5&v=2&port=3112&path=livereload
+      # - "127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}:${HUGO_SERVER_PORT_NUMBER}"
+      # # # http://127.0.0.1:1313/livereload.js?mindelay=5&v=2&port=1313&path=livereload
+      # # - "127.0.0.1:1313:1313"
+    env_file:
+      - ./.env
+      # - ./.dev.env
+
+
+  pokus_prod_build:
+    # we need extended, and nodejs for sass!
+    image: croutenard/shop:${QUAY_OCI_IMAGE_TAG}-dev
+    container_name: pokus_dev
+    user: $POKUS_USER_NAME
+    restart: always
+    command: /pokus.io/hugo/hugo.build.sh
+    environment:
+      - HUGO_BASE_URL=https://croutenard.com/
+      # - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
+      # - HUGO_BASE_URL=http://127.0.0.1:1313
+    volumes:
+      - $PWD/../../:/pokus.io/hugo/src/:rw
+      # - type: bind
+        # source: ./../../
+        # target: /opt/app/staticvolumes:
+    # ports:
+      # # http://127.0.0.1:3112/livereload.js?mindelay=5&v=2&port=3112&path=livereload
+      # - "127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}:${HUGO_SERVER_PORT_NUMBER}"
+      # # # http://127.0.0.1:1313/livereload.js?mindelay=5&v=2&port=1313&path=livereload
+      # # - "127.0.0.1:1313:1313"
+    env_file:
+      - ./.env
+      # - ./.dev.env
