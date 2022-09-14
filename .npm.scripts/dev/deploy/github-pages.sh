@@ -56,7 +56,8 @@ githubPagesDeploy () {
   echo " release is [${CROUTE_RELEASE_NUMBER}] "
   git add -A && git commit -m "release [${CROUTE_RELEASE_NUMBER}] deloying to [${DEPLOYMENT_DOMAIN}] " && git push -u origin HEAD
   git flow release start ${CROUTE_RELEASE_NUMBER}
-  git flow release finish -s ${CROUTE_RELEASE_NUMBER}
+  echo "# - - - #"
+  echo "git flow release finish -s ${CROUTE_RELEASE_NUMBER}"
 
 }
 
