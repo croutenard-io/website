@@ -1,0 +1,165 @@
+######################## default configuration ####################
+baseURL = "https://demo.croutenard.com/hargo/examplesite/"
+languageCode = "fr-FR"
+title = "Croûtenard"
+themesDir = "./themes/"
+theme = "hargo"
+summaryLength = "20"
+paginate = 10
+disqusShortname = ""
+
+############################# Plugins ##############################
+[params.plugins]
+
+  # CSS Plugins
+  [[params.plugins.css]]
+  link = "plugins/bootstrap/bootstrap.min.css"
+  [[params.plugins.css]]
+  link = "plugins/slick/slick.css"
+  [[params.plugins.css]]
+  link = "plugins/themify-icons/themify-icons.css"
+
+  # JS Plugins
+  [[params.plugins.js]]
+  link = "plugins/jQuery/jquery.min.js"
+  [[params.plugins.js]]
+  link = "plugins/bootstrap/bootstrap.min.js"
+  [[params.plugins.js]]
+  link = "plugins/slick/slick.min.js"
+  [[params.plugins.js]]
+  link = "plugins/google-map/gmap.js"
+
+
+############################## navigation ###############################
+[menu]
+
+  [[menu.main]]
+  name = "Produits"
+  URL = "produits/"
+  weight = 1
+
+  [[menu.main]]
+  name = "Le Billet d' Alphonse"
+  URL = "le-billet/"
+  weight = 2
+
+#  [[menu.main]]
+#  name = "FAQ"
+#  URL = "faq/"
+#  weight = 3
+
+  [[menu.main]]
+  name = "Contact"
+  URL = "contact/"
+  weight = 4
+
+  ############# footer menu #############
+  [[menu.footer]]
+  name = "Produits"
+  URL = "produits/"
+  weight = 1
+
+  [[menu.footer]]
+  name = "Le Billet d' Alphonse"
+  URL = "le-billet/"
+  weight = 2
+
+#   [[menu.footer]]
+#   name = "FAQ"
+#   URL = "faq/"
+#   weight = 3
+
+  [[menu.footer]]
+  name = "CGV"
+  URL = "cgv/"
+  weight = 4
+
+  [[menu.footer]]
+  name = "CGU"
+  URL = "cgu/"
+  weight = 5
+
+  [[menu.footer]]
+  name = "Mentions légales"
+  URL = "mentions-legales/"
+  weight = 6
+
+
+  [[menu.footer]]
+  name = "Contact"
+  URL = "contact/"
+  weight = 7
+
+
+#################### default parameters ################################
+[params]
+# logo = "images/logo.png"
+# logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.svg"
+# logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.png"
+# logo = "images/crouton/logo/CROUTENARD_RVB.png"
+logo = "images/crouton/logo/johanna2/CROUTENARD_RVB.svg"
+# crouton_favicon = "images/crouton/favicon/CROUTENARD_SIMPLE_RVB.ico.svg"
+crouton_favicon = "images/crouton/favicon/CROUTENARD_SIMPLE_RVB.32x32.ico.png.png"
+
+home = "Accueil"
+# Meta data
+description = "This is meta description"
+author = "Themefisher"
+# google map
+gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+mapLatitude = "51.5223477"
+mapLongitude = "-0.1622023"
+mapMarker = "images/marker.png"
+# Google Analitycs
+googleAnalitycsID = "" # Your ID
+# Contact Information
+# mobile = "0124857985320"
+email = "croutenardise@gmail.com"
+location = "Auvergne, France"
+# copyright
+copyright = "| Copyright &copy; 2022 [Croutenard.com](https://croutenard.com) All Rights Reserved |"
+# Snipcart Credentials
+# snipcartApiKey = "M2E5YjA3NjMtYzRiYS00YzVjLWEyYWYtNDY5ZDI0OWZhYjg5"
+snipcartApiKey = "YWEyNzdlMmYtMjZkNS00ZmU1LTg0ZmQtNzQ5YTA2YmY0ZDNiNjM3OTI4MDgyODI3NTA4NzUx"
+
+# currencySymbol = "$" 
+currencySymbol = "€"
+
+  # Preloader
+  [params.preloader]
+  enable = true
+  preloader = "" # use .png , .svg or .gif format
+
+  # Product Rating
+  # it works with https://rating-widget.com/ , you will get the ID and publicKey after creating your account there.
+  [params.rating]
+  enable = true
+  websiteID = "444334"
+  publicKey = "811cf0927332bf51f2e12f84608594ac"
+
+  # Social Site
+  [[params.social]]
+  icon = "ti-twitter-alt"
+  link = "#"
+
+  [[params.social]]
+  icon = "ti-facebook"
+  link = "#"
+
+  [[params.social]]
+  icon = "ti-youtube"
+  link = "#"
+
+  [[params.social]]
+  icon = "ti-instagram"
+  link = "#"
+
+  [[params.social]]
+  icon = "fab fa-tiktok"
+  link = "#"
+
+  # Contact Form
+  [params.contact]
+  # see also https://formspree.io/formbutton/docs/#feedback-form
+  formAction = "https://formspree.io/f/xgedjzkv" # contact form works with formspree.io
+  enabled = false
