@@ -42,7 +42,7 @@ deleteExampleContent () {
   
 }
 
-surgeBuildNdeploy () {
+githubPagesDeploy () {
   export PATH=$PATH:/usr/local/go/bin
   hugo -b ${DEPLOYMENT_BASE_URL}
 
@@ -60,7 +60,5 @@ surgeBuildNdeploy () {
 
 }
 
-read -p "Release Version Number ? " CROUTE_RELEASE_NUMBER
-echo "release is [${CROUTE_RELEASE_NUMBER}] "
   
-surgeBuildNdeploy
+githubPagesDeploy
