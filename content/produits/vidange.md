@@ -8,8 +8,8 @@ weight: 3
 description : "Eau précieuse non genrée"
 
 # product Price
-price: "34.90"
-priceBefore: "39.90"
+price: "9.90"
+priceBefore: "14.90"
 
 # Product Short Description
 shortDescription: "Urine non genré.e !"
@@ -25,10 +25,8 @@ type: "produits"
 # product Images
 # first image will be shown in the product page
 images:
-  # - image: "images/crouton/egerie/stephane-bodar_coach_pro.jpg"
   - image: "images/crouton/delivery/16.format.png"
   - image: "images/crouton/delivery/11.png"
-  # - image: "images/crouton/delivery/17.png"
   - image: "images/crouton/delivery/12.png"
   - image: "images/crouton/delivery/13.png"
   - image: "images/crouton/delivery/14.png"

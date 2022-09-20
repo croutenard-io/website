@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # ---
+#  ./.npm.scripts/dev/deploy/github-pages.sh
+# ---
+
+# ---
 echo "# --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #"
 echo "# --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #"
 echo "# --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #"
@@ -49,15 +53,17 @@ githubPagesDeploy () {
   deleteExampleContent
   cp -fr ./public/* ./docs/
   echo "${DEPLOYMENT_DOMAIN}" > CNAME
+  echo "${DEPLOYMENT_DOMAIN}" > ./docs/CNAME
 
   # git push
   # export CROUTE_RELEASE_NUMBER=${CROUTE_RELEASE_NUMBER:-'0.0.1'}
   read -p "Release Version Number ? " CROUTE_RELEASE_NUMBER
-  echo " release is [${CROUTE_RELEASE_NUMBER}] "
-  git add -A && git commit -m "release [${CROUTE_RELEASE_NUMBER}] deloying to [${DEPLOYMENT_DOMAIN}] " && git push -u origin HEAD
+  echo " Release Version Number is [${CROUTE_RELEASE_NUMBER}] "
+  git add -A && git commit -m "Release [${CROUTE_RELEASE_NUMBER}] deloying to [${DEPLOYMENT_DOMAIN}] " && git push -u origin HEAD
   git flow release start ${CROUTE_RELEASE_NUMBER}
-  echo "# - - - #"
+  echo "# - - - # release finish"
   echo "git flow release finish -s ${CROUTE_RELEASE_NUMBER}"
+  # git flow release finish -s ${CROUTE_RELEASE_NUMBER}
 
 }
 
