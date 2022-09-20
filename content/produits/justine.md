@@ -8,8 +8,8 @@ weight: 2
 description : "Eau précieuse de Justine"
 
 # product Price
-price: "49.90"
-# priceBefore: "49.90"
+price: "19.90"
+priceBefore: "24.90"
 
 # Product Short Description
 shortDescription: "Pour les ingénues !"
@@ -25,7 +25,6 @@ type: "produits"
 # product Images
 # first image will be shown in the product page
 images:
-  # - image: "images/crouton/egerie/stephane-bodar_coach_pro.jpg"
   - image: "images/crouton/delivery/15.format.png"
   - image: "images/crouton/delivery/3.png"
   - image: "images/crouton/delivery/5.png"

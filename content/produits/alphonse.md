@@ -8,8 +8,8 @@ weight: 1
 description : "Eau précieuse d'Alphonse"
 
 # product Price
-price: "44.90"
-priceBefore: "49.90"
+price: "19.90"
+priceBefore: "24.90"
 
 # Product Short Description
 shortDescription: "Pour les dandys !"
@@ -25,7 +25,6 @@ type: "produits"
 # product Images
 # first image will be shown in the product page
 images:
-  # - image: "images/crouton/egerie/stephane-bodar_coach_pro.jpg"
   - image: "images/crouton/delivery/17.format.png"
   - image: "images/crouton/delivery/7.png"
   # - image: "images/crouton/delivery/17.png"
