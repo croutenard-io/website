@@ -119,11 +119,11 @@ location = "Auvergne, France"
 # copyright
 copyright = "| Copyright &copy; 2022 [Croutenard.com](https://croutenard.com) All Rights Reserved |"
 # Snipcart Credentials
-# snipcartApiKey = "M2E5YjA3NjMtYzRiYS00YzVjLWEyYWYtNDY5ZDI0OWZhYjg5"
-# snipcartApiKey = "YWEyNzdlMmYtMjZkNS00ZmU1LTg0ZmQtNzQ5YTA2YmY0ZDNiNjM3OTI4MDgyODI3NTA4NzUx"
+# --- Test env api key
+snipcartApiKey = "YWEyNzdlMmYtMjZkNS00ZmU1LTg0ZmQtNzQ5YTA2YmY0ZDNiNjM3OTI4MDgyODI3NTA4NzUx"
+# -- > below is snipcart api key for LIVE (not test) - with personal credit card setup (to be replaced by company credit card setu^p)
+# snipcartApiKey = "YjI5NjU5MDUtYTA2OS00YjczLWE1ODAtNTI2ZTIyOWE1YzBhNjM3OTI4MDgyODI3NTA4NzUx"
 
-# -- > below is snipcart api key for LIVE (not test)
-snipcartApiKey = "YjI5NjU5MDUtYTA2OS00YjczLWE1ODAtNTI2ZTIyOWE1YzBhNjM3OTI4MDgyODI3NTA4NzUx"
 # currencySymbol = "$" 
 currencySymbol = "€"
 
