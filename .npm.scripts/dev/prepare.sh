@@ -32,3 +32,6 @@ ls -alh ./.npm.scripts/dev/prepare-g.sh
 chmod +x ./.npm.scripts/dev/prepare-dev.sh
 ls -alh ./.npm.scripts/dev/prepare-dev.sh
 ./.npm.scripts/dev/prepare-dev.sh
+
+# left installations from the package.json
+npm i

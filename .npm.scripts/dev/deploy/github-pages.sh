@@ -34,7 +34,7 @@ fi;
 mkdir -p  ./docs
 mkdir -p  ./public
 
-deleteExampleContent () {
+cleanRubbishContentPublic () {
 
   rm -fr ./public/images/material/
   rm -fr ./public/images/products/
@@ -50,7 +50,7 @@ githubPagesDeploy () {
   export PATH=$PATH:/usr/local/go/bin
   hugo -b ${DEPLOYMENT_BASE_URL}
 
-  deleteExampleContent
+  cleanRubbishContentPublic
   cp -fr ./public/* ./docs/
   echo "${DEPLOYMENT_DOMAIN}" > CNAME
   echo "${DEPLOYMENT_DOMAIN}" > ./docs/CNAME

@@ -31,19 +31,15 @@ echo "# ------ ------ ------ ------ ------ ------ ------ #"
 
 ## - ### ## - ### ## - ### ## - ### ## - ###
 ## - ### // "devDependencies": {
-## - ### //   "browser-sync": "^2.27.7",
-## - ### //   "gulp": "^4.0.2",
-## - ### //   "gulp-beautify": "^3.0.0",
-## - ### //   "gulp-dest-clean": "^0.5.0",
-## - ### //   "gulp-purgecss": "^4.1.3",
-## - ### //   "gulp-sass": "^5.1.0",
-## - ### //   "gulp-seo": "^1.0.2",
-## - ### //   "gulp-util": "^3.0.8",
-## - ### //   "node-sass": "^7.0.1"
 ## - ### // }
 ## - ### ## - ### ## - ### ## - ### ## - ###
-export GULP_NODE_SASS_VERSION=${GULP_NODE_SASS_VERSION:-"^7.0.1"}
 export GULP_VERSION=${GULP_VERSION:-"^4.0.2"}
+export GULP_CLEAN_VERSION=${GULP_CLEAN_VERSION:-"^0.4.0"}
+export GULP_FIND_VERSION=${GULP_FIND_VERSION:-"^0.0.10"}
+export GULP_REPLACE_VERSION=${GULP_REPLACE_VERSION:-"^1.1.3"}
+export GULP_USEREF_VERSION=${GULP_USEREF_VERSION:-"^5.0.0"}
+export GULP_CLEANCSS_VERSION=${GULP_CLEANCSS_VERSION:-"^4.3.0"}
+export GULP_NODE_SASS_VERSION=${GULP_NODE_SASS_VERSION:-"^7.0.1"}
 export GULP_PURGECSS_VERSION=${GULP_PURGECSS_VERSION:-"^4.1.3"}
 export GULP_SASS_VERSION=${GULP_SASS_VERSION:-"^5.1.0"}
 export GULP_BEAUTIFY_VERSION=${GULP_BEAUTIFY_VERSION:-"^3.0.0"}
@@ -69,40 +65,17 @@ export GULP_NODE_FETCH_VERSION=${GULP_NODE_FETCH_VERSION:-"^2.6.1"}
 
 export CONCAT_STREAM_VERSION=${CONCAT_STREAM_VERSION:-"^2.0.0"}
 export TOML_VERSION=${TOML_VERSION:-"^3.0.0"}
+export SHELLJS_VERSION=${SHELLJS_VERSION:-"^0.8.5"}
 
 
-# ${GULP_NODE_SASS_VERSION}
-
-# ${GULP_VERSION}
-
-# ${GULP_PURGECSS_VERSION}
-
-# ${GULP_SASS_VERSION}
-
-# ${GULP_BEAUTIFY_VERSION}
-
-# ${GULP_SEO_VERSION}
-
-# ${GULP_UTIL_VERSION}
-
-# ${GULP_DEST_CLEAN_VERSION}
-
-# ${GULP_BROWSER_SYNC_VERSION}
-
-
-# # npm i --save-dev \
-# #      node-sass@${GULP_NODE_SASS_VERSION} \
-# #      gulp@${GULP_VERSION} \
-# #      gulp-purgecss@${GULP_PURGECSS_VERSION} \
-# #      gulp-sass@${GULP_SASS_VERSION} \
-# #      gulp-beautify@${GULP_BEAUTIFY_VERSION} \
-# #      gulp-seo@${GULP_SEO_VERSION} \
-# #      gulp-util@${GULP_UTIL_VERSION} \
-# #      gulp-dest-clean@${GULP_DEST_CLEAN_VERSION} \
-# #      browser-sync@${GULP_BROWSER_SYNC_VERSION} \
 npm uninstall --save-dev \
-    node-sass \
     gulp \
+    gulp-clean \
+    gulp-find \
+    gulp-replace \
+    gulp-useref \
+    gulp-clean-css \
+    node-sass \
     gulp-purgecss \
     gulp-sass \
     gulp-beautify \
@@ -130,8 +103,13 @@ npm uninstall --save-dev \
     toml
 
 npm i --save-dev \
-    node-sass@${GULP_NODE_SASS_VERSION} \
     gulp@${GULP_VERSION} \
+    gulp-clean@${GULP_CLEAN_VERSION} \
+    gulp-find@${GULP_FIND_VERSION} \
+    gulp-replace@${GULP_REPLACE_VERSION} \
+    gulp-useref@${GULP_USEREF_VERSION} \
+    gulp-clean-css@${GULP_CLEANCSS_VERSION} \
+    node-sass@${GULP_NODE_SASS_VERSION} \
     gulp-purgecss@${GULP_PURGECSS_VERSION} \
     gulp-sass@${GULP_SASS_VERSION} \
     gulp-beautify@${GULP_BEAUTIFY_VERSION} \
@@ -155,4 +133,5 @@ npm i --save-dev \
     @babel/preset-env@${GULP_BABEL_PRESET_ENV_VERSION} \
     node-fetch@${GULP_NODE_FETCH_VERSION} \
     concat-stream@${CONCAT_STREAM_VERSION} \
+    shelljs@${SHELLJS_VERSION} \
     toml@${TOML_VERSION}

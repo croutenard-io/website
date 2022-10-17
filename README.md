@@ -88,3 +88,71 @@ hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERV
 # npm i
 npm run pr
 ```
+
+
+## Release to https://croutenard.com
+
+
+```bash
+
+# finish all the git flow features/fixes : merges all onto the 'develop' git branch
+
+# onto the 'develop' git branch : run the hugo build, the build asset will be in the [public/] folder
+
+# onto the 'develop' git branch : copy the [public/] folder, to the github pages configured folder, [docs/]
+
+export DEPLOYMENT_DOMAIN="croutenard.com"
+export DEPLOYMENT_BASE_URL="https://${DEPLOYMENT_DOMAIN}"
+
+hugoClean () {
+    if [ -d ./docs ]; then
+    rm -fr ./docs
+    fi;
+
+    if [ -d ./public ]; then
+    rm -fr ./public
+    fi;
+
+    mkdir -p  ./docs
+    mkdir -p  ./public
+}
+
+cleanRubbishContentPublic () {
+
+  rm -fr ./public/images/material/
+  rm -fr ./public/images/products/
+  rm -fr ./public/images/clients/
+  rm -f ./public/images/blog/post-1.jpg
+  # rm -f ./public/images/blog/post-2.jpg
+  rm -f ./public/images/blog/post-3.jpg
+  rm -f ./public/images/blog/post-4.jpg
+  
+}
+
+hugoProdBuild () {
+  export PATH=$PATH:/usr/local/go/bin
+  hugo -b ${DEPLOYMENT_BASE_URL}
+}
+
+copyToDist () {
+  cp -fr ./public/* ./docs/
+}
+
+hugoClean
+hugoProdBuild
+cleanRubbishContentPublic
+# here i should run image processing tasks
+# finally I copy all from ./public/ to ./docs/
+copyToDist
+
+export CROUTENARD_RELEASE_NUM="0.0.5"
+# make a git-flow release
+git flow release start "${CROUTENARD_RELEASE_NUM}"
+git push -u origin --all
+# ---
+# [finish -s] Signed release
+# git flow release finish -s "${CROUTENARD_RELEASE_NUM}"
+git flow release finish "${CROUTENARD_RELEASE_NUM}"
+git push -u origin --all
+
+```
