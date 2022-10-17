@@ -157,10 +157,36 @@ git push -u origin --all
 
 ```
 
-## Gulp
+## `Gulp`
 
-* Visualize the current Gulp build environment : 
+* Visualize the current `Gulp` build environment : 
 
 ```bash
 gulp build:env
+```
+
+
+## Git config
+
+* Configuration without GPG signatures:
+
+```bash
+
+# -----
+# work on croutontech projects
+export GPG_KEY_ID="1252B14BB9742A44"
+
+git config user.name "croutontechlead"
+git config user.email croutontechlead@gmail.com
+git config user.signingkey ${GPG_KEY_ID}
+git config commit.gpgsign false
+# Now, to sign GIt commits, for example inside an SSH session (where TTY is a bit different ...)
+export GPG_TTY=$(tty)
+
+git config --list
+
+export GIT_SSH_COMMAND='ssh -i ~/.ssh/.croutontechlead/id_rsa'
+ssh -Ti ~/.ssh/.croutontechlead/id_rsa git@github.com
+
+
 ```
