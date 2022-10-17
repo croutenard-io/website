@@ -156,3 +156,11 @@ git flow release finish "${CROUTENARD_RELEASE_NUM}"
 git push -u origin --all
 
 ```
+
+## Gulp
+
+* Visualize the current Gulp build environment : 
+
+```bash
+gulp build:env
+```
