@@ -21,8 +21,8 @@
     "oci:build:dev": "cd ./.containers/dev && bash ./.build.sh",
     "oci:run:server:dev": "cd ./.containers/dev && bash ./.run.sh",
     "oci:tear:server:dev": "cd ./.containers/dev && bash ./.run.sh",
-    "oci:run:hugo:dev": "unset export HUGO_BASE_URL && cd ./.containers/dev && ./.run.hugo.build.sh",
-    "oci:run:hugo:prod": "export HUGO_BASE_URL='https://croutenard.com/' && cd ./.containers/dev && ./.run.hugo.build.sh",
+    "oci:run:hugo:dev": "unset export HUGO_DEPLOYMENT_BASE_URL && cd ./.containers/dev && ./.run.hugo.build.sh",
+    "oci:run:hugo:prod": "export HUGO_DEPLOYMENT_BASE_URL='https://croutenard.com/' && cd ./.containers/dev && ./.run.hugo.build.sh",
     "dev": "npm run oci:build:dev && npm run oci:tear:server:dev && npm run oci:run:server:dev",
     "deploy:heroku:dev": "bash ./.npm.scripts/dev/deploy/heroku.sh",
     "deploy:surge:dev": "npm run clean && ./.npm.scripts/dev/deploy/surge.sh",
@@ -86,6 +86,7 @@
     "node-sass": "^7.0.3",
     "readable-stream": "^3.6.0",
     "shelljs": "^0.8.5",
-    "toml": "^3.0.0"
+    "toml": "^3.0.0",
+    "vinyl-source-stream": "^2.0.0"
   }
 }

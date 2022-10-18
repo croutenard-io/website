@@ -127,15 +127,15 @@
   // const fs   = require('fs');
   
   /// export PATH=$PATH:/usr/local/go/bin
-  const hugoBaseURL = `${process.env.HUGO_BASE_URL}`; /// export HUGO_BASE_URL=http://${HUGO_HOST}:${HUGO_PORT}/
-  const hugoHost = `${process.env.HUGO_HOST}`; /// export HUGO_HOST=127.0.0.1
-  const hugoPort = `${process.env.HUGO_PORT}`; /// export HUGO_PORT=4545
+  const hugoDeploymentBaseURL = `${process.env.HUGO_DEPLOYMENT_BASE_URL}`; /// export HUGO_DEPLOYMENT_BASE_URL=http://${HUGO_DEV_HOST}:${HUGO_DEV_PORT}/
+  const hugoHost = `${process.env.HUGO_DEV_HOST}`; /// export HUGO_DEV_HOST=127.0.0.1
+  const hugoPort = `${process.env.HUGO_DEV_PORT}`; /// export HUGO_DEV_PORT=4545
   
   gulp.task('testEnvDisplay', () => {
     gutil.log(`// >>>>>>>>>>>> >>>>>>>>>> +  >>>>>>>>>> +  >>>>>>>>>> +  >>>>>>>>>> + //`)
-    gutil.log(` >>>>>>>>>>>> testEnvDisplay() >> {hugoBaseURL|HUGO_BASE_URL}=[${hugoBaseURL}]`)
-    gutil.log(` >>>>>>>>>>>> testEnvDisplay() >> {hugoHost|HUGO_HOST}=[${hugoBaseURL}]`)
-    gutil.log(` >>>>>>>>>>>> testEnvDisplay() >> {hugoPort|HUGO_PORT}=[${hugoBaseURL}]`)
+    gutil.log(` >>>>>>>>>>>> testEnvDisplay() >> {hugoDeploymentBaseURL|HUGO_DEPLOYMENT_BASE_URL}=[${hugoDeploymentBaseURL}]`)
+    gutil.log(` >>>>>>>>>>>> testEnvDisplay() >> {hugoHost|HUGO_DEV_HOST}=[${hugoDeploymentBaseURL}]`)
+    gutil.log(` >>>>>>>>>>>> testEnvDisplay() >> {hugoPort|HUGO_DEV_PORT}=[${hugoDeploymentBaseURL}]`)
     gutil.log(`// >>>>>>>>>>>> >>>>>>>>>> +  >>>>>>>>>> +  >>>>>>>>>> +  >>>>>>>>>> + //`)
     gutil.log(`// >>>>>>>>>>>> >>>>>>>>>> +  >>>>>>>>>> +  >>>>>>>>>> +  >>>>>>>>>> + //`)
     return gulp.pipe(browserSync.stream());
@@ -195,14 +195,14 @@
   
   gulp.task("build:hugo:prod", (done) => {
   
-   let hugo = child_process.spawn(`hugo`, [`-b`, `${hugoBaseURL}`]) // https://nodejs.org/api/child_process.html
+   let hugo = child_process.spawn(`hugo`, [`-b`, `${hugoDeploymentBaseURL}`]) // https://nodejs.org/api/child_process.html
   
    let hugoLogger = function (buffer) {
        buffer.toString()
        .split(/\n/)
        .forEach(function (message) {
            if (message) {
-               gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> >> {hugoBaseURL|HUGO_BASE_URL}=[${hugoBaseURL}]`);
+               gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> >> {hugoDeploymentBaseURL|HUGO_DEPLOYMENT_BASE_URL}=[${hugoDeploymentBaseURL}]`);
                gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> ${message}`);
            }
        });
@@ -229,8 +229,8 @@
     // Run hugo cli synchronously
     /*
     shell.echo(`===========================================================`)
-    shell.echo(`Wil execute hugo build command : [hugo -b ${hugoBaseURL}]`)
-    let hugoBuildCmd = shell.exec(`hugo -b ${hugoBaseURL}`);
+    shell.echo(`Wil execute hugo build command : [hugo -b ${hugoDeploymentBaseURL}]`)
+    let hugoBuildCmd = shell.exec(`hugo -b ${hugoDeploymentBaseURL}`);
     shell.echo (hugoBuildCmd.stdout)
     if (hugoBuildCmd.code !== 0) {
       shell.echo (hugoBuildCmd.stderr)
@@ -240,7 +240,7 @@
       done()
     }
     */
-   let hugoProcess = child_process.spawn(`hugo`, [`-b`, `${hugoBaseURL}`])
+   let hugoProcess = child_process.spawn(`hugo`, [`-b`, `${hugoDeploymentBaseURL}`])
                .on("close", () => {
                    done(); // let gulp know the task has completed
                });
@@ -251,7 +251,7 @@
            if (message) {
   
   
-               gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> testEnvDisplay() >> {hugoBaseURL|HUGO_BASE_URL}=[${hugoBaseURL}]`);
+               gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> testEnvDisplay() >> {hugoDeploymentBaseURL|HUGO_DEPLOYMENT_BASE_URL}=[${hugoDeploymentBaseURL}]`);
                gutil.log("GoHugo.io: " + message);
                gutil.log("GoHugo.io: " + message);
            }
@@ -610,8 +610,8 @@
      // Run ImageMagick CLI synchronously
      /*
      shell.echo(`===========================================================`)
-     shell.echo(`Wil execute hugo build command : [hugo -b ${hugoBaseURL}]`)
-     let hugoBuildCmd = shell.exec(`hugo -b ${hugoBaseURL}`);
+     shell.echo(`Wil execute hugo build command : [hugo -b ${hugoDeploymentBaseURL}]`)
+     let hugoBuildCmd = shell.exec(`hugo -b ${hugoDeploymentBaseURL}`);
      shell.echo (hugoBuildCmd.stdout)
      if (hugoBuildCmd.code !== 0) {
        shell.echo (hugoBuildCmd.stderr)
@@ -621,7 +621,7 @@
        done()
      }
      */
-    let imagemagickProcess = child_process.spawn(`hugo`, [`-b`, `${hugoBaseURL}`])
+    let imagemagickProcess = child_process.spawn(`hugo`, [`-b`, `${hugoDeploymentBaseURL}`])
                 .on("close", () => {
                     done(); // let gulp know the task has completed
                 });
@@ -632,7 +632,7 @@
             if (message) {
   
   
-                gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> testEnvDisplay() >> {hugoBaseURL|HUGO_BASE_URL}=[${hugoBaseURL}]`);
+                gutil.log("GoHugo.io: " + ` >>>>>>>>>>>> testEnvDisplay() >> {hugoDeploymentBaseURL|HUGO_DEPLOYMENT_BASE_URL}=[${hugoDeploymentBaseURL}]`);
                 gutil.log("GoHugo.io: " + message);
                 gutil.log("GoHugo.io: " + message);
             }

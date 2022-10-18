@@ -17,10 +17,10 @@ ls -alh ./.npm.scripts/dev/env.sh
 source ./.npm.scripts/dev/env.sh
 echo "# ------ ------ ------ ------ ------ ------ ------ #"
 echo "# ------ -  PATH=[${PATH}]"
-echo "# ------ -  HUGO_HOST=[${HUGO_HOST}]"
-echo "# ------ -  HUGO_PORT=[${HUGO_PORT}]"
-echo "# ------ -  HUGO_BASE_URL=[${HUGO_BASE_URL}]"
-echo "# ------ -  HUGO_BASE_URL=[${HUGO_BASE_URL}]"
+echo "# ------ -  HUGO_DEV_HOST=[${HUGO_DEV_HOST}]"
+echo "# ------ -  HUGO_DEV_PORT=[${HUGO_DEV_PORT}]"
+echo "# ------ -  HUGO_DEPLOYMENT_BASE_URL=[${HUGO_DEPLOYMENT_BASE_URL}]"
+echo "# ------ -  HUGO_DEPLOYMENT_BASE_URL=[${HUGO_DEPLOYMENT_BASE_URL}]"
 echo "# ------ ------ ------ ------ ------ ------ ------ #"
 echo "# ------ ------ ------ ------ ------ ------ ------ #"
 # global installations

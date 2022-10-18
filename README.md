@@ -17,10 +17,10 @@ git checkout ${DESIRED_VERSION}
 
 export PATH=$PATH:/usr/local/go/bin && go version
 export HUGO_SERVER_IP=127.0.0.1
-export HUGO_PORT_NO=5654
+export HUGO_DEV_PORT_NO=5654
 
 
-hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} -p ${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} -w
+hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} -p ${HUGO_DEV_PORT_NO} --bind ${HUGO_SERVER_IP} -w
 
 ```
 
@@ -29,7 +29,7 @@ hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} -p ${HUGO_PORT_NO} --bind
 
 ```bash
 export PATH=$PATH:/usr/local/go/bin && go version
-export HUGO_PORT_NO=5654
+export HUGO_DEV_PORT_NO=5654
 export HUGO_SERVER_IP=0.0.0.0
 export HUGO_THEME_SSH_URI="git@github.com:themefisher/hargo-hugo"
 export HUGO_THEME_VERSION="master"
@@ -59,7 +59,7 @@ theme = "hargo"
 EOF
 
 
-hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_PORT_NO}
+hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_DEV_PORT_NO}
 
 # Press Ctrl + C
 
@@ -72,7 +72,7 @@ cp -fR themes/hargo/exampleSite/data/* ./data
 cp -fR themes/hargo/exampleSite/resources/* ./resources
 cp -fR themes/hargo/exampleSite/static/* ./static
 
-hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_PORT_NO}
+hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_DEV_PORT_NO}
 
 # Press Ctrl + C
 
@@ -157,14 +157,97 @@ git push -u origin --all
 
 ```
 
-## `Gulp`
+## `Gulp` Build
 
 * Visualize the current `Gulp` build environment : 
 
 ```bash
+export IS_THIS_WINDOWS=true
 gulp build:env
 ```
 
+* Clean up the public and docs folders : 
+
+```bash
+export IS_THIS_WINDOWS=true
+export HUGO_HTTP_SCHEMA=httpx
+export HUGO_DEV_HOST="tabernacle-io.io"
+export HUGO_DEV_PORT="7589"
+gulp build:hugo:clean:prod
+```
+
+* Run the hugo build for dev, staging, or prod environment : 
+
+```bash
+export IS_THIS_WINDOWS=true
+
+# --- Dev env 
+export HUGO_HTTP_SCHEMA=http
+export HUGO_DEV_HOST="127.0.0.1"
+export HUGO_DEV_PORT="2314"
+gulp build:hugo
+
+# --- Staging env 
+export HUGO_HTTP_SCHEMA=https
+export HUGO_HOST=croutenard-io.surge.sh
+export HUGO_PORT=443
+gulp build:hugo
+
+# --- Prod env 
+export HUGO_HTTP_SCHEMA=https
+export HUGO_HOST=croutenard.com
+export HUGO_PORT=443
+gulp build:hugo
+
+```
+
+* Prepare the github pages build (without any optimization like image processing, minification etc... ) :
+
+```bash
+# --- Prod env 
+export HUGO_HTTP_SCHEMA=https
+export HUGO_HOST=croutenard.com
+export HUGO_PORT=443
+gulp build:hugo:gh_pages
+
+export HUGO_HTTP_SCHEMA=https
+export HUGO_HOST=croutenard.io
+export HUGO_PORT=443
+gulp build:hugo:gh_pages
+
+# And now you get the whole build result inside the [docs/] folder
+# Indeed, you can test it : 
+export HUGO_HTTP_SCHEMA=http
+export HUGO_HOST=127.0.0.1
+export HUGO_PORT=3536
+
+gulp build:hugo:gh_pages
+
+serve -l tcp://${HUGO_HOST}:${HUGO_PORT} ./docs/
+```
+
+* After running the whole `hugo` build, and copying it all to the `docs/` folder, then you can run image processing (to optimize) : 
+
+```bash
+# And now you get the whole build result inside the [docs/] folder
+# Indeed, you can test it : 
+export HUGO_HTTP_SCHEMA=http
+export HUGO_HOST=127.0.0.1
+export HUGO_PORT=3536
+
+
+# gulp build:hugo:gh_pages
+# gulp build:img:resize
+gulp build:hugo:prod:test
+
+serve -l tcp://${HUGO_HOST}:${HUGO_PORT} ./docs/
+```
+
+* Image processing reference articles : 
+  * https://www.freecodecamp.org/news/how-to-minify-images-with-gulp-gulp-imagemin-and-boost-your-sites-performance-6c226046e08e/
+  * **best article i found on image optimization** : https://jec.fyi/blog/automating-image-optimization-workflow
+  * seems like for image responsiveness, `srcset=` html atribute will do, and imagemagick to do the resizing : https://www.smashingmagazine.com/2015/06/efficient-image-resizing-with-imagemagick/
+  * this is why I chose to forget about using `imagemin` : https://github.com/imagemin/imagemin/issues/392
 
 ## Git config
 
@@ -190,3 +273,15 @@ ssh -Ti ~/.ssh/.croutontechlead/id_rsa git@github.com
 
 
 ```
+
+
+## Windows Installations
+
+### Golang
+
+```bash
+# https://go.dev/dl/go1.19.2.windows-amd64.msi
+
+choco install golang
+```
+

@@ -66,7 +66,7 @@ export GULP_NODE_FETCH_VERSION=${GULP_NODE_FETCH_VERSION:-"^2.6.1"}
 export CONCAT_STREAM_VERSION=${CONCAT_STREAM_VERSION:-"^2.0.0"}
 export TOML_VERSION=${TOML_VERSION:-"^3.0.0"}
 export SHELLJS_VERSION=${SHELLJS_VERSION:-"^0.8.5"}
-
+export VINYL_SOURCE_STREAM_VERSION=${VINYL_SOURCE_STREAM_VERSION:-"^2.0.0"}
 
 npm uninstall --save-dev \
     gulp \
@@ -100,6 +100,7 @@ npm uninstall --save-dev \
     @babel/preset-env \
     node-fetch \
     concat-stream \
+    vinyl-source-stream \
     toml
 
 npm i --save-dev \
@@ -133,5 +134,6 @@ npm i --save-dev \
     @babel/preset-env@${GULP_BABEL_PRESET_ENV_VERSION} \
     node-fetch@${GULP_NODE_FETCH_VERSION} \
     concat-stream@${CONCAT_STREAM_VERSION} \
+    vinyl-source-stream@${VINYL_SOURCE_STREAM_VERSION} \
     shelljs@${SHELLJS_VERSION} \
     toml@${TOML_VERSION}

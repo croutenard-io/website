@@ -13,9 +13,9 @@ export HUGO_THEME_GIT_SSH=${HUGO_THEME_GIT_SSH:-"git@github.com:halogenica/beaut
 # export HUGO_THEME_VERSION=${HUGO_THEME_VERSION:-"2.5.0"}
 export HUGO_THEME_VERSION=${HUGO_THEME_VERSION:-"master"}
 
-if [ "x${HUGO_BASE_URL}" == "x" ]; then
-  echo "the HUGO_BASE_URL env. var. is not defined, stopping the hugo project spawn"
-  echo "set the HUGO_BASE_URL env. var.n, and re-run npm run spawn"
+if [ "x${HUGO_DEPLOYMENT_BASE_URL}" == "x" ]; then
+  echo "the HUGO_DEPLOYMENT_BASE_URL env. var. is not defined, stopping the hugo project spawn"
+  echo "set the HUGO_DEPLOYMENT_BASE_URL env. var.n, and re-run npm run spawn"
   exit 7
 fi;
 
@@ -150,7 +150,7 @@ fi;
 cp -fR ./node_modules/bulma/* ./assets/bulma/
 npm remove bulma@${BULMA_VERSION}
 
-sed -i "s#baseURL =.*#baseURL = \"${HUGO_BASE_URL}\"#g" ./config.toml
+sed -i "s#baseURL =.*#baseURL = \"${HUGO_DEPLOYMENT_BASE_URL}\"#g" ./config.toml
 sed -i "s#theme =.*#theme = \"${HUGO_THEME_NAME}\"#g" ./config.toml
 
 echo "# ----------- AVANT SED"

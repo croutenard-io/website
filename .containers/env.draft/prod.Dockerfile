@@ -14,9 +14,9 @@ ARG ALPINE_OCI_IMAGE_TAG=${ALPINE_OCI_IMAGE_TAG:-'latest'}
 
 ARG GOLANG_VERSION=${GOLANG_VERSION}
 ARG HUGO_VERSION=${HUGO_VERSION}
-ARG HUGO_BASE_URL=https://pokus-io.github.io/conference/
+ARG HUGO_DEPLOYMENT_BASE_URL=https://pokus-io.github.io/conference/
 
-RUN echo "GOLANG_VERSION=[${GOLANG_VERSION}] and HUGO_VERSION=[${HUGO_VERSION}] and HUGO_BASE_URL=[${HUGO_BASE_URL}]"
+RUN echo "GOLANG_VERSION=[${GOLANG_VERSION}] and HUGO_VERSION=[${HUGO_VERSION}] and HUGO_DEPLOYMENT_BASE_URL=[${HUGO_DEPLOYMENT_BASE_URL}]"
 USER root
 # [build-base] because the hugo installation requires gcc and [build-base] package contains the proper gcc
 RUN apk update && apk add curl git tree tar bash build-base
@@ -73,13 +73,13 @@ RUN mkdir -p /pokus.io/hugo/src/
 RUN ls -allh /pokus.io/hugo/src/
 
 COPY . /pokus.io/hugo/src/
-RUN export PATH=$PATH:/usr/local/go/bin && cd /pokus.io/hugo/src/ && hugo -b "${HUGO_BASE_URL}"
+RUN export PATH=$PATH:/usr/local/go/bin && cd /pokus.io/hugo/src/ && hugo -b "${HUGO_DEPLOYMENT_BASE_URL}"
 
 
 FROM hugo_build AS hugo_release
 
-ARG HUGO_BASE_URL=https://pokus-io.github.io/conference/
-ENV HUGO_BASE_URL=${HUGO_BASE_URL}
+ARG HUGO_DEPLOYMENT_BASE_URL=https://pokus-io.github.io/conference/
+ENV HUGO_DEPLOYMENT_BASE_URL=${HUGO_DEPLOYMENT_BASE_URL}
 # --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- #
 # ---                  HUGO SERVER RUNTIME                --- #
 # --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- #
