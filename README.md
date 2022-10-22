@@ -155,6 +155,8 @@ export POKUS_DEPLOYMENT_DIR=./docs/
 gulp build:deployment
 
 export CROUTENARD_RELEASE_NUM="0.0.5"
+
+git add -A && git commit -m "prepare release ${CROUTENARD_RELEASE_NUM}" && git push -u origin HEAD
 # make a git-flow release
 git flow release start "${CROUTENARD_RELEASE_NUM}"
 git push -u origin --all
