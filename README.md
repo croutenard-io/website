@@ -8,8 +8,8 @@
 ```bash
 
 # --- + --- #
-# For versions greater or equal to ['0.0.6']
-export DESIRED_VERSION=0.0.6
+# For versions greater or equal to ['0.0.5']
+export DESIRED_VERSION=0.0.5
 export DESIRED_VERSION=master
 
 cd ~/crouton.work
@@ -154,7 +154,7 @@ export POKUS_DEPLOYMENT_DIR=./docs/
 
 gulp build:deployment
 
-export CROUTENARD_RELEASE_NUM="0.0.6"
+export CROUTENARD_RELEASE_NUM="0.0.5"
 # make a git-flow release
 git flow release start "${CROUTENARD_RELEASE_NUM}"
 git push -u origin --all
