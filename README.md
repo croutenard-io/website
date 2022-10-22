@@ -155,6 +155,9 @@ export POKUS_DEPLOYMENT_DIR=./docs/
 gulp build:deployment
 
 export CROUTENARD_RELEASE_NUM="0.0.5"
+export GIT_SSH_COMMAND='ssh -i ~/.ssh.crouton/id_rsa'
+
+${GIT_SSH_COMMAND} -T git@github.com
 
 git add -A && git commit -m "prepare release ${CROUTENARD_RELEASE_NUM}" && git push -u origin HEAD
 # make a git-flow release
