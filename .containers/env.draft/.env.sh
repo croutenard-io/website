@@ -14,8 +14,8 @@ export CICD_BUILD_ID=${CICD_BUILD_ID:-"${GIT_COMMIT_ID}"}
 export CICD_BUILD_TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%S%Z')
 # will be croutenard/shop
 export QUAY_OCI_IMAGE_TAG=${QUAY_OCI_IMAGE_TAG:-"0.0.1"}
-# export HUGO_BASE_URL="https://croutenard.com/"
-# export HUGO_BASE_URL="http://127.0.0.1:3112"
+# export HUGO_DEPLOYMENT_BASE_URL="https://croutenard.com/"
+# export HUGO_DEPLOYMENT_BASE_URL="http://127.0.0.1:3112"
 # --
 # HUGO_SERVER_BIND_ADDR is the bind address of the hugo dev server inside container
 export HUGO_SERVER_BIND_ADDR="0.0.0.0"
@@ -29,4 +29,4 @@ export HUGO_SERVER_PORT_NUMBER="1313"
 #   -> inside and outside container, we must have the same port number, to benefit live reload for the Hugo Dev server
 #   -> see https://github.com/gohugoio/hugo/issues/8023#issuecomment-1157209642
 export HUGO_SERVER_OUTBOUND_PORT_NUMBER="${HUGO_SERVER_PORT_NUMBER}"
-export HUGO_BASE_URL="http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}"
+export HUGO_DEPLOYMENT_BASE_URL="http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}"

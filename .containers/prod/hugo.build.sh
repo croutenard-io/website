@@ -9,7 +9,7 @@ echo "# --- --- --- --- --- --- --- --- #"
 echo "# ---- STARTING HUGO DEV SERVER WITH : "
 echo "#    Golang version = [$(go --version)]"
 echo "#    Hugo version = [$(hugo --version)]"
-echo "#    HUGO_BASE_URL=[${HUGO_BASE_URL}]"
+echo "#    HUGO_DEPLOYMENT_BASE_URL=[${HUGO_DEPLOYMENT_BASE_URL}]"
 echo "#    HUGO_SERVER_BIND_ADDR=[${HUGO_SERVER_BIND_ADDR}]"
 echo "#    HUGO_SERVER_PORT_NUMBER=[${HUGO_SERVER_PORT_NUMBER}]"
 echo "#    HUGO_SERVER_OUTBOUND_PORT_NUMBER=[${HUGO_SERVER_OUTBOUND_PORT_NUMBER}]"
@@ -29,5 +29,5 @@ mkdir -p  ./docs
 mkdir -p  ./public
 
 export PATH=$PATH:/usr/local/go/bin
-hugo --baseURL ${HUGO_BASE_URL}
+hugo --baseURL ${HUGO_DEPLOYMENT_BASE_URL}
 cp -fr ./public/* ./docs/

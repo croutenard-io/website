@@ -1,5 +1,9 @@
 # The Snipcart Shippo Adapter Bot
 
+for database management : 
+* https://prisma.io orm
+* migrations
+* supports `mongo` `postgres` `cockroachDb`
 
 ## The idea (specs)
 

@@ -9,9 +9,9 @@ services:
     user: $POKUS_USER_NAME
     restart: always
     environment:
-      - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
-      # - HUGO_BASE_URL=http://127.0.0.1:1313
-      # - HUGO_BASE_URL=https://croutenard.com/
+      - HUGO_DEPLOYMENT_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
+      # - HUGO_DEPLOYMENT_BASE_URL=http://127.0.0.1:1313
+      # - HUGO_DEPLOYMENT_BASE_URL=https://croutenard.com/
     volumes:
       - $PWD/../../:/pokus.io/hugo/src/:rw
       # - type: bind
@@ -35,9 +35,9 @@ services:
     restart: always
     command: /pokus.io/hugo/hugo.build.sh
     environment:
-      - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
-      # - HUGO_BASE_URL=http://127.0.0.1:1313
-      # - HUGO_BASE_URL=https://croutenard.com/
+      - HUGO_DEPLOYMENT_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
+      # - HUGO_DEPLOYMENT_BASE_URL=http://127.0.0.1:1313
+      # - HUGO_DEPLOYMENT_BASE_URL=https://croutenard.com/
     volumes:
       - $PWD/../../:/pokus.io/hugo/src/:rw
       # - type: bind
@@ -61,9 +61,9 @@ services:
     restart: always
     command: /pokus.io/hugo/hugo.build.sh
     environment:
-      - HUGO_BASE_URL=https://croutenard.com/
-      # - HUGO_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
-      # - HUGO_BASE_URL=http://127.0.0.1:1313
+      - HUGO_DEPLOYMENT_BASE_URL=https://croutenard.com/
+      # - HUGO_DEPLOYMENT_BASE_URL=http://127.0.0.1:${HUGO_SERVER_OUTBOUND_PORT_NUMBER}
+      # - HUGO_DEPLOYMENT_BASE_URL=http://127.0.0.1:1313
     volumes:
       - $PWD/../../:/pokus.io/hugo/src/:rw
       # - type: bind

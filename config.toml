@@ -26,8 +26,8 @@ disqusShortname = ""
   link = "plugins/bootstrap/bootstrap.min.js"
   [[params.plugins.js]]
   link = "plugins/slick/slick.min.js"
-  [[params.plugins.js]]
-  link = "plugins/google-map/gmap.js"
+  # [[params.plugins.js]]
+  # link = "plugins/google-map/gmap.js"
 
 
 ############################## navigation ###############################
@@ -135,7 +135,7 @@ currencySymbol = "€"
   # Product Rating
   # it works with https://rating-widget.com/ , you will get the ID and publicKey after creating your account there.
   [params.rating]
-  enable = true
+  enable = false
   websiteID = "444334"
   publicKey = "811cf0927332bf51f2e12f84608594ac"
 

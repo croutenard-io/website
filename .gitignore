@@ -1,8 +1,10 @@
 public
 node_modules
 public/
+public
 node_modules/
 .env
 *.log
 dist/
 dist
+my.pokus.*
