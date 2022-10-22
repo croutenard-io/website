@@ -167,7 +167,8 @@ git push -u origin --all
 # [finish -s] Signed release
 # git flow release finish -s "${CROUTENARD_RELEASE_NUM}"
 git flow release finish "${CROUTENARD_RELEASE_NUM}"
-git push -u origin --all
+
+git push -u origin --all && git push -u origin --tags
 
 ```
 
