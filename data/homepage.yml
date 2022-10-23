@@ -5,7 +5,12 @@ banner:
   # content : "Alphonse & Justine est une fragrance unique de nos volcans d’Auvergne, un condensé de chic et d’opulence qui réunit les 3 grands esprits : de bocage, floral et boisé. Une sensualité assumée d’épices et d’hespéridées aux zestes d’agrumes, de miel et de fruits frais. Alphonse et Justine est une expérience unique pour le corps et l’esprit. "
   content: "Nos produits, éthiques et sains, sont certifiés 100% naturels. Prélevés et stockés dans des conditions sanitaires conformes aux normes en vigueur. Nos eaux précieuses, aux fragrances uniques, sont des condensés de chic et d’opulence."
   # image : "images/banner.png"
-  image: "images/crouton/delivery/1.png"
+  image: 
+    original: "images/crouton/delivery/1.png"
+    responsive_filename: "1.png"
+    responsive_filename_no_ext: "1"
+    responsive_file_ext: "png"
+    responsive_folder: "images/crouton/delivery/"
   # button
   button:
     enable : true

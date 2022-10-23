@@ -44,10 +44,10 @@ git checkout ${DESIRED_VERSION}
 
 export PATH=$PATH:/usr/local/go/bin && go version
 export HUGO_SERVER_IP=127.0.0.1
-export HUGO_DEV_PORT_NO=5654
+export HUGO_PORT_NO=5654
 
 
-hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} -p ${HUGO_DEV_PORT_NO} --bind ${HUGO_SERVER_IP} -w
+hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} -p ${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} -w
 
 ```
  -->
@@ -56,7 +56,7 @@ hugo serve -b http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} -p ${HUGO_DEV_PORT_NO
 
 ```bash
 export PATH=$PATH:/usr/local/go/bin && go version
-export HUGO_DEV_PORT_NO=5654
+export HUGO_PORT_NO=5654
 export HUGO_SERVER_IP=0.0.0.0
 export HUGO_THEME_SSH_URI="git@github.com:themefisher/hargo-hugo"
 export HUGO_THEME_VERSION="master"
@@ -86,7 +86,7 @@ theme = "hargo"
 EOF
 
 
-hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_DEV_PORT_NO}
+hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_PORT_NO}
 
 # Press Ctrl + C
 
@@ -99,7 +99,7 @@ cp -fR themes/hargo/exampleSite/data/* ./data
 cp -fR themes/hargo/exampleSite/resources/* ./resources
 cp -fR themes/hargo/exampleSite/static/* ./static
 
-hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_DEV_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_DEV_PORT_NO}
+hugo serve --baseURL http://${HUGO_SERVER_IP}:${HUGO_PORT_NO} --bind ${HUGO_SERVER_IP} --port ${HUGO_PORT_NO}
 
 # Press Ctrl + C
 
@@ -186,8 +186,8 @@ gulp build:env
 ```bash
 export IS_THIS_WINDOWS=true
 export HUGO_HTTP_SCHEMA=httpx
-export HUGO_DEV_HOST="tabernacle-io.io"
-export HUGO_DEV_PORT="7589"
+export HUGO_HOST="tabernacle-io.io"
+export HUGO_PORT="7589"
 gulp build:hugo:clean:prod
 ```
 
@@ -198,8 +198,8 @@ export IS_THIS_WINDOWS=true
 
 # --- Dev env 
 export HUGO_HTTP_SCHEMA=http
-export HUGO_DEV_HOST="127.0.0.1"
-export HUGO_DEV_PORT="2314"
+export HUGO_HOST="127.0.0.1"
+export HUGO_PORT="2314"
 gulp build:hugo
 
 # --- Staging env 
@@ -757,3 +757,10 @@ ${GIT_SSH_COMMAND} -T git@github.com
 choco install golang
 ```
 
+## ANNEX ZZ: General WebPerformance Optimization tools
+
+* `sitespeed.io` with `lighthouse` plugin, grafana and graphite : https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml
+* `websu` (i liked it too): 
+  * https://github.com/websu-io/websu
+  * https://websu.io/r/63535635f313f352b6371ec8 
+* lighthouse is very popular, of course due to `Google Search Engine` monopolistic position on the market.

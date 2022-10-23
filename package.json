@@ -23,7 +23,7 @@
     "oci:tear:server:dev": "cd ./.containers/dev && bash ./.run.sh",
     "oci:run:hugo:dev": "unset export HUGO_DEPLOYMENT_BASE_URL && cd ./.containers/dev && ./.run.hugo.build.sh",
     "oci:run:hugo:prod": "export HUGO_DEPLOYMENT_BASE_URL='https://croutenard.com/' && cd ./.containers/dev && ./.run.hugo.build.sh",
-    "dev": "npm run oci:build:dev && npm run oci:tear:server:dev && npm run oci:run:server:dev",
+    "oci:dev": "npm run oci:build:dev && npm run oci:tear:server:dev && npm run oci:run:server:dev",
     "deploy:heroku:dev": "bash ./.npm.scripts/dev/deploy/heroku.sh",
     "deploy:surge:dev": "npm run clean && ./.npm.scripts/dev/deploy/surge.sh",
     "deploy:b4app:dev": "bash ./.npm.scripts/dev/deploy/back4app.sh",
@@ -38,7 +38,9 @@
     "spawn:project:gen": "echo \"spawn up new hugo project from Hugo theme\" && ./.npm.scripts/spawn.sh",
     "clean:hugo": "echo \"cleaning hugo public/ Folder \" && gulp clean:hugo",
     "parse-hugo-them-toml": "node .npm.scripts/toml-parser.js",
-    "pr": "bash ./.npm.scripts/dev/inflate.sh"
+    "pr": "bash ./.npm.scripts/dev/inflate.sh",
+    "watch:dev": "bash -c 'gulp watch:dev'",
+    "watch:prod": "bash -c 'gulp watch:prod'"
   },
   "repository": {
     "type": "git",
@@ -61,6 +63,7 @@
     "browser-sync": "^2.27.10",
     "concat-stream": "^2.0.0",
     "dotenv": "^16.0.3",
+    "fancy-log": "^2.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-beautify": "^3.0.0",
@@ -77,6 +80,7 @@
     "gulp-replace": "^1.1.3",
     "gulp-sass": "^5.1.0",
     "gulp-seo": "^1.0.2",
+    "gulp-sharp-responsive": "^0.4.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-useref": "^5.0.0",

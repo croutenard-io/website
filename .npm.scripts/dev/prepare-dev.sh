@@ -67,6 +67,8 @@ export CONCAT_STREAM_VERSION=${CONCAT_STREAM_VERSION:-"^2.0.0"}
 export TOML_VERSION=${TOML_VERSION:-"^3.0.0"}
 export SHELLJS_VERSION=${SHELLJS_VERSION:-"^0.8.5"}
 export VINYL_SOURCE_STREAM_VERSION=${VINYL_SOURCE_STREAM_VERSION:-"^2.0.0"}
+export GULP_SHARP_RESPONSIVE=${GULP_SHARP_RESPONSIVE:-"^0.4.0"}
+export FANCY_LOG_VERSION=${FANCY_LOG_VERSION:-"^2.0.0"}
 
 npm uninstall --save-dev \
     gulp \
@@ -99,8 +101,11 @@ npm uninstall --save-dev \
     @babel/register \
     @babel/preset-env \
     node-fetch \
+    shelljs \
     concat-stream \
     vinyl-source-stream \
+    gulp-sharp-responsive \
+    fancy-log \
     toml
 
 npm i --save-dev \
@@ -136,4 +141,6 @@ npm i --save-dev \
     concat-stream@${CONCAT_STREAM_VERSION} \
     vinyl-source-stream@${VINYL_SOURCE_STREAM_VERSION} \
     shelljs@${SHELLJS_VERSION} \
+    gulp-sharp-responsive@${GULP_SHARP_RESPONSIVE} \
+    fancy-log@${FANCY_LOG_VERSION} \
     toml@${TOML_VERSION}

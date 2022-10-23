@@ -71,7 +71,9 @@ import pug from 'gulp-pug';
 import purgecss from 'gulp-purgecss';
 
 import gutil from 'gulp-util';
-
+// https://www.npmjs.com/package/fancy-log
+import fancyLogger from 'fancy-log';
+// var log = require('fancy-log');
 import del from 'del';
 import fs from 'fs';
 
@@ -455,6 +457,7 @@ gulp.task('build:img:compress', function (done) {
  import minifyCss from 'gulp-clean-css';
  
  import gulpSeo from 'gulp-seo';
+import { Interface } from 'readline';
  
  gulp.task('build:seo', function () {
    const seoConfiguration = {
@@ -491,6 +494,427 @@ gulp.task('build:deployment', gulp.series('build:hugo:gh_pages', 'build:img:magi
 
 
 
+// const { src, dest } = require("gulp");
+const sharpResponsive = require("gulp-sharp-responsive");
+
+const imageResponsivenessPrefix = `-x-reponsiveness`
+/**
+ * 
+ * ${imageResponsivenessPrefix}-xs will be used for screens between 0 and 320
+ * ${imageResponsivenessPrefix}-sm will be used for screens between 320 and 640
+ * ${imageResponsivenessPrefix}-md will be used for screens between 640 and 768
+ * ${imageResponsivenessPrefix}-lg will be used for screens between 768 and 1024
+ * ${imageResponsivenessPrefix}-xl will be used for screens between 1024 and above
+ * and by default, 
+ * ---
+ * And in HTML to use : 
+ * 
+ *         <picture>
+ *           <img src="{{ .image | absURL }}" class="img-fluid" alt="">
+ * 
+ *           <!-- ---- -->
+ *           <!-- ---- -->
+ *           <!-- avif -->
+ *           <!-- ---- -->
+ *           <!-- ---- -->
+ *           <source srcset="/img/lion-xs.avif" media="(max-width: 320px)" type="image/avif" />
+ *           <source srcset="/img/lion-sm.avif" media="(max-width: 640px)" type="image/avif" />
+ *           <source srcset="/img/lion-md.avif" media="(max-width: 768px)" type="image/avif" />
+ *           <source srcset="/img/lion-lg.avif" media="(max-width: 1024px)" type="image/avif" />
+ *           <source srcset="/img/lion-xl.avif" media="(max-width: 10000px)" type="image/avif" />
+ * 
+ *           
+ *           <!-- ---- -->
+ *           <!-- ---- -->
+ *           <!-- webp -->
+ *           <!-- ---- -->
+ *           <!-- ---- -->
+ *           <source srcset="/img/lion-xs.webp" media="(max-width: 320px)" type="image/webp" />
+ *           <source srcset="/img/lion-sm.webp" media="(max-width: 640px)" type="image/webp" />
+ *           <source srcset="/img/lion-md.webp" media="(max-width: 768px)" type="image/webp" />
+ *           <source srcset="/img/lion-lg.webp" media="(max-width: 1024px)" type="image/webp" />
+ *           <source srcset="/img/lion-xl.webp" media="(max-width: 10000px)" type="image/webp" />
+ *           <!-- jpeg -->
+ *           <!-- <source srcset="/img/lion-xs.jpeg" media="(max-width: 320px)" type="image/jpeg" /> -->
+ *           <!-- <source srcset="/img/lion-sm.jpeg" media="(max-width: 640px)" type="image/jpeg" /> -->
+ *           <!-- <source srcset="/img/lion-md.jpeg" media="(max-width: 768px)" type="image/jpeg" /> -->
+ *           <!-- <source srcset="/img/lion-lg.jpeg" media="(max-width: 1024px)" type="image/jpeg" /> -->
+ *           <!-- <source srcset="/img/lion-xl.jpeg" media="(max-width: 10000px)" type="image/jpeg" /> -->
+ * 
+ *           <!-- ---- -->
+ *           <!-- ---- -->
+ *           <!-- jpeg -->
+ *           <!-- ---- -->
+ *           <!-- ---- -->
+ *           <source srcset="/img/lion-xs.jpg" media="(max-width: 320px)" type="image/jpeg" />
+ *           <source srcset="/img/lion-sm.jpg" media="(max-width: 640px)" type="image/jpeg" />
+ *           <source srcset="/img/lion-md.jpg" media="(max-width: 768px)" type="image/jpeg" />
+ *           <source srcset="/img/lion-lg.jpg" media="(max-width: 1024px)" type="image/jpeg" />
+ *           <source srcset="/img/lion-xl.jpg" media="(max-width: 10000px)" type="image/jpeg" />
+ * 
+ *           <!-- original -->
+ *           <img src="/img/lion.jpeg" class="img-responsive" alt="A lion in the jungle." />
+ *         </picture>
+ */
+const responsiveMatrixBase = [
+  // png
+  { width: 320, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  { width: 640, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  { width: 1024, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  // jpg
+  { width: 320, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  { width: 640, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  // jpeg
+  { width: 320, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  { width: 640, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  { width: 1024, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  // webp
+  { width: 320, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  { width: 640, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  { width: 1024, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  // avif
+  { width: 320, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  { width: 640, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  { width: 1024, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+]
+
+
+/*
+const responsiveMatrixBase = [
+  // png
+  { width: 640, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  // jpg
+  { width: 640, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  // jpeg
+  { width: 640, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  // webp
+  { width: 640, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  // avif
+  { width: 640, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  { width: 768, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  { width: 1024, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+]
+*/
+
+/*
+const oneFruitsSet = new Set(['🍉', '🍎', '🍈', '🍏']);
+fancyLogger.warn(oneFruitsSet);
+oneFruitsSet.add("machin")
+oneFruitsSet.add("machin1")
+oneFruitsSet.add("machin2")
+oneFruitsSet.add("machin1")
+oneFruitsSet.add("machin1")
+oneFruitsSet.add("machin")
+fancyLogger.warn(oneFruitsSet);
+fancyLogger.warn(oneFruitsSet.entries().next().value[1])
+
+for(const fruit of oneFruitsSet) {
+  fancyLogger.warn(` here is a fruit : [${fruit}]`);
+}
+
+*/
+
+const computeSharpResponsiveImagesMatrixDimension = () => {
+  let numberOfDimensions = -1;
+  // 1. First, make an array with all types of formats of all images
+
+  let setOfImgFilesFormats = new Set([]);
+  // Initialiazes the Set with all file format
+  for (let k = 0; k < responsiveMatrixBase.length; k++) {
+      setOfImgFilesFormats.add(`${responsiveMatrixBase[k].format}`)
+  }
+  for(const pokusImgFileFormat of setOfImgFilesFormats) {
+    fancyLogger.warn(` here is a pokusImgFileFormat : [${pokusImgFileFormat}]`);
+  }
+
+  let numberOfDifferentFormats = setOfImgFilesFormats.size;
+  let pokusModuloCheck = -1;
+  pokusModuloCheck = responsiveMatrixBase.length % numberOfDifferentFormats
+  fancyLogger.warn(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+  fancyLogger(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+  fancyLogger(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+  fancyLogger.warn(` >>>>>>>> - responsiveMatrixBase.length = [${responsiveMatrixBase.length}] `)
+  fancyLogger.warn(` >>>>>>>> - numberOfDifferentFormats = [${numberOfDifferentFormats}] `)
+  fancyLogger.warn(` >>>>>>>> - pokusModuloCheck = [${pokusModuloCheck}] `)
+  if ( pokusModuloCheck != 0 ) {
+    fancyLogger.warn(` >>>>>>>> - pokusModuloCheck IS NOT ZERO !!! [computeSharpResponsiveImagesMatrixDimension()] `)
+    fancyLogger.warn(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+    fancyLogger.warn(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+    throw new Error(` >>>>>>>> - pokusModuloCheck IS NOT ZERO !!! [computeSharpResponsiveImagesMatrixDimension()] `)
+  } else {
+
+    fancyLogger.warn(` >>>>>>>> - pokusModuloCheck IS ZERO THAT'S PERFECT !!! [computeSharpResponsiveImagesMatrixDimension()] `)
+    fancyLogger(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+    numberOfDimensions = responsiveMatrixBase.length / numberOfDifferentFormats
+    fancyLogger(` >>>>>>>> - numberOfDimensions = [${numberOfDimensions}] `)
+    fancyLogger(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+  }
+  fancyLogger(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+  fancyLogger(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+  return numberOfDimensions;
+}
+
+// const sharpResponsiveImagesMatrixDimension = 4; // number of width ranges // with images, we do not set height ranges, otherwise it would force change the scaling of images while resizing them
+// const sharpResponsiveImagesMatrixDimension = 3; // number of width ranges // with images, we do not set height ranges, otherwise it would force change the scaling of images while resizing them
+const sharpResponsiveImagesMatrixDimension = computeSharpResponsiveImagesMatrixDimension();
+gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
+
+// throw new Error(` >>>>>>>> - POKUS DEBUG POINT : sharpResponsiveImagesMatrixDimension = [${sharpResponsiveImagesMatrixDimension}]`)
+
+// public interface PokusImgExtensionTypeEnum {
+const PokusImgExtensionTypeEnum = {
+  jpeg : {
+  name: 'jpeg'
+  },
+  jpg: {
+  name: 'jpg'
+  },
+  png: {
+  name: 'png'
+  },
+  webp: {
+  name: 'webp'
+  },
+  avif: {
+  name: 'avif'
+  }
+}
+
+
+/**
+ * -------------------------------------
+ *  
+ * -------------------------------------
+ *   Pass as parameter either of :
+ *    + PokusImgExtensionTypeEnum.jpeg
+ *    + PokusImgExtensionTypeEnum.jpg
+ *    + PokusImgExtensionTypeEnum.png
+ *    + PokusImgExtensionTypeEnum.webp
+ *    + PokusImgExtensionTypeEnum.avip
+ */
+
+ const getResponsiveMatrix = (chosenExtensionType /*: PokusImgExtensionTypeEnum */) => {
+
+    // cloning (deep copy) the array
+    let matrixToReturn = responsiveMatrixBase.slice();
+    let currentRemovedElement = null;
+    for (let i = 0; i < responsiveMatrixBase.length; i++) {
+      if (i >= matrixToReturn.length) { // the matrixToReturn is being spliced : its length dynamically change lduring the loop execution
+        fancyLogger.warn(` >>> the matrixToReturn length has been exceeded`)
+      }
+      fancyLogger.warn(` >>> matrixToReturn[i].format=[${matrixToReturn[i].format}]`)
+      fancyLogger.warn(` >>> chosenExtensionType.name=[${chosenExtensionType.name}]`)
+      
+      if (matrixToReturn[i].format == `${chosenExtensionType.name}`) {
+        fancyLogger.warn(` >>> Yes this is an image file of type  [${chosenExtensionType.name}]`)
+        currentRemovedElement = matrixToReturn.splice(i, sharpResponsiveImagesMatrixDimension); // 2nd parameter means remove one item only
+        fancyLogger.warn(`    So just spliced out of matrix to return, the below element : `)
+        fancyLogger.warn(currentRemovedElement);
+        break;
+      } else {
+        fancyLogger.warn(` >>> No this not an image file of type  [${chosenExtensionType.name}]`)
+      }
+
+    }
+    return matrixToReturn;
+  }
+
+/*
+
+let myJPEGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpeg)
+let myAVIFresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.avif)
+
+fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
+fancyLogger.warn(` >>>>>>>>>>> myJPEGresponsiveMatrix Array :`)
+fancyLogger.warn(myJPEGresponsiveMatrix)
+fancyLogger.warn(` >>>>>>>>>>> myAVIFresponsiveMatrix Array :`)
+fancyLogger.warn(myAVIFresponsiveMatrix)
+fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
+
+*/
+
+/*
+
+
+// cloning (deep copy) the array
+let modifiedMatrix = responsiveMatrixBase.slice();
+
+modifiedMatrix[2] = {
+voila: 'je suis',
+ungros: 'couillon'
+}
+
+fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
+fancyLogger.warn(` >>>>>>>>>>> responsiveMatrixBase Array :`)
+fancyLogger.warn(responsiveMatrixBase)
+fancyLogger.warn(` >>>>>>>>>>> modifiedMatrix Array :`)
+fancyLogger.warn(modifiedMatrix)
+fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
+modifiedMatrix = responsiveMatrixBase.splice(4, 1);
+fancyLogger.warn(` >>>>>>>>>>> spliced modifiedMatrix Array :`)
+fancyLogger.warn(modifiedMatrix)
+fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
+modifiedMatrix = responsiveMatrixBase.splice(4, 1);
+fancyLogger.warn(` >>>>>>>>>>> spliced 2 modifiedMatrix Array :`)
+fancyLogger.warn(modifiedMatrix)
+fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
+
+*/
+const pokusJPEGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpeg)
+const pokusJPGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpg)
+const pokusAVIFresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.avif)
+const pokusPNGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.png)
+const pokusWEBPresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.webp)
+/*  */
+fancyLogger.warn(` >>>> pokusJPEGresponsiveMatrix : `)
+fancyLogger.warn(pokusJPEGresponsiveMatrix)
+fancyLogger.warn(` >>>> pokusJPGresponsiveMatrix : `)
+fancyLogger.warn(pokusJPGresponsiveMatrix)
+fancyLogger.warn(` >>>> pokusAVIFresponsiveMatrix : `)
+fancyLogger.warn(pokusAVIFresponsiveMatrix)
+fancyLogger.warn(` >>>> pokusPNGresponsiveMatrix : `)
+fancyLogger.warn(pokusPNGresponsiveMatrix)
+fancyLogger.warn(` >>>> pokusWEBPresponsiveMatrix : `)
+fancyLogger.warn(pokusWEBPresponsiveMatrix)
+
+
+
+/**
+ * ----- * ---- * ---- * ---- * ---- * ---- * ---- * ---- * ----
+ * const pokusJPEGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpeg)
+ * const pokusJPGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpg)
+ * const pokusAVIFresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.avif)
+ * const pokusPNGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.png)
+ * const pokusWEBPresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.webp)
+ * ----- * ---- * ---- * ---- * ---- * ---- * ---- * ---- * ----
+ */
+gulp.task('build:img:responsive:jpg', function () {
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-     gulp [build:img:responsive:jpg]  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(pokusJPGresponsiveMatrix)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  
+  return gulp
+  // .src("docs/images/*.jpg") /// this one works
+  // .src('docs/images/video-thumb.jpg') /// this one works
+  // .src(['images/*.jpg', 'images/**/*.jpg', 'images/**/**/*.jpg', 'images/**/**/**/*.jpg', 'images/**/**/**/**/*.jpg'],{"base" : "./docs" })  /// this one does not work
+  // .src(['docs/images/*.jpg', 'docs/images/**/*.jpg', 'docs/images/**/**/*.jpg', 'docs/images/**/**/**/*.jpg', 'docs/images/**/**/**/**/*.jpg']) // this one works too
+  .src(['docs/images/*.jpg', 'docs/images/**/*.jpg'])
+  .pipe(sharpResponsive({
+    formats: pokusJPGresponsiveMatrix
+  }))
+  .pipe(gulp.dest("docs/images/"));
+});
+gulp.task('build:img:responsive:jpeg', function () {
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-     gulp [build:img:responsive:jpeg]  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(pokusJPGresponsiveMatrix)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  
+  return gulp
+  // .src("docs/images/*.jpeg") /// this one works
+  // .src('docs/images/video-thumb.jpeg') /// this one works
+  // .src(['images/*.jpeg', 'images/**/*.jpeg', 'images/**/**/*.jpeg', 'images/**/**/**/*.jpeg', 'images/**/**/**/**/*.jpeg'],{"base" : "./docs" })  /// this one does not work
+  // .src(['docs/images/*.jpeg', 'docs/images/**/*.jpeg', 'docs/images/**/**/*.jpeg', 'docs/images/**/**/**/*.jpeg', 'docs/images/**/**/**/**/*.jpeg']) // this one works too
+  .src(['docs/images/*.jpeg', 'docs/images/**/*.jpeg'])
+  .pipe(sharpResponsive({
+    formats: pokusJPEGresponsiveMatrix
+  }))
+  .pipe(gulp.dest("docs/images/"));
+});
+gulp.task('build:img:responsive:png', function () {
+  gulp.src("docs/images/**/*.png")
+  .pipe(sharpResponsive({
+    formats: pokusPNGresponsiveMatrix
+  }))
+  .pipe(gulp.dest("docs/images/"));
+});
+gulp.task('build:img:responsive:webp', function () {
+  gulp.src("docs/images/**/*.webp")
+  .pipe(sharpResponsive({
+    formats: pokusPNGresponsiveMatrix
+  }))
+  .pipe(gulp.dest("docs/images/"));
+});
+gulp.task('build:img:responsive:avip', function () {
+  gulp.src("docs/images/**/*.avip")
+  .pipe(sharpResponsive({
+    formats: pokusPNGresponsiveMatrix
+  }))
+  .pipe(gulp.dest("docs/images/"));
+});
+
+gulp.task('build:img:responsive', gulp.series('build:img:responsive:jpg', 'build:img:responsive:jpeg', 'build:img:responsive:webp', 'build:img:responsive:png', 'build:img:responsive:avip'));
+
+// ** scratch tasks : they clean the public and docs folder, and re-run the hugo build, without any optimization, else than the [gulp-responisve-sharp] plugin image processing task
+gulp.task('build:img:responsive:scratch:jpeg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpeg'));
+gulp.task('build:img:responsive:scratch:jpg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpg'));
+gulp.task('build:img:responsive:scratch:webp', gulp.series('build:hugo:gh_pages', 'build:img:responsive:webp'));
+gulp.task('build:img:responsive:scratch:png', gulp.series('build:hugo:gh_pages', 'build:img:responsive:png'));
+gulp.task('build:img:responsive:scratch:avip', gulp.series('build:hugo:gh_pages', 'build:img:responsive:avip'));
+
+
+gulp.task('build:img:responsive:scratch', gulp.series('build:hugo:gh_pages', 'build:img:responsive'));
+
+
+
+
+
+///   return gulp
+///       .src([
+///         'img/**/*.svg',
+///         'img/**/*.ico',
+///         'img/**/*.png',
+///         'img/**/*.jpg',
+///         'img/**/*.jpeg',
+///         'images/**/*.svg',
+///         'images/**/*.ico',
+///         'images/**/*.jpg',
+///         'images/**/*.jpeg',
+///         'images/**/*.png'
+///       ],{
+///       "base" : "./docs"
+///       })
+
+
+
+
+
+
+
+
 /***************************************************************
  ***************************************************************
  *  ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
@@ -521,6 +945,54 @@ gulp.task('build:docs:purgecss', () => {
 
 
 
+// ---------------// ---------------// ---------------// ---------------//
+// ---------------// ---------------// ---------------// ---------------//
+// ---------------
+// === All prod env related tasks are done in the docs folder itself
+// all dev env related ops are done inside the public folder
+// the docs/ folder is only used by production deployment.
+// 
+//
+//
+// 
+// === Production deployment might be :
+// + github pages
+// + AWS S3 bucket turned into a website hosting
+// + Azure S3 bucket turned into a website hosting
+// + GCP S3 bucket turned into a website hosting
+// + Alibaba S3 bucket turned into a website hosting
+// + Azure AKS Managed Kubenertes Cluster
+// + Amamazon EKS Managed Kubenertes Cluster
+// + 
+// ---------------// ---------------// ---------------// ---------------//
+// ---------------// ---------------// ---------------// ---------------//
+
+
+gulp.task('watch:dev', gulp.series('build:hugo', function () {
+  browserSync.init({
+    server: "./public",
+    host: `${hugoHost}`,
+    port: `${hugoPort}`
+  });
+
+  // watch all hugo project files for change, rebuild all if changes
+  gulp.watch('./config.toml', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./config.yaml', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./config.json', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./static/**/*.*', gulp.series('build:hugo'));
+  gulp.watch('./assets/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./themes/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./archetypes/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./content/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./data/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch('./layouts/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
+  gulp.watch("src/*.html", gulp.series('build:hugo')).on('change', browserSync.reload);
+}));
+
+
+
+
+
 // ---------------
 // all prod env related tasks are done in the docs folder itself
 // all dev env rerleated ops are done inside the public folder
@@ -528,7 +1000,7 @@ gulp.task('build:docs:purgecss', () => {
 //
 
 
-gulp.task('watch:prod', gulp.series('build:hugo', function () {
+gulp.task('watch:prod', gulp.series('build:deployment', function () {
   browserSync.init({
     server: "./docs",
     host: `${hugoHost}`,
@@ -536,15 +1008,15 @@ gulp.task('watch:prod', gulp.series('build:hugo', function () {
   });
 
   // watch all hugo project files for change, rebuild all if changes
-  gulp.watch('./config.toml', gulp.series('build:hugo', 'build:docs'));
-  gulp.watch('./config.yaml', gulp.series('build:hugo', 'build:docs'));
-  gulp.watch('./config.json', gulp.series('build:hugo', 'build:docs'));
-  gulp.watch('./static/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch('./assets/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch('./themes/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch('./archetypes/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch('./content/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch('./data/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch('./layouts/**/*.*', gulp.series('build:hugo', 'purgecss', 'build:docs'));
-  gulp.watch("src/*.html").on('change', browserSync.reload);
+  gulp.watch('./config.toml', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./config.yaml', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./config.json', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./static/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./assets/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./themes/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./archetypes/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./content/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./data/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch('./layouts/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
+  gulp.watch("src/*.html", gulp.series('build:deployment')).on('change', browserSync.reload);
 }));

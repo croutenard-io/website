@@ -29,7 +29,43 @@ disqusShortname = ""
   # [[params.plugins.js]]
   # link = "plugins/google-map/gmap.js"
 
+###########################################
+############################## Responsiveness ###############################
+###########################################
 
+[params.responisiveness]
+  enable = true
+  ## Image renaming pattern
+  prefix = "-x-reponsiveness"
+  #                                           // ${NAME_OF_IMG_FILE_WITHOUT_FILE_EXT}${IMG_RENAMING_PREFIX}-${RESPONSIVE_SIZE_RANGE}
+  ## Responsive Matrix 
+  [[params.responisiveness.images.size_range]]
+    name = "xs"
+    width = "320px"
+  [[params.responisiveness.images.size_range]]
+    name = "sm"
+    width = "640px"
+  [[params.responisiveness.images.size_range]]
+    name = "md"
+    width = "768px"
+  [[params.responisiveness.images.size_range]]
+    name = "lg"
+    width = "1024px"
+  [[params.responisiveness.images_ola_test]]
+    name = "xl"
+    width = "10000px"
+    # test2 = {name="test2_webp", width="1789px"}
+    # test = [
+    #          {firstname="jhon", surname="smith"},
+    #          {firstname="Anne", surname=Marry"}
+    #        ]
+# 
+##############################  
+# .Site.Params.responisiveness.images.renaming.prefix
+# .Site.Params.responisiveness.images.size_ranges
+##############################  # 
+# .Site.Params.responisiveness.images_ola_test.test2.name
+# .Site.Params.responisiveness.images_ola_test.test2.width
 ############################## navigation ###############################
 [menu]
 
@@ -93,7 +129,6 @@ disqusShortname = ""
 
 #################### default parameters ################################
 [params]
-# logo = "images/logo.png"
 # logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.svg"
 # logo = "images/crouton/logo/CROUTENARD_SIMPLE_RVB.png"
 # logo = "images/crouton/logo/CROUTENARD_RVB.png"
