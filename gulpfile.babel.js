@@ -458,7 +458,29 @@ gulp.task('build:img:compress', function (done) {
  
  import gulpSeo from 'gulp-seo';
 import { Interface } from 'readline';
- 
+ const seoKeywords = [
+  'croutenard',
+  'soupeur',
+  'vespasienne',
+  'giedré',
+  'argot',
+  'France',
+  'Paris',
+  'crouton',
+  'pissotière',
+  'urine',
+  'uritrottoir',
+  'wee loaf',
+  'what is a wee loaf',
+  'pisse',
+  'wc',
+  'toilettes',
+  'urinoir',
+  'consommation',
+  'société',
+  'boutique en ligne',
+  'commerce']
+
  gulp.task('build:seo', function () {
    const seoConfiguration = {
      list: ['og', 'se', 'schema', 'twitter', 'facebook'],
@@ -466,7 +488,7 @@ import { Interface } from 'readline';
        title: `${hugoHost}`,// title: 'Croutenard.com',
        description: 'La boutique des croutenards amateurs d\'urine',
        author: 'Croutenard.com',
-       keywords: ['croutenard', 'crouton', 'pissotière', 'urine', 'pisse', 'wc', 'toilettes', 'urinoir', 'consommation', 'société', 'boutique en ligne', 'commerce'],
+       keywords: seoKeywords,
        robots: {
          index: true, // true
          follow: true // true

@@ -7,6 +7,47 @@
 
 
 
+<h3>responsive_filename_no_ext: {{ $responsive_filename_no_ext }}</h3>
+<h3>responsive_file_ext: {{ $responsive_file_ext }}</h3>
+<h3>responsive_folder: {{ $responsive_folder }}</h3>
+<h3>imgNameRespPrefix: {{ $imgNameRespPrefix }}</h3>
+<h2>{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}</h2>
+<!-- 
+# site.Params.responisiveness.images_ola_test.test2.name
+# site.Params.responisiveness.images_ola_test.test2.width
+ -->
+<p>Responsive Images enabled ? : 
+{{ if site.Params.responisiveness.enable }}
+  <code>Yes it is enabled</code>
+{{ else }}
+  <code>NO it is NOT enabled</code>
+{{ end }}
+</p>
+<p>malade</p>
+<h2>Here a short test for looping on <code>site.Params.plugins.css</code> params : </h2>
+  {{ range site.Params.plugins.css }}
+  <p>site.Params.plugins.css : <span>[{{ .link | absURL }}]</span></p>
+  {{ end }}
+  {{ range site.Params.plugins.css }}
+  <a href="{{ .URL | absURL }}">putinnn</a>
+  {{ end }}
+  {{ range site.Params.plugins.js}}
+  <a href="{{ .link | absURL }}">un de mes plugins js</a>
+  {{ end }}
+  {{ range site.Params.plugins.css}}
+  <a href="{{ .link | absURL }}">un de mes plugins css</a>
+  {{ end }}
+
+<hr/>       
+
+  <!-- Short test -->
+  <h2>Here a short test for <code> looping</code> on <code>config.toml</code>  params</h2>
+  {{ range site.Params.responisiveness.images.size_range }}
+    <p>imgNameRespSizeRange : {{ .name }}</p>
+    <p>imgNameRespSizeRangeWidth : {{ .width }}</p>
+  {{ end }}
+  <hr/>       
+   
 <picture id="test_jbl">
 
     <!-- avip -->
@@ -76,7 +117,7 @@
       {{ $responsive_file_ext := "webp" }}
       
       <source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/webp" />
-      <!--  
+      <!--    -->
       <ul>
         <li>
           <em>JE VEUX : <p>
@@ -86,7 +127,7 @@
           </p></em>
         </li>
       </ul>
-  -->
+
     {{ end }}
   {{ end }}
 
@@ -104,7 +145,7 @@
       {{ $responsive_file_ext := "jpeg" }}
       
       <source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/jpeg" />
-      <!--  
+      <!--    -->
       <ul>
         <li>
           <em>JE VEUX : <p>
@@ -114,12 +155,12 @@
           </p></em>
         </li>
       </ul>
-  -->
+
     {{ end }}
   {{ end }}
   
   
-  <!-- Should generate something like :
+  <!-- 
 
   <source srcset="/img/lion-xs.avif" media="(max-width: 320px)" type="image/avif" />
   <source srcset="/img/lion-sm.avif" media="(max-width: 640px)" type="image/avif" />
