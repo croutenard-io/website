@@ -543,7 +543,7 @@ const imageResponsivenessPrefix = `-x-reponsiveness`
  *           <source srcset="/img/lion-sm.avif" media="(max-width: 640px)" type="image/avif" />
  *           <source srcset="/img/lion-md.avif" media="(max-width: 768px)" type="image/avif" />
  *           <source srcset="/img/lion-lg.avif" media="(max-width: 1024px)" type="image/avif" />
- *           <source srcset="/img/lion-xl.avif" media="(max-width: 10000px)" type="image/avif" />
+ *           <source srcset="/img/lion-xl.avif" media="(max-width: 6144px)" type="image/avif" />
  * 
  *           
  *           <!-- ---- -->
@@ -555,13 +555,13 @@ const imageResponsivenessPrefix = `-x-reponsiveness`
  *           <source srcset="/img/lion-sm.webp" media="(max-width: 640px)" type="image/webp" />
  *           <source srcset="/img/lion-md.webp" media="(max-width: 768px)" type="image/webp" />
  *           <source srcset="/img/lion-lg.webp" media="(max-width: 1024px)" type="image/webp" />
- *           <source srcset="/img/lion-xl.webp" media="(max-width: 10000px)" type="image/webp" />
+ *           <source srcset="/img/lion-xl.webp" media="(max-width: 6144px)" type="image/webp" />
  *           <!-- jpeg -->
  *           <!-- <source srcset="/img/lion-xs.jpeg" media="(max-width: 320px)" type="image/jpeg" /> -->
  *           <!-- <source srcset="/img/lion-sm.jpeg" media="(max-width: 640px)" type="image/jpeg" /> -->
  *           <!-- <source srcset="/img/lion-md.jpeg" media="(max-width: 768px)" type="image/jpeg" /> -->
  *           <!-- <source srcset="/img/lion-lg.jpeg" media="(max-width: 1024px)" type="image/jpeg" /> -->
- *           <!-- <source srcset="/img/lion-xl.jpeg" media="(max-width: 10000px)" type="image/jpeg" /> -->
+ *           <!-- <source srcset="/img/lion-xl.jpeg" media="(max-width: 6144px)" type="image/jpeg" /> -->
  * 
  *           <!-- ---- -->
  *           <!-- ---- -->
@@ -572,7 +572,7 @@ const imageResponsivenessPrefix = `-x-reponsiveness`
  *           <source srcset="/img/lion-sm.jpg" media="(max-width: 640px)" type="image/jpeg" />
  *           <source srcset="/img/lion-md.jpg" media="(max-width: 768px)" type="image/jpeg" />
  *           <source srcset="/img/lion-lg.jpg" media="(max-width: 1024px)" type="image/jpeg" />
- *           <source srcset="/img/lion-xl.jpg" media="(max-width: 10000px)" type="image/jpeg" />
+ *           <source srcset="/img/lion-xl.jpg" media="(max-width: 6144px)" type="image/jpeg" />
  * 
  *           <!-- original -->
  *           <img src="/img/lion.jpeg" class="img-responsive" alt="A lion in the jungle." />
@@ -580,35 +580,35 @@ const imageResponsivenessPrefix = `-x-reponsiveness`
  */
 const responsiveMatrixBase = [
   // png
-  { width: 320, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
-  { width: 640, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
-  { width: 768, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
-  { width: 1024, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
-  { width: 1024, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  /* max-width: 320 */ { width: 200, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  /* max-width: 640 */ { width: 320, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  /* max-width: 768 */ { width: 640, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  /* max-width: 1024 */ { width: 768, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  /* max-width: 6144 */ { width: 1024, format: "png", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
   // jpg
-  { width: 320, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
-  { width: 640, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
-  { width: 768, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
-  { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
-  { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  /* max-width: 320 */ /// { width: 200, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  /* max-width: 640 */ /// { width: 320, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  /* max-width: 768 */ /// { width: 640, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  /* max-width: 1024 */ /// { width: 768, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  /* max-width: 6144 */ /// { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
   // jpeg
-  { width: 320, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
-  { width: 640, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
-  { width: 768, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
-  { width: 1024, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
-  { width: 1024, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  /* max-width: 320 */ { width: 200, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  /* max-width: 640 */ { width: 320, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  /* max-width: 768 */ { width: 640, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  /* max-width: 1024 */ { width: 768, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  /* max-width: 6144 */ { width: 1024, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
   // webp
-  { width: 320, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
-  { width: 640, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
-  { width: 768, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
-  { width: 1024, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
-  { width: 1024, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  /* max-width: 320 */ { width: 200, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  /* max-width: 640 */ { width: 320, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  /* max-width: 768 */ { width: 640, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  /* max-width: 1024 */ { width: 768, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  /* max-width: 6144 */ { width: 1024, format: "webp", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
   // avif
-  { width: 320, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
-  { width: 640, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
-  { width: 768, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
-  { width: 1024, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
-  { width: 1024, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
+  /* max-width: 320 */ { width: 200, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
+  /* max-width: 640 */ { width: 320, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
+  /* max-width: 768 */ { width: 640, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
+  /* max-width: 1024 */ { width: 768, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
+  /* max-width: 6144 */ { width: 1024, format: "avif", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
 ]
 
 
@@ -736,7 +736,7 @@ const PokusImgExtensionTypeEnum = {
  *    + PokusImgExtensionTypeEnum.jpg
  *    + PokusImgExtensionTypeEnum.png
  *    + PokusImgExtensionTypeEnum.webp
- *    + PokusImgExtensionTypeEnum.avip
+ *    + PokusImgExtensionTypeEnum.avif
  */
 
  const getResponsiveMatrix = (chosenExtensionType /*: PokusImgExtensionTypeEnum */) => {
@@ -855,14 +855,15 @@ gulp.task('build:img:responsive:jpg', function () {
   }))
   .pipe(gulp.dest("docs/images/"));
 });
+
 gulp.task('build:img:responsive:jpeg', function () {
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
-  gutil.log(`   >>>> +-     gulp [build:img:responsive:jpeg]  +- <<<<    `)
+  gutil.log(`   >>>> +-    gulp [build:img:responsive:jpeg]  +- <<<<    `)
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
-  gutil.log(pokusJPGresponsiveMatrix)
+  gutil.log(pokusJPEGresponsiveMatrix)
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   
   return gulp
@@ -877,35 +878,79 @@ gulp.task('build:img:responsive:jpeg', function () {
   .pipe(gulp.dest("docs/images/"));
 });
 gulp.task('build:img:responsive:png', function () {
-  gulp.src("docs/images/**/*.png")
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-    gulp [build:img:responsive:png]  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(pokusPNGresponsiveMatrix)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  
+  return gulp
+  // .src("docs/images/*.png") /// this one works
+  // .src('docs/images/video-thumb.png') /// this one works
+  // .src(['images/*.png', 'images/**/*.png', 'images/**/**/*.png', 'images/**/**/**/*.png', 'images/**/**/**/**/*.png'],{"base" : "./docs" })  /// this one does not work
+  // .src(['docs/images/*.png', 'docs/images/**/*.png', 'docs/images/**/**/*.png', 'docs/images/**/**/**/*.png', 'docs/images/**/**/**/**/*.png']) // this one works too
+  // .src(['docs/images/*.png', 'docs/images/**/*.png', 'docs/images/**/**/*.png', 'docs/images/**/**/**/*.png', 'docs/images/**/**/**/**/*.png'])
+  .src(['docs/images/*.jpg', 'docs/images/**/*.jpg'])
   .pipe(sharpResponsive({
     formats: pokusPNGresponsiveMatrix
   }))
   .pipe(gulp.dest("docs/images/"));
 });
 gulp.task('build:img:responsive:webp', function () {
-  gulp.src("docs/images/**/*.webp")
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-    gulp [build:img:responsive:webp]  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(pokusWEBPresponsiveMatrix)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  
+  return gulp
+  // .src("docs/images/*.webp") /// this one works
+  // .src('docs/images/video-thumb.webp') /// this one works
+  // .src(['images/*.webp', 'images/**/*.webp', 'images/**/**/*.webp', 'images/**/**/**/*.webp', 'images/**/**/**/**/*.webp'],{"base" : "./docs" })  /// this one does not work
+  // .src(['docs/images/*.webp', 'docs/images/**/*.webp', 'docs/images/**/**/*.webp', 'docs/images/**/**/**/*.webp', 'docs/images/**/**/**/**/*.webp']) // this one works too
+  .src(['docs/images/*.webp', 'docs/images/**/*.webp'])
   .pipe(sharpResponsive({
-    formats: pokusPNGresponsiveMatrix
+    formats: pokusWEBPresponsiveMatrix
   }))
   .pipe(gulp.dest("docs/images/"));
 });
-gulp.task('build:img:responsive:avip', function () {
-  gulp.src("docs/images/**/*.avip")
+gulp.task('build:img:responsive:avif', function () {
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-    gulp [build:img:responsive:avif]  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  gutil.log(pokusAVIFresponsiveMatrix)
+  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  
+  return gulp
+  // .src("docs/images/*.avif") /// this one works
+  // .src('docs/images/video-thumb.avif') /// this one works
+  // .src(['images/*.avif', 'images/**/*.avif', 'images/**/**/*.avif', 'images/**/**/**/*.avif', 'images/**/**/**/**/*.avif'],{"base" : "./docs" })  /// this one does not work
+  // .src(['docs/images/*.avif', 'docs/images/**/*.avif', 'docs/images/**/**/*.avif', 'docs/images/**/**/**/*.avif', 'docs/images/**/**/**/**/*.avif']) // this one works too
+  .src(['docs/images/*.avif', 'docs/images/**/*.avif'])
   .pipe(sharpResponsive({
-    formats: pokusPNGresponsiveMatrix
+    formats: pokusAVIFresponsiveMatrix
   }))
   .pipe(gulp.dest("docs/images/"));
 });
 
-gulp.task('build:img:responsive', gulp.series('build:img:responsive:jpg', 'build:img:responsive:jpeg', 'build:img:responsive:webp', 'build:img:responsive:png', 'build:img:responsive:avip'));
+// gulp.task('build:img:responsive', gulp.series('build:img:responsive:jpg', 'build:img:responsive:jpeg', 'build:img:responsive:webp', 'build:img:responsive:png', 'build:img:responsive:avif'));
+gulp.task('build:img:responsive', gulp.series('build:img:responsive:jpeg', 'build:img:responsive:webp', 'build:img:responsive:png', 'build:img:responsive:avif'));
 
 // ** scratch tasks : they clean the public and docs folder, and re-run the hugo build, without any optimization, else than the [gulp-responisve-sharp] plugin image processing task
 gulp.task('build:img:responsive:scratch:jpeg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpeg'));
 gulp.task('build:img:responsive:scratch:jpg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpg'));
 gulp.task('build:img:responsive:scratch:webp', gulp.series('build:hugo:gh_pages', 'build:img:responsive:webp'));
 gulp.task('build:img:responsive:scratch:png', gulp.series('build:hugo:gh_pages', 'build:img:responsive:png'));
-gulp.task('build:img:responsive:scratch:avip', gulp.series('build:hugo:gh_pages', 'build:img:responsive:avip'));
+gulp.task('build:img:responsive:scratch:avif', gulp.series('build:hugo:gh_pages', 'build:img:responsive:avif'));
 
 
 gulp.task('build:img:responsive:scratch', gulp.series('build:hugo:gh_pages', 'build:img:responsive'));
@@ -934,39 +979,14 @@ gulp.task('build:img:responsive:scratch', gulp.series('build:hugo:gh_pages', 'bu
 
 
 
-
-
-
 /***************************************************************
  ***************************************************************
- *  ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
- *  ==>>> !!!!! EVERYTHING BELOW THIS IS STILL UNUSED !!!!!
- *  ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
+ *   ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
+ *   ==>>>   | Excute Watch tasks |
+ *   ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
  ***************************************************************
  ***************************************************************
  **/
-
-/***************************************************************
- ***************************************************************
- *  ==>>>   | purge CSS produced by gulp in docs/ folder
- ***************************************************************
- ***************************************************************
- **/
-gulp.task('build:docs:purgecss', () => {
-  return gulp.src('src/**/*.css')
-    .pipe(purgecss({
-      content: [
-        'src/*.html',
-        'src/**/*.html'
-      ]
-    }))
-    .pipe(gulp.dest('build/css'))
-})
-
-
-
-
-
 // ---------------// ---------------// ---------------// ---------------//
 // ---------------// ---------------// ---------------// ---------------//
 // ---------------
@@ -1008,7 +1028,30 @@ gulp.task('watch:dev', gulp.series('build:hugo', function () {
   gulp.watch('./content/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
   gulp.watch('./data/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
   gulp.watch('./layouts/**/*.*', gulp.series('build:hugo')).on('change', browserSync.reload);
-  gulp.watch("src/*.html", gulp.series('build:hugo')).on('change', browserSync.reload);
+  
+}));
+
+
+
+gulp.task('watch:img:prod', gulp.series('build:img:responsive:scratch', function () {
+  browserSync.init({
+    server: "./docs",
+    host: `${hugoHost}`,
+    port: `${hugoPort}`
+  });
+
+  // watch all hugo project files for change, rebuild all if changes
+  gulp.watch('./config.toml', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./config.yaml', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./config.json', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./static/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.stream);
+  gulp.watch('./assets/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./themes/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./archetypes/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./content/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./data/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./layouts/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  /// gulp.watch("./layouts/**/*.*", gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
 }));
 
 
@@ -1040,5 +1083,37 @@ gulp.task('watch:prod', gulp.series('build:deployment', function () {
   gulp.watch('./content/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
   gulp.watch('./data/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
   gulp.watch('./layouts/**/*.*', gulp.series('build:deployment')).on('change', browserSync.reload);
-  gulp.watch("src/*.html", gulp.series('build:deployment')).on('change', browserSync.reload);
+  // gulp.watch("src/*.html", gulp.series('build:deployment')).on('change', browserSync.reload);
 }));
+
+
+
+
+
+/***************************************************************
+ ***************************************************************
+ *  ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
+ *  ==>>> !!!!! EVERYTHING BELOW THIS IS STILL UNUSED !!!!!
+ *  ==>>> !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !
+ ***************************************************************
+ ***************************************************************
+ **/
+
+/***************************************************************
+ ***************************************************************
+ *  ==>>>   | purge CSS produced by gulp in docs/ folder
+ ***************************************************************
+ ***************************************************************
+ **/
+gulp.task('build:docs:purgecss', () => {
+  return gulp.src('src/**/*.css')
+    .pipe(purgecss({
+      content: [
+        'src/*.html',
+        'src/**/*.html'
+      ]
+    }))
+    .pipe(gulp.dest('build/css'))
+})
+
+

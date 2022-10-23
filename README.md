@@ -2,6 +2,19 @@
 
 * We used hugo theme https://github.com/themefisher/hargo-hugo
 
+## Current work (WIP)
+
+* To test the image processing for responsivenss of images :
+
+```bash 
+export HUGO_HTTP_SCHEMA=http
+export HUGO_HOST="127.0.0.1"
+export HUGO_PORT="2314"
+
+gulp watch:img:prod
+
+```
+
 ## Run locally 
 
 

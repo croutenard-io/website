@@ -21,13 +21,13 @@
       {{ $responsive_folder := .image.responsive_folder }}
       {{ $responsive_file_ext := "avip" }}
       
-      <source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avip" />
+      <source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avip" />
       <!-- 
       <ul>
         <li>
           <em>JE VEUX : <p>
             <pre>
-              &lt;source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avip" &gt;
+              &lt;source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avip" &gt;
             </pre>
           </p></em>
         </li>
@@ -48,13 +48,13 @@
       {{ $responsive_folder := .image.responsive_folder }}
       {{ $responsive_file_ext := "png" }}
       
-      <source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/png" />
+      <source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/png" />
       <!--  
       <ul>
         <li>
           <em>JE VEUX : <p>
             <pre>
-              &lt;source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/png" &gt;
+              &lt;source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/png" &gt;
             </pre>
           </p></em>
         </li>
@@ -75,13 +75,13 @@
       {{ $responsive_folder := .image.responsive_folder }}
       {{ $responsive_file_ext := "webp" }}
       
-      <source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/webp" />
+      <source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/webp" />
       <!--  
       <ul>
         <li>
           <em>JE VEUX : <p>
             <pre>
-              &lt;source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/webp" &gt;
+              &lt;source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/webp" &gt;
             </pre>
           </p></em>
         </li>
@@ -103,13 +103,13 @@
       {{ $responsive_folder := .image.responsive_folder }}
       {{ $responsive_file_ext := "jpeg" }}
       
-      <source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/jpeg" />
+      <source srcset="merde/{{ site.Params.baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/jpeg" />
       <!--  
       <ul>
         <li>
           <em>JE VEUX : <p>
             <pre>
-              &lt;source srcset="{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/jpeg" &gt;
+              &lt;source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/jpeg" &gt;
             </pre>
           </p></em>
         </li>
@@ -125,20 +125,20 @@
   <source srcset="/img/lion-sm.avif" media="(max-width: 640px)" type="image/avif" />
   <source srcset="/img/lion-md.avif" media="(max-width: 768px)" type="image/avif" />
   <source srcset="/img/lion-lg.avif" media="(max-width: 1024px)" type="image/avif" />
-  <source srcset="/img/lion-xl.avif" media="(max-width: 10000px)" type="image/avif" />
+  <source srcset="/img/lion-xl.avif" media="(max-width: 6144px)" type="image/avif" />
 
 
   <source srcset="/img/lion-xs.webp" media="(max-width: 320px)" type="image/webp" />
   <source srcset="/img/lion-sm.webp" media="(max-width: 640px)" type="image/webp" />
   <source srcset="/img/lion-md.webp" media="(max-width: 768px)" type="image/webp" />
   <source srcset="/img/lion-lg.webp" media="(max-width: 1024px)" type="image/webp" />
-  <source srcset="/img/lion-xl.webp" media="(max-width: 10000px)" type="image/webp" />
+  <source srcset="/img/lion-xl.webp" media="(max-width: 6144px)" type="image/webp" />
 
   <source srcset="/img/lion-xs.jpg" media="(max-width: 320px)" type="image/jpeg" />
   <source srcset="/img/lion-sm.jpg" media="(max-width: 640px)" type="image/jpeg" />
   <source srcset="/img/lion-md.jpg" media="(max-width: 768px)" type="image/jpeg" />
   <source srcset="/img/lion-lg.jpg" media="(max-width: 1024px)" type="image/jpeg" />
-  <source srcset="/img/lion-xl.jpg" media="(max-width: 10000px)" type="image/jpeg" />
+  <source srcset="/img/lion-xl.jpg" media="(max-width: 6144px)" type="image/jpeg" />
 
    original : 
   <img src="/img/lion.jpeg" class="img-responsive" alt="A lion in the jungle." />

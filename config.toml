@@ -51,9 +51,9 @@ disqusShortname = ""
   [[params.responisiveness.images.size_range]]
     name = "lg"
     width = "1024px"
-  [[params.responisiveness.images_ola_test]]
+  [[params.responisiveness.images.size_range]]
     name = "xl"
-    width = "10000px"
+    width = "6144px"
     # test2 = {name="test2_webp", width="1789px"}
     # test = [
     #          {firstname="jhon", surname="smith"},
