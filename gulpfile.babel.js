@@ -515,7 +515,30 @@ import { Interface } from 'readline';
 gulp.task('build:deployment', gulp.series('build:hugo:gh_pages', 'build:img:magick:script', 'build:seo'));
 
 
-
+/***************************************************************
+ ***************************************************************
+ *  ==>>>   | Excute Responsive Images tasks
+ * 
+ * 
+ *   There is a trick about those tasks: 
+ * 
+ * - each of the gulp tasks NEED TO BE IDEMPOTENT
+ * - if one tasks is not idempotent, running that task twice in row wil not give the same result : that is not something that can be accepted.
+ * - now, image responisveness tasks mainly do this : 
+ *    - it takes a list of images files from a folder 'IMG_SRC_FOLDER'
+ *    - for each file, it generates a set of new files, in a target folder 'IMG_DIST_FOLDER'
+ *    - I made first one mistake : I implemented the gulp tasks so that  'IMG_SRC_FOLDER' = 'IMG_DIST_FOLDER'
+ *    - so that every time i run the task, 'IMG_SRC_FOLDER' ends up containing more images files
+ *    - and when i run the exact same taks once again , there are smore images, for 
+ * 
+ * - that is why, for such task: 
+ *    + the folder in which images are picked up, 
+ *    + needs to be different from the folder that receives the generated images.
+ *    + otherwise, after a first run, the picked up jpeg images are the original ones and the "first round generated ones" 
+ *    + not to mention that the build very fastly blows up: its number of taks increase by square power
+ ***************************************************************
+ ***************************************************************
+ **/
 // const { src, dest } = require("gulp");
 const sharpResponsive = require("gulp-sharp-responsive");
 
@@ -591,7 +614,13 @@ const responsiveMatrixBase = [
   /* max-width: 768 */ /// { width: 640, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
   /* max-width: 1024 */ /// { width: 768, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-lg` } },
   /* max-width: 6144 */ /// { width: 1024, format: "jpg", rename: { suffix: `${imageResponsivenessPrefix}-xl` } },
-  // jpeg
+
+  // ----- 
+  // jpeg : 
+  // Note : although the specified format is [format: "jpeg",], 
+  //        the 'gulp-sharp-responsive' plugin will 
+  //        generate '*.jpg' files, not '*.jpeg' files.
+  //        
   /* max-width: 320 */ { width: 200, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-xs` } },
   /* max-width: 640 */ { width: 320, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-sm` } },
   /* max-width: 768 */ { width: 640, format: "jpeg", rename: { suffix: `${imageResponsivenessPrefix}-md` } },
@@ -710,19 +739,33 @@ gutil.log(` >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - >>>>>>>> - <<<< `)
 // public interface PokusImgExtensionTypeEnum {
 const PokusImgExtensionTypeEnum = {
   jpeg : {
-  name: 'jpeg'
-  },
-  jpg: {
-  name: 'jpg'
+  name: 'jpeg',
+  file_extensions_default: `jpg`,
+  file_extensions: [
+        'jpeg',
+        'jpg'
+      ]
   },
   png: {
-  name: 'png'
+  name: 'png',
+  file_extensions_default: `png`,
+  file_extensions: [
+        'png'
+      ]
   },
   webp: {
-  name: 'webp'
+  name: 'webp',
+  file_extensions_default: `webp`,
+  file_extensions: [
+        'webp'
+      ]
   },
   avif: {
-  name: 'avif'
+  name: 'avif',
+  file_extensions_default: `avif`,
+  file_extensions: [
+        'avif'
+      ]
   }
 }
 
@@ -733,7 +776,6 @@ const PokusImgExtensionTypeEnum = {
  * -------------------------------------
  *   Pass as parameter either of :
  *    + PokusImgExtensionTypeEnum.jpeg
- *    + PokusImgExtensionTypeEnum.jpg
  *    + PokusImgExtensionTypeEnum.png
  *    + PokusImgExtensionTypeEnum.webp
  *    + PokusImgExtensionTypeEnum.avif
@@ -746,19 +788,20 @@ const PokusImgExtensionTypeEnum = {
     let currentRemovedElement = null;
     for (let i = 0; i < responsiveMatrixBase.length; i++) {
       if (i >= matrixToReturn.length) { // the matrixToReturn is being spliced : its length dynamically change lduring the loop execution
-        fancyLogger.warn(` >>> the matrixToReturn length has been exceeded`)
+        // fancyLogger.warn(` >>> the matrixToReturn length has been exceeded`)
+        // break;
       }
-      fancyLogger.warn(` >>> matrixToReturn[i].format=[${matrixToReturn[i].format}]`)
-      fancyLogger.warn(` >>> chosenExtensionType.name=[${chosenExtensionType.name}]`)
+      // fancyLogger.warn(` >>> matrixToReturn[i].format=[${matrixToReturn[i].format}]`)
+      // fancyLogger.warn(` >>> chosenExtensionType.name=[${chosenExtensionType.name}]`)
       
       if (matrixToReturn[i].format == `${chosenExtensionType.name}`) {
-        fancyLogger.warn(` >>> Yes this is an image file of type  [${chosenExtensionType.name}]`)
+        // fancyLogger.warn(` >>> Yes this is an image file of type  [${chosenExtensionType.name}]`)
         currentRemovedElement = matrixToReturn.splice(i, sharpResponsiveImagesMatrixDimension); // 2nd parameter means remove one item only
-        fancyLogger.warn(`    So just spliced out of matrix to return, the below element : `)
+        // fancyLogger.warn(`    So just spliced out of matrix to return, the below element : `)
         fancyLogger.warn(currentRemovedElement);
         break;
       } else {
-        fancyLogger.warn(` >>> No this not an image file of type  [${chosenExtensionType.name}]`)
+        // fancyLogger.warn(` >>> No this not an image file of type  [${chosenExtensionType.name}]`)
       }
 
     }
@@ -807,15 +850,15 @@ fancyLogger.warn(` >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> >>>>>>>>>>> `)
 
 */
 const pokusJPEGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpeg)
-const pokusJPGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpg)
+// const pokusJPGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpg)
 const pokusAVIFresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.avif)
 const pokusPNGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.png)
 const pokusWEBPresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.webp)
 /*  */
 fancyLogger.warn(` >>>> pokusJPEGresponsiveMatrix : `)
 fancyLogger.warn(pokusJPEGresponsiveMatrix)
-fancyLogger.warn(` >>>> pokusJPGresponsiveMatrix : `)
-fancyLogger.warn(pokusJPGresponsiveMatrix)
+// fancyLogger.warn(` >>>> pokusJPGresponsiveMatrix : `)
+// fancyLogger.warn(pokusJPGresponsiveMatrix)
 fancyLogger.warn(` >>>> pokusAVIFresponsiveMatrix : `)
 fancyLogger.warn(pokusAVIFresponsiveMatrix)
 fancyLogger.warn(` >>>> pokusPNGresponsiveMatrix : `)
@@ -828,33 +871,34 @@ fancyLogger.warn(pokusWEBPresponsiveMatrix)
 /**
  * ----- * ---- * ---- * ---- * ---- * ---- * ---- * ---- * ----
  * const pokusJPEGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpeg)
- * const pokusJPGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpg)
+ * // const pokusJPGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.jpg)
  * const pokusAVIFresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.avif)
  * const pokusPNGresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.png)
  * const pokusWEBPresponsiveMatrix = getResponsiveMatrix(PokusImgExtensionTypeEnum.webp)
  * ----- * ---- * ---- * ---- * ---- * ---- * ---- * ---- * ----
  */
-gulp.task('build:img:responsive:jpg', function () {
-  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
-  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
-  gutil.log(`   >>>> +-     gulp [build:img:responsive:jpg]  +- <<<<    `)
-  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
-  gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
-  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
-  gutil.log(pokusJPGresponsiveMatrix)
-  gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+
+// gulp.task('build:img:responsive:jpg', function () {
+//   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+//   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+//   gutil.log(`   >>>> +-     gulp [build:img:responsive:jpg]  +- <<<<    `)
+//   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+//   gutil.log(`   >>>> +-  +-  Responsive Matrix :     `)
+//   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+//   gutil.log(pokusJPGresponsiveMatrix)
+//   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   
-  return gulp
-  // .src("docs/images/*.jpg") /// this one works
-  // .src('docs/images/video-thumb.jpg') /// this one works
-  // .src(['images/*.jpg', 'images/**/*.jpg', 'images/**/**/*.jpg', 'images/**/**/**/*.jpg', 'images/**/**/**/**/*.jpg'],{"base" : "./docs" })  /// this one does not work
-  // .src(['docs/images/*.jpg', 'docs/images/**/*.jpg', 'docs/images/**/**/*.jpg', 'docs/images/**/**/**/*.jpg', 'docs/images/**/**/**/**/*.jpg']) // this one works too
-  .src(['docs/images/*.jpg', 'docs/images/**/*.jpg'])
-  .pipe(sharpResponsive({
-    formats: pokusJPGresponsiveMatrix
-  }))
-  .pipe(gulp.dest("docs/images/"));
-});
+//   return gulp
+//   // .src("static/images/*.jpg") /// this one works
+//   // .src('static/images/video-thumb.jpg') /// this one works
+//   // .src(['images/*.jpg', 'images/**/*.jpg', 'images/**/**/*.jpg', 'images/**/**/**/*.jpg', 'images/**/**/**/**/*.jpg'],{"base" : "./static" })  /// this one does not work
+//   // .src(['static/images/*.jpg', 'static/images/**/*.jpg', 'static/images/**/**/*.jpg', 'static/images/**/**/**/*.jpg', 'static/images/**/**/**/**/*.jpg']) // this one works too
+//   .src(['static/images/*.jpg', 'static/images/**/*.jpg', 'static/images/**/**/*.jpg', 'static/images/**/**/**/*.jpg', 'static/images/**/**/**/**/*.jpg'])
+//   .pipe(sharpResponsive({
+//     formats: pokusJPGresponsiveMatrix
+//   }))
+//   .pipe(gulp.dest("docs/images/"));
+// });
 
 gulp.task('build:img:responsive:jpeg', function () {
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
@@ -867,11 +911,7 @@ gulp.task('build:img:responsive:jpeg', function () {
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   
   return gulp
-  // .src("docs/images/*.jpeg") /// this one works
-  // .src('docs/images/video-thumb.jpeg') /// this one works
-  // .src(['images/*.jpeg', 'images/**/*.jpeg', 'images/**/**/*.jpeg', 'images/**/**/**/*.jpeg', 'images/**/**/**/**/*.jpeg'],{"base" : "./docs" })  /// this one does not work
-  // .src(['docs/images/*.jpeg', 'docs/images/**/*.jpeg', 'docs/images/**/**/*.jpeg', 'docs/images/**/**/**/*.jpeg', 'docs/images/**/**/**/**/*.jpeg']) // this one works too
-  .src(['docs/images/*.jpeg', 'docs/images/**/*.jpeg'])
+  .src(['static/images/*.jpg', 'static/images/**/*.jpg', 'static/images/*.jpeg', 'static/images/**/*.jpeg'])
   .pipe(sharpResponsive({
     formats: pokusJPEGresponsiveMatrix
   }))
@@ -886,16 +926,36 @@ gulp.task('build:img:responsive:png', function () {
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   gutil.log(pokusPNGresponsiveMatrix)
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
+  const test1PNGResponsiveMatrix = [
+    ///
+    { width: 200, format: 'jpeg', rename: { suffix: '-x-reponsiveness-xs' } },
+    { width: 320, format: 'jpeg', rename: { suffix: '-x-reponsiveness-sm' } },
+    { width: 640, format: 'jpeg', rename: { suffix: '-x-reponsiveness-md' } },
+    { width: 768, format: 'jpeg', rename: { suffix: '-x-reponsiveness-lg' } },
+    { width: 1024, format: 'jpeg', rename: { suffix: '-x-reponsiveness-xl' } },
+    ///
+    { width: 200, format: 'webp', rename: { suffix: '-x-reponsiveness-xs' } },
+    { width: 320, format: 'webp', rename: { suffix: '-x-reponsiveness-sm' } },
+    { width: 640, format: 'webp', rename: { suffix: '-x-reponsiveness-md' } },
+    { width: 768, format: 'webp', rename: { suffix: '-x-reponsiveness-lg' } },
+    { width: 1024, format: 'webp', rename: { suffix: '-x-reponsiveness-xl' } },
+    ///
+    { width: 200, format: 'avif', rename: { suffix: '-x-reponsiveness-xs' } },
+    { width: 320, format: 'avif', rename: { suffix: '-x-reponsiveness-sm' } },
+    { width: 640, format: 'avif', rename: { suffix: '-x-reponsiveness-md' } },
+    { width: 768, format: 'avif', rename: { suffix: '-x-reponsiveness-lg' } },
+    { width: 1024, format: 'avif', rename: { suffix: '-x-reponsiveness-xl' } }
   
+  ]
+  let setOfPngFiles = [
+    'static/images/**/*.png',
+    'static/images/*.png'
+  ]
   return gulp
-  // .src("docs/images/*.png") /// this one works
-  // .src('docs/images/video-thumb.png') /// this one works
-  // .src(['images/*.png', 'images/**/*.png', 'images/**/**/*.png', 'images/**/**/**/*.png', 'images/**/**/**/**/*.png'],{"base" : "./docs" })  /// this one does not work
-  // .src(['docs/images/*.png', 'docs/images/**/*.png', 'docs/images/**/**/*.png', 'docs/images/**/**/**/*.png', 'docs/images/**/**/**/**/*.png']) // this one works too
-  // .src(['docs/images/*.png', 'docs/images/**/*.png', 'docs/images/**/**/*.png', 'docs/images/**/**/**/*.png', 'docs/images/**/**/**/**/*.png'])
-  .src(['docs/images/*.jpg', 'docs/images/**/*.jpg'])
+  .src(setOfPngFiles)
   .pipe(sharpResponsive({
     formats: pokusPNGresponsiveMatrix
+    // formats: test1PNGResponsiveMatrix
   }))
   .pipe(gulp.dest("docs/images/"));
 });
@@ -910,11 +970,7 @@ gulp.task('build:img:responsive:webp', function () {
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   
   return gulp
-  // .src("docs/images/*.webp") /// this one works
-  // .src('docs/images/video-thumb.webp') /// this one works
-  // .src(['images/*.webp', 'images/**/*.webp', 'images/**/**/*.webp', 'images/**/**/**/*.webp', 'images/**/**/**/**/*.webp'],{"base" : "./docs" })  /// this one does not work
-  // .src(['docs/images/*.webp', 'docs/images/**/*.webp', 'docs/images/**/**/*.webp', 'docs/images/**/**/**/*.webp', 'docs/images/**/**/**/**/*.webp']) // this one works too
-  .src(['docs/images/*.webp', 'docs/images/**/*.webp'])
+  .src(['static/images/*.webp', 'static/images/**/*.webp'])
   .pipe(sharpResponsive({
     formats: pokusWEBPresponsiveMatrix
   }))
@@ -931,11 +987,7 @@ gulp.task('build:img:responsive:avif', function () {
   gutil.log(`   >>>> +-  +-  +-  +-  +-  +-  +-  +-  +-  +-  +- <<<<    `)
   
   return gulp
-  // .src("docs/images/*.avif") /// this one works
-  // .src('docs/images/video-thumb.avif') /// this one works
-  // .src(['images/*.avif', 'images/**/*.avif', 'images/**/**/*.avif', 'images/**/**/**/*.avif', 'images/**/**/**/**/*.avif'],{"base" : "./docs" })  /// this one does not work
-  // .src(['docs/images/*.avif', 'docs/images/**/*.avif', 'docs/images/**/**/*.avif', 'docs/images/**/**/**/*.avif', 'docs/images/**/**/**/**/*.avif']) // this one works too
-  .src(['docs/images/*.avif', 'docs/images/**/*.avif'])
+  .src(['static/images/*.avif', 'static/images/**/*.avif'])
   .pipe(sharpResponsive({
     formats: pokusAVIFresponsiveMatrix
   }))
@@ -947,7 +999,7 @@ gulp.task('build:img:responsive', gulp.series('build:img:responsive:jpeg', 'buil
 
 // ** scratch tasks : they clean the public and docs folder, and re-run the hugo build, without any optimization, else than the [gulp-responisve-sharp] plugin image processing task
 gulp.task('build:img:responsive:scratch:jpeg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpeg'));
-gulp.task('build:img:responsive:scratch:jpg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpg'));
+// gulp.task('build:img:responsive:scratch:jpg', gulp.series('build:hugo:gh_pages', 'build:img:responsive:jpg'));
 gulp.task('build:img:responsive:scratch:webp', gulp.series('build:hugo:gh_pages', 'build:img:responsive:webp'));
 gulp.task('build:img:responsive:scratch:png', gulp.series('build:hugo:gh_pages', 'build:img:responsive:png'));
 gulp.task('build:img:responsive:scratch:avif', gulp.series('build:hugo:gh_pages', 'build:img:responsive:avif'));
@@ -1041,16 +1093,17 @@ gulp.task('watch:img:prod', gulp.series('build:img:responsive:scratch', function
   });
 
   // watch all hugo project files for change, rebuild all if changes
-  gulp.watch('./config.toml', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./config.yaml', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./config.json', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./static/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.stream);
-  gulp.watch('./assets/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./themes/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./archetypes/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./content/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./data/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
-  gulp.watch('./layouts/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  gulp.watch('./config.toml', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./config.yaml', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./config.json', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./assets/**/*.*', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./themes/**/*.*', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./archetypes/**/*.*', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./content/**/*.*', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./data/**/*.*', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./layouts/**/*.*', gulp.series('build:img:responsive:scratch'));
+  gulp.watch('./static/**/*.*', gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
+  /// gulp.watch('./docs/**/*.*').on('change', browserSync.reload);
   /// gulp.watch("./layouts/**/*.*", gulp.series('build:img:responsive:scratch')).on('change', browserSync.reload);
 }));
 
@@ -1059,9 +1112,8 @@ gulp.task('watch:img:prod', gulp.series('build:img:responsive:scratch', function
 
 
 // ---------------
-// all prod env related tasks are done in the docs folder itself
-// all dev env rerleated ops are done inside the public folder
-// the docs/ folder is only used by github pages deployment
+// [build:deployment] :
+//  - does some image processing using ImageMagick 'magick mogrify'
 //
 
 

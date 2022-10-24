@@ -9,7 +9,7 @@
 
 <picture id="test_jbl">
 
-    <!-- avip -->
+    <!-- avif -->
   
     {{ range site.Params.responisiveness.images.size_range }}
     {{ $imgNameRespSizeRange := .name }}
@@ -19,15 +19,15 @@
 
       {{ $responsive_filename_no_ext := .image.responsive_filename_no_ext }}
       {{ $responsive_folder := .image.responsive_folder }}
-      {{ $responsive_file_ext := "avip" }}
-      
-      <source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avip" />
+      {{ $responsive_file_ext := "avif" }}
+      <!-- d -->
+      <source srcset="{{ .Page.baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avif" />
       <!-- 
       <ul>
         <li>
           <em>JE VEUX : <p>
             <pre>
-              &lt;source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avip" &gt;
+              &lt;source srcset="{{ .baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/avif" &gt;
             </pre>
           </p></em>
         </li>
@@ -91,7 +91,7 @@
   {{ end }}
 
 
-  <!-- jpeg -->
+  <!-- jpg -->
   
   {{ range site.Params.responisiveness.images.size_range }}
     {{ $imgNameRespSizeRange := .name }}
@@ -101,7 +101,7 @@
 
       {{ $responsive_filename_no_ext := .image.responsive_filename_no_ext }}
       {{ $responsive_folder := .image.responsive_folder }}
-      {{ $responsive_file_ext := "jpeg" }}
+      {{ $responsive_file_ext := "jpg" }}
       
       <source srcset="merde/{{ site.Params.baseURL }}{{ $responsive_folder }}{{ $responsive_filename_no_ext }}{{ $imgNameRespPrefix }}-{{ $imgNameRespSizeRange }}.{{ $responsive_file_ext }}" media="(max-width: {{ $imgNameRespSizeRangeWidth }})" type="image/jpeg" />
       <!--  

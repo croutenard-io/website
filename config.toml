@@ -32,7 +32,7 @@ disqusShortname = ""
 ###########################################
 ############################## Responsiveness ###############################
 ###########################################
-# ktyf
+# honey
 [params.responisiveness]
   enable = true
   ## Image renaming pattern

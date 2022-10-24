@@ -15,6 +15,60 @@ gulp watch:img:prod
 
 ```
 
+* The issue I meet for the moment : 
+  * The work is auto recursive without stop condition
+  * Indeed : 
+
+```bash
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xl.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-lg.jpeg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-lg.png
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-lg.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-md.jpeg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-md.png
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-md.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-sm.jpeg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-sm.png
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-sm.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-xl.jpeg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-xl.png
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-xl.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-xs.jpeg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-xs.png
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs-x-reponsiveness-xs.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs.avif
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs.jpg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB-x-reponsiveness-xs.webp
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB.jpg
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB.png
+ create mode 100644 docs/images/crouton/logo/CROUTENARD_SIMPLE_RVB.svg
+ create mode 100644 docs/images/crouton/logo/johanna2/CROUTENARD_RVB.svg
+ create mode 100644 docs/images/crouton/logo/johanna2/CROUTENARD_SIMPLE_RVB.svg
+ rewrite docs/images/cta-overlay.png (100%)
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-lg.jpeg
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-lg.png
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-lg.webp
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-md.jpeg
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-md.png
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-md.webp
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-sm.jpeg
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-sm.png
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-sm.webp
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-xl.jpeg
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-xl.png
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-xl.webp
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-xs.jpeg
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-xs.png
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg-x-reponsiveness-xs.webp
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg.avif
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg.jpg
+ create mode 100644 docs/images/video-thumb-x-reponsiveness-lg.webp
+
+```
+
+
+
+
 ## Run locally 
 
 
